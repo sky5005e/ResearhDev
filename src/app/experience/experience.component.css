@@ -1,0 +1,15 @@
+.val-error{
+    color: red;
+}
+
+input[type="submit"].add-btn {
+    padding: 18px 40px;
+    font-size: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    background: #b2384f;
+    border: none;
+    border-radius: 2px;
+    vertical-align: top;
+    display: inline-block;
+}

@@ -1,0 +1,69 @@
+<div class="wrap" *ngIf="showCheckType">
+  <div class="package-list inside-sec">
+    <h2><span>Sign up</span></h2>
+    <ul class="main-form sign-up-form">
+      <li><input id="buyer" type="radio" value="buyer" checked [(ngModel)]="buyerCheckValue"><label for="buyer"> &nbsp; Buyer </label></li>
+      <li><input id="seller" type="radio" value="seller" [(ngModel)]="sellerCheckValue"><label for="seller"> &nbsp; Seller</label></li>
+    </ul>
+    <div class="form-act">
+      <input type="button" value="CONTINUE" (click)="continueRegistration()">
+      <!-- <button type="button" [disabled]="!buyerCheckValue && !sellerCheckValue" (click)="continueRegistration()">CONTINUE</button> -->
+    </div>
+  </div>
+</div>
+
+<!-- Conditionally show gregistration form on clicking on either buyer / seller -->
+<div class="wrap" *ngIf="showSignUp">
+  <div class="package-list inside-sec">
+    <h2><span>Sign up</span></h2>
+    <ul class="main-form sign-up-width">
+      <li class="sign-up-opt clearfix"><a href="#" class="facebook-signup">SIGN UP WITH FACEBOOK</a> <a href="#" class="gmail-signup">SIGN
+          UP WITH GMAIL</a></li>
+      <li class="sign-up-or">OR</li>
+
+      <form #signUpForm="ngForm">
+        <li>
+          <label>Name</label>
+          <input type="text" #uname="ngModel" name="userName" [(ngModel)]="signUpModel.name" required>
+          <div *ngIf="uname.touched">
+            <div *ngIf="uname.hasError('required')" class="val-error">** UserName is required</div>
+          </div>
+        </li>
+        <li>
+          <label>Email</label>
+          <input type="text" #uemail="ngModel" name="userEmail" [(ngModel)]="signUpModel.email_id" required>
+          <div *ngIf="uemail.touched">
+              <div *ngIf="uemail.hasError('required')" class="val-error">** Email is required</div>
+            </div>
+        </li>
+        <li>
+            <label>Password</label>
+            <input type="password" #pswd="ngModel" name="userPswd" [(ngModel)]="signUpModel.password" required>
+            <div *ngIf="pswd.touched">
+                <div *ngIf="pswd.hasError('required')" class="val-error">** Password is required</div>
+              </div>
+          </li>
+        <li class="mobile-no">
+          <label>Phone</label>
+          <input type="number" placeholder="Country Code">
+          <input type="number" placeholder="Number" #phone="ngModel" name="userPhoneNo" [(ngModel)]="signUpModel.mobile"
+            required minlength="10" maxlength="10">
+            <div *ngIf="phone.touched">
+                <div *ngIf="phone.hasError('required')" class="val-error">** Mobile No is required</div>
+              </div>
+        </li>
+        <li>
+          <label>Location (City)</label>
+          <select #ucity name="userCity" required [(ngModel)]="signUpModel.city">
+            <option selected hidden [value]="undefined">Select</option>
+            <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+          </select>
+        </li>
+      </form>
+    </ul>
+    <div class="form-act">
+      <input type="button" value="REGISTER" (click)="registerUser()">
+      <!-- <button type="button" (click)="registerUser()">REGISTER</button> -->
+    </div>
+  </div>
+</div>

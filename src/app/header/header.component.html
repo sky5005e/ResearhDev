@@ -1,0 +1,18 @@
+<header class="main-header clearfix">
+  <div class="wrap clearfix"> <a href="#" class="bukkzy-logo"><img src="assets/images/bukkzy-logo.png" width="217"
+        height="41" alt="" /></a>
+    <nav class="top-main-nav">
+      <ul class="clearfix">
+        <li><a href="#">Categories</a></li>
+        <li><a href="#">Places</a></li>
+        <li><a href="#">Occassions</a></li>
+        <li class="gift-experience"><a routerLink='/experience/gift'>Gift an Experience</a></li>
+        <li *ngIf="!isBuyer"><a routerLink='/experience/add'>List an Experience</a></li>
+        <li *ngIf="!IsUserName"  style="cursor:pointer;"><a (click)="goToLogin()">Log In</a></li>
+        
+        <li *ngIf="IsUserName" style="cursor:pointer;"> Welcome : {{UserName}}  <a style=" color: red;" (click)="goToLogin()"> Log Out</a></li>
+        <li *ngIf="!IsUserName" style="cursor:pointer;"><a (click)="goToSignUp()">Sign Up</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

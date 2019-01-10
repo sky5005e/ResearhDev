@@ -1,0 +1,41 @@
+<div class="top-header">
+  <div class="header-content">
+    <h1>Amazing Experiences Crafted by the Best</h1>
+    <div class="header-search">
+      <input type="text" id="txtsearch" name="txtsearch"><input type="button" value="Search" (click)="Search()">
+    </div>
+  </div>
+</div>
+
+<div class="wrap ">
+    <div class="package-list">
+          <h2><span>Recommended for you</span></h2>
+    
+    <div *ngFor="let expList of experienceList" class="package-bx clearfix">
+      <div class="package-image"><a href="#"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+      <div class="package-details">
+        <h3><a href="#">{{expList.title}}</a></h3>
+        <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.address}}</div>
+        <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
+            class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
+            Reviews</a></div>
+        <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36" alt="" /></span>By
+          <a href="#" class="auth-name">{{expList.user_name}}</a>
+          <span class="auth-verified">Video Verified</span></div>
+        <div class="package-last-booked">Last Booked - 6 hours ago</div>
+        <div class="package-btm clearfix">
+          <span class="deal-applied">Deal Applied</span>
+          <a href="#" class="package-dtl">View Details</a>
+          <span class="people-viewing">10 People Viewing</span>
+        </div>
+        <div class="package-price">
+          <span class="amt-saved">You Save $ {{expList['price'] - expList['sprice']}}.00</span>
+          <span class="original-price">$ {{expList['price']}}.00</span>
+          <span class="actual-price">$ {{expList['sprice']}}.00</span>
+        </div>
+        <i class="fas fa-heart wishlist"></i>
+      </div>
+    </div>
+  </div>
+
+</div>
