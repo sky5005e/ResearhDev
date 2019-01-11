@@ -7,11 +7,13 @@ import { GiftExpComponent } from './gift.component';
 import { AddExpComponent } from './add.component';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AuthGuard } from '../services/auth-guard.service';
+import { DetailExpComponent } from './detail.component';
 
 const routes: Routes = [
     { path: 'list', component: ListExpComponent, canActivate:[AuthGuard] },
     { path: 'add', component: AddExpComponent, canActivate:[AuthGuard] },
-    { path: 'gift', component: GiftExpComponent, canActivate:[AuthGuard] }
+    { path: 'gift', component: GiftExpComponent, canActivate:[AuthGuard] },    
+    { path: 'detail', component: DetailExpComponent, canActivate:[AuthGuard] }
 ];
 @NgModule({
     imports: [
@@ -26,7 +28,8 @@ const routes: Routes = [
     declarations: [
         ListExpComponent,
         AddExpComponent,
-        GiftExpComponent
+        GiftExpComponent,
+        DetailExpComponent
     ]
 })
 

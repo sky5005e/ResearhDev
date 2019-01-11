@@ -18,6 +18,8 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
 import { ExperienceModule } from './experience/experience.module';
 import { FormApiService } from './services/formapi.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { CheckOutModule } from './checkout/checkout.module';
+import { UserProfileModule } from './userprofile/userprofile.module';
 
 let config = new AuthServiceConfig([
   {
@@ -50,6 +52,8 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     ExperienceModule,
+    CheckOutModule,
+    UserProfileModule,
     SocialLoginModule//.initialize(config)
   ],
   providers: [UserService, ApiService, FormApiService, AuthGuard,

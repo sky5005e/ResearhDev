@@ -11,7 +11,10 @@ const routes: Routes = [
   { path: 'signUp', component: SignUpComponent},
   { path: 'thankYou', component: ThankYouComponent},
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},  
-  { path: 'experience', loadChildren: './experience/experience.module#ExperienceModule'}
+  { path: 'experience', loadChildren: './experience/experience.module#ExperienceModule'},
+  
+  { path: 'checkout', loadChildren: './checkout/checkout.module#CheckOutModule'},  
+  { path: 'user', loadChildren: './userprofile/userprofile.module#UserProfileModule'}
 ];
 
 @NgModule({
