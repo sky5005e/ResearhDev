@@ -99,6 +99,9 @@ export class LoginComponent implements OnInit {
           window.location.href = `${environment.appurl}dashboard`
           
           //this._router.navigate(['dashboard']);
+          localStorage.setItem('user', JSON.stringify(d.login_detail[0]));
+          //var user = JSON.parse(localStorage.getItem('user'));
+          //localStorage.clear();
         }
         else
         {

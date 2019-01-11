@@ -1,29 +1,18 @@
 <div class="wrap">
     <div class="clearfix exp-detail">
         <div class="exp-lhs">
-            <div class="exp-main-image"><img src="images/main-package-image.jpg" width="551" height="371" alt="Best Yoga Training" /></div>
+            <div class="exp-main-image">
+                <img src="{{model['image']}}" width="551" height="371" alt="{{model['title']}}" /></div>
             <div class="the-exp">
-                <h4>The Experience</h4>
-                <p>Detailed description of the experience Detailed description of the experience Detailed description
-                    of the experience Detailed description of the experience Detailed description of the experience
-                    Detailed description of the experience Detailed description of the experience Detailed description
-                    of the experience Detailed description of the experience Detailed description of the experience
-                    Detailed description of the experience.</p>
-                <p>Detailed description of the experience Detailed description of the experience Detailed description
-                    of the experience Detailed description of the experience Detailed description of the experience
-                    Detailed description of the experience Detailed description of the experience Detailed description
-                    of the experience Detailed description of the experience Detailed description of the experience
-                    Detailed description of the experience.</p>
+                <h4>{{model['title']}}</h4>
+                <p>{{model['about']}}</p>
+                <p>{{model['explain']}}</p>
             </div>
         </div>
         <div class="exp-rhs">
-            <h1>Best Yoga Training</h1>
-            <div class="exp-loc"><i class="fas fa-map-marker-alt"></i> Paris, France</div>
-            <p>Detailed description of the experience Detailed description of the experience Detailed description of
-                the experience Detailed description of the experience Detailed description of the experience Detailed
-                description of the experience Detailed description of the experience Detailed description of the
-                experience Detailed description of the experience Detailed description of the experience Detailed
-                description of the experience </p>
+            <h1>{{model['title']}}</h1>
+            <div class="exp-loc"><i class="fas fa-map-marker-alt"></i> {{model['country']}}</div>
+            <p>{{model['explain']}}</p>
             <ul class="main-form exp-dtl-form">
                 <li class="exp-duration">Duration: 2 Hours</li>
                 <li>
@@ -42,6 +31,10 @@
                     <span class="per-person-cost">US $45 <span>per person</span></span>
                     <span class="total-cost"><span>Total</span> US $90</span>
                 </li>
+                <span class="amt-saved">You Save $ {{model['price'] - model['sprice']}}.00</span>
+                <span class="original-price">$ {{model['price']}}.00</span>
+                <span class="actual-price">$ {{model['sprice']}}.00</span>
+             
                 <li><a routerLink="/checkout/pay-now"><input type="button" value="BUY NOW" class="primery-btn"></a></li>
                 <li><input type="button" value="ADD TO WISHLIST" class="add-btn"></li>
                 <li class="social-share">
@@ -58,7 +51,7 @@
         <h3>The Experience Provider</h3>
         <div class="clearfix">
             <div class="profile-lhs">
-                <div class="main-prof-img"><img src="images/provider-image.jpg" width="309" height="309" alt="Stuart Alex" /></div>
+                <div class="main-prof-img"><img src="assets/images/provider-image.jpg" width="309" height="309" alt="Stuart Alex" /></div>
                 <h4 class="prof-name">Stuart Alex</h4>
                 <div class="prof-loc"><i class="fas fa-map-marker-alt"></i> Paris, France</div>
                 <div class="prof-lang">Language: English, French</div>

@@ -13,7 +13,8 @@
       <h2><span>Recommended for you</span></h2>
   
       <div *ngFor="let RCexpList of RCexperienceList" class="package-bx clearfix">
-        <div class="package-image"><a routerLink="/experience/detail/{{RCexpList.id}}"><img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-image"><a routerLink="/experience/detail/{{RCexpList.id}}">
+          <img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
           <h3><a routerLink="/experience/detail/{{RCexpList.id}}">{{RCexpList.title}}</a></h3>
           <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{RCexpList.address}}</div>
