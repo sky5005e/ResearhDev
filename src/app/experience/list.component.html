@@ -6,10 +6,134 @@
         </div>
     </div>
 </div>
+<div class="wrap clearfix">
+    <div class="lhs-filter">
+        <div class="filter-bx">
+            <h4>Price</h4>
+            <ul>
+                <li class="clearfix">
+                    <input id="price1" type="checkbox">
+                    <label for="price1">$15-45</label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="price2" type="checkbox">
+                    <label for="price2">$45-75</label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="price3" type="checkbox">
+                    <label for="price3">$75-105</label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="price4" type="checkbox">
+                    <label for="price4">$105+</label>
+                    <span class="res-count">10</span>
+                </li>
+            </ul>
+        </div>
+        <div class="filter-bx">
+            <h4>City</h4>
+            <ul>
+                <li class="clearfix">
+                    <input id="city1" type="checkbox">
+                    <label for="city1">Paris</label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="city2" type="checkbox">
+                    <label for="city2">Amsterdam</label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="city3" type="checkbox">
+                    <label for="city3">Germany</label>
+                    <span class="res-count">10</span>
+                </li>
+            </ul>
+        </div>
+        <div class="filter-bx">
+            <h4>Star Rating</h4>
+            <ul>
+                <li class="clearfix">
+                    <input id="star1" type="checkbox">
+                    <label for="star1"><i class="fas fa-star"></i></label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="star2" type="checkbox">
+                    <label for="star2"><i class="fas fa-star"></i><i class="fas fa-star"></i></label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="star3" type="checkbox">
+                    <label for="star3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="star4" type="checkbox">
+                    <label for="star4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i></label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="star5" type="checkbox">
+                    <label for="star5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i></label>
+                    <span class="res-count">10</span>
+                </li>
+            </ul>
+        </div>
+        <div class="filter-bx">
+            <h4>Categories</h4>
+            <ul>
+                <li class="clearfix">
+                    <input id="category1" type="checkbox">
+                    <label for="category1">Adventure</label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="category2" type="checkbox">
+                    <label for="category2">Sports</label>
+                    <span class="res-count">10</span>
+                </li>
+                <li class="clearfix">
+                    <input id="category3" type="checkbox">
+                    <label for="category3">Yoga</label>
+                    <span class="res-count">10</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="package-list rhs-list">
+        <div *ngFor="let expList of experienceList" class="package-bx clearfix">
+            <div class="package-image"><a href="#"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+            <div class="package-details">
+                <h3><a href="#">{{expList.title}}</a></h3>
+                <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.address}}</div>
+                <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
+                        class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star"></i>
+                    4/5 Very Good <a href="#" class="package-review">1025
+                        Reviews</a></div>
+                <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36"
+                            height="36" alt="" /></span>By
+                    <a href="#" class="auth-name">{{expList.user_name}}</a>
+                    <span class="auth-verified">Video Verified</span></div>
+                <div class="package-last-booked">Last Booked - 6 hours ago</div>
+                <div class="package-btm clearfix">
+                    <span class="deal-applied">Deal Applied</span>
+                    <a href="#" class="package-dtl">View Details</a>
+                    <span class="people-viewing">10 People Viewing</span>
+                </div>
+                <div class="package-price">
+                    <span class="amt-saved">You Save $ {{expList['price'] - expList['sprice']}}.00</span>
+                    <span class="original-price">$ {{expList['price']}}.00</span>
+                    <span class="actual-price">$ {{expList['sprice']}}.00</span>
+                </div>
+                <i class="fas fa-heart wishlist"></i>
+            </div>
+        </div>
 
-<div class="wrap ">
-
-    <div>
-        list
     </div>
 </div>

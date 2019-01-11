@@ -13,3 +13,12 @@ input[type="submit"].add-btn {
     vertical-align: top;
     display: inline-block;
 }
+
+.main-form .input-file input[type="file"] {
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 12px;
+    bottom: 0;
+}

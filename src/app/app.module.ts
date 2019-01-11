@@ -22,7 +22,7 @@ import { AuthGuard } from './services/auth-guard.service';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('106774232600-i2gkbg632s698jou6b70uolsepdu57ou.apps.googleusercontent.com')//google-client-id')
+    provider: new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
@@ -50,9 +50,14 @@ export function provideConfig() {
     ReactiveFormsModule,
     HttpClientModule,
     ExperienceModule,
-    SocialLoginModule.initialize(config)
+    SocialLoginModule//.initialize(config)
   ],
-  providers: [UserService, ApiService, FormApiService, AuthGuard],
+  providers: [UserService, ApiService, FormApiService, AuthGuard,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

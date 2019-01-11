@@ -9,7 +9,7 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AuthGuard } from '../services/auth-guard.service';
 
 const routes: Routes = [
-    { path: '', component: ListExpComponent, canActivate:[AuthGuard] },
+    { path: 'list', component: ListExpComponent, canActivate:[AuthGuard] },
     { path: 'add', component: AddExpComponent, canActivate:[AuthGuard] },
     { path: 'gift', component: GiftExpComponent, canActivate:[AuthGuard] }
 ];

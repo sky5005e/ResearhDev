@@ -21,7 +21,16 @@ export class SignUpComponent implements OnInit {
   constructor(private _userService: UserService, private _router: Router) { }
 
   ngOnInit() {
-    this.cities = ['Delhi', 'Noida', 'Banglore', 'Pune', 'Chandigarh', 'Gurugram'];
+    this.cities = [
+      'London',
+      'New York',
+      'Budapest',
+      'Dubai',
+      'Birmingham',
+      'Sydney',
+      'Paris',
+      'Switzerland'
+    ];
   }
 
   continueRegistration() {

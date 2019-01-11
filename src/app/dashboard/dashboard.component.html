@@ -1,41 +1,147 @@
 <div class="top-header">
-  <div class="header-content">
-    <h1>Amazing Experiences Crafted by the Best</h1>
-    <div class="header-search">
-      <input type="text" id="txtsearch" name="txtsearch"><input type="button" value="Search" (click)="Search()">
-    </div>
-  </div>
-</div>
-
-<div class="wrap ">
-    <div class="package-list">
-          <h2><span>Recommended for you</span></h2>
-    
-    <div *ngFor="let expList of experienceList" class="package-bx clearfix">
-      <div class="package-image"><a href="#"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
-      <div class="package-details">
-        <h3><a href="#">{{expList.title}}</a></h3>
-        <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.address}}</div>
-        <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
-            class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
-            Reviews</a></div>
-        <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36" alt="" /></span>By
-          <a href="#" class="auth-name">{{expList.user_name}}</a>
-          <span class="auth-verified">Video Verified</span></div>
-        <div class="package-last-booked">Last Booked - 6 hours ago</div>
-        <div class="package-btm clearfix">
-          <span class="deal-applied">Deal Applied</span>
-          <a href="#" class="package-dtl">View Details</a>
-          <span class="people-viewing">10 People Viewing</span>
-        </div>
-        <div class="package-price">
-          <span class="amt-saved">You Save $ {{expList['price'] - expList['sprice']}}.00</span>
-          <span class="original-price">$ {{expList['price']}}.00</span>
-          <span class="actual-price">$ {{expList['sprice']}}.00</span>
-        </div>
-        <i class="fas fa-heart wishlist"></i>
+    <div class="header-content">
+      <h1>Search for your next Life changing experiences<br>
+        and start buidling your bucket</h1>
+      <div class="header-search">
+        <input type="text" id="txtsearch" name="txtsearch"><input type="button" value="Search" (click)="Search()">
       </div>
     </div>
   </div>
-
-</div>
+  <div *ngIf="!isViewALL" class="wrap">
+    <div class="package-list">
+  
+      <h2><span>Recommended for you</span></h2>
+  
+      <div *ngFor="let RCexpList of RCexperienceList" class="package-bx clearfix">
+        <div class="package-image"><a href="#"><img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-details">
+          <h3><a href="#">{{RCexpList.title}}</a></h3>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{RCexpList.address}}</div>
+          <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
+              class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
+              Reviews</a></div>
+          <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
+                alt="" /></span>By
+            <a href="#" class="auth-name">{{RCexpList.user_name}}</a>
+            <span class="auth-verified">Video Verified</span></div>
+          <div class="package-last-booked">Last Booked - 6 hours ago</div>
+          <div class="package-btm clearfix">
+            <span class="deal-applied">Deal Applied</span>
+            <a href="#" class="package-dtl">View Details</a>
+            <span class="people-viewing">10 People Viewing</span>
+          </div>
+          <div class="package-price">
+            <span class="amt-saved">You Save $ {{RCexpList['price'] - RCexpList['sprice']}}.00</span>
+            <span class="original-price">$ {{RCexpList['price']}}.00</span>
+            <span class="actual-price">$ {{RCexpList['sprice']}}.00</span>
+          </div>
+          <i class="fas fa-heart wishlist"></i>
+        </div>
+      </div>
+      <div class="pckg-view-all">
+        <a style="cursor: pointer;" (click)="ShowAll()">View All</a>
+      </div>
+    </div>
+  
+    <div class="package-list">
+  
+      <h2><span>MOST POPULAR</span></h2>
+  
+      <div *ngFor="let MPexpList of MPexperienceList" class="package-bx clearfix">
+        <div class="package-image"><a href="#"><img src="{{MPexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-details">
+          <h3><a href="#">{{MPexpList.title}}</a></h3>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{MPexpList.address}}</div>
+          <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
+              class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
+              Reviews</a></div>
+          <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
+                alt="" /></span>By
+            <a href="#" class="auth-name">{{MPexpList.user_name}}</a>
+            <span class="auth-verified">Video Verified</span></div>
+          <div class="package-last-booked">Last Booked - 6 hours ago</div>
+          <div class="package-btm clearfix">
+            <span class="deal-applied">Deal Applied</span>
+            <a href="#" class="package-dtl">View Details</a>
+            <span class="people-viewing">10 People Viewing</span>
+          </div>
+          <div class="package-price">
+            <span class="amt-saved">You Save $ {{MPexpList['price'] - MPexpList['sprice']}}.00</span>
+            <span class="original-price">$ {{MPexpList['price']}}.00</span>
+            <span class="actual-price">$ {{MPexpList['sprice']}}.00</span>
+          </div>
+          <i class="fas fa-heart wishlist"></i>
+        </div>
+      </div>
+      <div class="pckg-view-all">
+          <a style="cursor: pointer;" (click)="ShowAll()">View All</a>
+      </div>
+    </div>
+    <div class="package-list">
+  
+      <h2><span>NEWEST EXPERIANCE </span></h2>
+  
+      <div *ngFor="let NEexpList of NEexperienceList" class="package-bx clearfix">
+        <div class="package-image"><a href="#"><img src="{{NEexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-details">
+          <h3><a href="#">{{NEexpList.title}}</a></h3>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{NEexpList.address}}</div>
+          <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
+              class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
+              Reviews</a></div>
+          <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
+                alt="" /></span>By
+            <a href="#" class="auth-name">{{NEexpList.user_name}}</a>
+            <span class="auth-verified">Video Verified</span></div>
+          <div class="package-last-booked">Last Booked - 6 hours ago</div>
+          <div class="package-btm clearfix">
+            <span class="deal-applied">Deal Applied</span>
+            <a href="#" class="package-dtl">View Details</a>
+            <span class="people-viewing">10 People Viewing</span>
+          </div>
+          <div class="package-price">
+            <span class="amt-saved">You Save $ {{NEexpList['price'] - NEexpList['sprice']}}.00</span>
+            <span class="original-price">$ {{NEexpList['price']}}.00</span>
+            <span class="actual-price">$ {{NEexpList['sprice']}}.00</span>
+          </div>
+          <i class="fas fa-heart wishlist"></i>
+        </div>
+      </div>
+      <div class="pckg-view-all">
+          <a style="cursor: pointer;" (click)="ShowAll()">View All</a>
+      </div>
+    </div>
+  
+  </div>
+  <div *ngIf="isViewALL" class="wrap">
+    <div class="package-list">
+  
+      <div *ngFor="let expList of experienceList" class="package-bx clearfix">
+        <div class="package-image"><a href="#"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-details">
+          <h3><a href="#">{{expList.title}}</a></h3>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.address}}</div>
+          <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
+              class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
+              Reviews</a></div>
+          <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
+                alt="" /></span>By
+            <a href="#" class="auth-name">{{expList.user_name}}</a>
+            <span class="auth-verified">Video Verified</span></div>
+          <div class="package-last-booked">Last Booked - 6 hours ago</div>
+          <div class="package-btm clearfix">
+            <span class="deal-applied">Deal Applied</span>
+            <a href="#" class="package-dtl">View Details</a>
+            <span class="people-viewing">10 People Viewing</span>
+          </div>
+          <div class="package-price">
+            <span class="amt-saved">You Save $ {{expList['price'] - expList['sprice']}}.00</span>
+            <span class="original-price">$ {{expList['price']}}.00</span>
+            <span class="actual-price">$ {{expList['sprice']}}.00</span>
+          </div>
+          <i class="fas fa-heart wishlist"></i>
+        </div>
+      </div>
+    </div>
+  
+  </div>

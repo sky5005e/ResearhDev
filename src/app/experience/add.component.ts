@@ -22,7 +22,11 @@ export class AddExpComponent implements OnInit {
   isLoading: boolean = false;
   file: File;
   fileIsValid: boolean;
-
+  categories = [];
+  places = [];
+  days = [];
+  months = [];
+  times = [];
   constructor(private _userService: UserService,
     private formapiService: FormApiService) { }
 
@@ -31,7 +35,45 @@ export class AddExpComponent implements OnInit {
     //if (localStorage.getItem('type') !== undefined && localStorage.getItem('type') !== null && localStorage.getItem('type') == 'buyer') {
     //this.isBuyer  = true;
     //}
+    this.categories = [
+      'Yoga',
+      'Cooking',
+      'Para Gliding',
+      'Mountain Biking',
+      'Cycling',
+      'Sky Diving',
+      'Paris Walk',
+      'London Bridge History',
+      'Yoga',
+      'Cooking',
+      'Para Gliding',
+      'Mountain Biking',
+      'Cycling',
+      'Sky Diving',
+      'Paris Walk',
+      'London Bridge History',
+    ];
+    this.places = [
+      'London',
+      'New York',
+      'Budapest',
+      'Dubai',
+      'Birmingham',
+      'Sydney',
+      'Paris',
+      'Switzerland'
 
+    ];
+    for (var i = 1; i <= 31; i++) {
+      this.days.push(i);
+    }
+    for (var j = 1; j <= 12; j++) {
+      this.months.push(j);
+    }
+    for (var k = 10; k <= 50; k++) {
+      this.times.push(k);
+      k = k + 10;
+    }
   }
 
   onFileChange(event) {
@@ -84,6 +126,13 @@ export class AddExpComponent implements OnInit {
       _formData.append('minet', this.Model.minet);
       _formData.append('category', this.Model.category);
 
+      _formData.append('year', this.Model.year);
+      _formData.append('month', this.Model.month);
+      _formData.append('day', this.Model.day);
+      _formData.append('time', this.Model.time);
+      _formData.append('custom', 'true')//this.Model.custom);
+
+      debugger;
       var _url = `${environment.apiUrl}?req=addexperiance`;
       this.formapiService.post(_url, _formData).then((d) => {
         $("#preloader").show();

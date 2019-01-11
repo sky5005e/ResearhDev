@@ -55,7 +55,7 @@
         <li>
           <label>Location (City)</label>
           <select #ucity name="userCity" required [(ngModel)]="signUpModel.city">
-            <option selected hidden [value]="undefined">Select</option>
+            <option >Select</option>
             <option *ngFor="let city of cities" [value]="city">{{city}}</option>
           </select>
         </li>

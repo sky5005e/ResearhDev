@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FormApiService } from '../services/formapi.service';
 declare var $: any;
+
+//declare const gapi : any;
 
 @Component({
   selector: 'app-login',
@@ -15,24 +17,46 @@ export class LoginComponent implements OnInit {
 
   loginModel: any = {};
   isFormValid: boolean = true;
+  user: SocialUser;
+  
   constructor(private socialAuthService: AuthService, private _router: Router,
     private userService: UserService,
-    private formapiService : FormApiService) { }
+    private formapiService : FormApiService
+    ) {
+    //   gapi.load('auth2', function () {
+    //     gapi.auth2.init()
+    //  });
+     }
 
   ngOnInit() {
+    this.socialAuthService.authState.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   loginWithFacebook() {
+    console.log(FacebookLoginProvider.PROVIDER_ID);
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then(userData => {
        console.log('userData = ', userData);
     })
   }
 
   loginWithGmail() {
-    console.log('click login');
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
-       console.log('userData = ',  userData);
-    })
+    console.log('click login gmail');
+
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // let googleAuth = gapi.auth2.getAuthInstance();
+    // googleAuth.then(() => {
+    //    googleAuth.signIn({scope: 'profile email'}).then(googleUser => {
+    //       console.log(googleUser.getBasicProfile());
+    //    });
+    // });
+
+    // console.log('click login');    
+   
+    // this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
+    //    console.log('userData = ',  userData);
+    // })
   }
 
   login() {
@@ -98,5 +122,8 @@ export class LoginComponent implements OnInit {
       }
     });
     */
+  }
+  signOut(): void {
+    this.socialAuthService.signOut();
   }
 }

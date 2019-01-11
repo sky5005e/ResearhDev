@@ -3,6 +3,96 @@
         height="41" alt="" /></a>
     <nav class="top-main-nav">
       <ul class="clearfix">
+        <li><a href="#">Categories</a>
+          <div class="sub-nav two-column">
+            <ul class="clearfix">
+              <li><a href="#">Yoga</a></li>
+              <li><a href="#">Cooking</a></li>
+              <li><a href="#">Para Gliding</a></li>
+              <li><a href="#">Mountain Biking</a></li>
+              <li><a href="#">Cycling</a></li>
+              <li><a href="#">Sky Diving</a></li>
+              <li><a href="#">Paris Walk</a></li>
+              <li><a href="#">London Bridge History</a></li>
+              <li><a href="#">Yoga</a></li>
+              <li><a href="#">Cooking</a></li>
+              <li><a href="#">Para Gliding</a></li>
+              <li><a href="#">Mountain Biking</a></li>
+              <li><a href="#">Cycling</a></li>
+              <li><a href="#">Sky Diving</a></li>
+              <li><a href="#">Paris Walk</a></li>
+              <li><a href="#">London Bridge History</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="#">Places</a>
+          <div class="sub-nav">
+            <ul>
+              <li><a href="#">London</a></li>
+              <li><a href="#">New York</a></li>
+              <li><a href="#">Budapest</a></li>
+              <li><a href="#">Dubai</a></li>
+              <li><a href="#">Birmingham</a></li>
+              <li><a href="#">Sydney</a></li>
+              <li><a href="#">Paris</a></li>
+              <li><a href="#">Switzerland</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="#">Occassions</a>
+          <div class="sub-nav">
+            <ul>
+              <li><a href="#">Just Married</a></li>
+              <li><a href="#">Honeymoon</a></li>
+              <li><a href="#">Summer Holidays</a></li>
+              <li><a href="#">Christmas</a></li>
+              <li><a href="#">New Year</a></li>
+              <li><a href="#">Marriage Anniversary</a></li>
+              <li><a href="#">Nirvana</a></li>
+              <li><a href="#">Party</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="gift-experience"><a routerLink='/experience/gift'>Gift an Experience</a></li>
+        <!-- <li><a href="add-experiance.html">List an Experience</a></li>  -->
+        <li *ngIf="!isBuyer"><a routerLink='/experience/add'>List an Experience</a></li>
+
+        <li *ngIf="!IsUserName" style="cursor:pointer;"><a (click)="goToLogin()">Log In</a></li>
+
+        <li *ngIf="!IsUserName" style="cursor:pointer;"><a (click)="goToSignUp()">Sign Up</a></li>
+
+
+        <li *ngIf="IsUserName"><span class="notification"><img src="assets/images/bukkzy-icon.png" alt=""><span class="notification-count">2</span></span>
+          <div class="sub-nav">
+            <ul>
+              <li><a href="#">Notification 1</a></li>
+              <li><a href="#">Notification 2</a></li>
+            </ul>
+          </div>
+        </li>
+        <li *ngIf="IsUserName"><span class="user-tab"><span class="user-small-img"><img src="assets/images/auth-image.png" alt=""></span></span>
+          <div class="sub-nav user-act">
+            <span class="user-img"><img src="assets/images/testi-image.png" alt=""></span>
+            <ul>
+              <li class="user-detail">
+                <span class="user-name">Alex Stuart</span>
+                <span class="user-email">alex@stuart.com</span>
+              </li>
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Customer Support</a></li>
+              <li><a href="#">How it Works</a></li>
+              <li>
+                <a style="cursor: pointer;" (click)="goToLogin()"> Log Out</a>
+              </li>
+            </ul>
+          </div>
+
+        </li>
+      </ul>
+    </nav>
+    <!-- <nav class="top-main-nav">
+      <ul class="clearfix">
         <li><a href="#">Categories</a></li>
         <li><a href="#">Places</a></li>
         <li><a href="#">Occassions</a></li>
@@ -13,6 +103,6 @@
         <li *ngIf="IsUserName" style="cursor:pointer;"> Welcome : {{UserName}}  <a style=" color: red;" (click)="goToLogin()"> Log Out</a></li>
         <li *ngIf="!IsUserName" style="cursor:pointer;"><a (click)="goToSignUp()">Sign Up</a></li>
       </ul>
-    </nav>
+    </nav> -->
   </div>
 </header>
