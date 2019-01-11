@@ -13,9 +13,9 @@
       <h2><span>Recommended for you</span></h2>
   
       <div *ngFor="let RCexpList of RCexperienceList" class="package-bx clearfix">
-        <div class="package-image"><a href="#"><img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-image"><a routerLink="/experience/detail/{{RCexpList.id}}"><img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
-          <h3><a href="#">{{RCexpList.title}}</a></h3>
+          <h3><a routerLink="/experience/detail/{{RCexpList.id}}">{{RCexpList.title}}</a></h3>
           <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{RCexpList.address}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
@@ -27,7 +27,7 @@
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
             <span class="deal-applied">Deal Applied</span>
-            <a href="#" class="package-dtl">View Details</a>
+            <a routerLink="/experience/detail/{{RCexpList.id}}" class="package-dtl">View Details</a>
             <span class="people-viewing">10 People Viewing</span>
           </div>
           <div class="package-price">
@@ -48,9 +48,9 @@
       <h2><span>MOST POPULAR</span></h2>
   
       <div *ngFor="let MPexpList of MPexperienceList" class="package-bx clearfix">
-        <div class="package-image"><a href="#"><img src="{{MPexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-image"><a routerLink="/experience/detail/{{MPexpList.id}}"><img src="{{MPexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
-          <h3><a href="#">{{MPexpList.title}}</a></h3>
+          <h3><a routerLink="/experience/detail/{{MPexpList.id}}">{{MPexpList.title}}</a></h3>
           <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{MPexpList.address}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
@@ -62,7 +62,7 @@
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
             <span class="deal-applied">Deal Applied</span>
-            <a href="#" class="package-dtl">View Details</a>
+            <a routerLink="/experience/detail/{{MPexpList.id}}" class="package-dtl">View Details</a>
             <span class="people-viewing">10 People Viewing</span>
           </div>
           <div class="package-price">
@@ -82,9 +82,9 @@
       <h2><span>NEWEST EXPERIANCE </span></h2>
   
       <div *ngFor="let NEexpList of NEexperienceList" class="package-bx clearfix">
-        <div class="package-image"><a href="#"><img src="{{NEexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-image"><a routerLink="/experience/detail/{{NEexpList.id}}"><img src="{{NEexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
-          <h3><a href="#">{{NEexpList.title}}</a></h3>
+          <h3><a routerLink="/experience/detail/{{NEexpList.id}}">{{NEexpList.title}}</a></h3>
           <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{NEexpList.address}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
@@ -96,7 +96,7 @@
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
             <span class="deal-applied">Deal Applied</span>
-            <a href="#" class="package-dtl">View Details</a>
+            <a routerLink="/experience/detail/{{NEexpList.id}}" class="package-dtl">View Details</a>
             <span class="people-viewing">10 People Viewing</span>
           </div>
           <div class="package-price">
@@ -117,9 +117,9 @@
     <div class="package-list">
   
       <div *ngFor="let expList of experienceList" class="package-bx clearfix">
-        <div class="package-image"><a href="#"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-image"><a routerLink="/experience/detail/{{expList.id}}"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
-          <h3><a href="#">{{expList.title}}</a></h3>
+          <h3><a routerLink="/experience/detail/{{expList.id}}">{{expList.title}}</a></h3>
           <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.address}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
@@ -131,7 +131,7 @@
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
             <span class="deal-applied">Deal Applied</span>
-            <a href="#" class="package-dtl">View Details</a>
+            <a routerLink="/experience/detail/{{expList.id}}" class="package-dtl">View Details</a>
             <span class="people-viewing">10 People Viewing</span>
           </div>
           <div class="package-price">
