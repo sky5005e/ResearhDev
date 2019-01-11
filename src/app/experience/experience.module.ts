@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: 'list', component: ListExpComponent, canActivate:[AuthGuard] },
     { path: 'add', component: AddExpComponent, canActivate:[AuthGuard] },
     { path: 'gift', component: GiftExpComponent, canActivate:[AuthGuard] },    
-    { path: 'detail', component: DetailExpComponent, canActivate:[AuthGuard] }
+    { path: 'detail/:id', component: DetailExpComponent, canActivate:[AuthGuard] }
 ];
 @NgModule({
     imports: [

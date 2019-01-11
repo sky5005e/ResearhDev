@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-giftexp',
-  templateUrl: './gift.component.html',
+  selector: 'app-expdetail',
+  templateUrl: './detail.component.html',
   styleUrls: ['./experience.component.css']
 })
 export class DetailExpComponent implements OnInit {
 
   experienceList: any [] = [];
   isBuyer : boolean = false;
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService,    
+    private route: ActivatedRoute,) { }
 
   ngOnInit() {
 
@@ -21,6 +23,11 @@ export class DetailExpComponent implements OnInit {
       this.isBuyer = false;      
     }
 
+    this.route.params.subscribe(params => {
+      console.log(params["id"]);
+      let id = params["id"];
+     
+    });
   }
 
 }

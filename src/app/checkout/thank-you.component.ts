@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-thankpageyou',
@@ -10,7 +11,8 @@ export class PaynowThankYouComponent implements OnInit {
 
   experienceList: any [] = [];
   isBuyer : boolean = false;
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService,
+    private _router: Router) { }
 
   ngOnInit() {
 
@@ -21,6 +23,10 @@ export class PaynowThankYouComponent implements OnInit {
       this.isBuyer = false;      
     }
 
+  }
+  submit()
+  {
+    this._router.navigate(['dashboard']);
   }
 
 }

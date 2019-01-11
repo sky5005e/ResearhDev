@@ -13,9 +13,9 @@
       <h2><span>Recommended for you</span></h2>
   
       <div *ngFor="let RCexpList of RCexperienceList" class="package-bx clearfix">
-        <div class="package-image"><a href="#"><img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div class="package-image"><a routerLink="/experience/detail/{{RCexpList.id}}"><img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
-          <h3><a href="#">{{RCexpList.title}}</a></h3>
+          <h3><a routerLink="/experience/detail/{{RCexpList.id}}">{{RCexpList.title}}</a></h3>
           <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{RCexpList.address}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
@@ -119,7 +119,7 @@
       <div *ngFor="let expList of experienceList" class="package-bx clearfix">
         <div class="package-image"><a href="#"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
-          <h3><a href="#">{{expList.title}}</a></h3>
+          <h3><a routerLink="/experience/detail/{{expList.id}}">{{expList.title}}</a></h3>
           <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.address}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025

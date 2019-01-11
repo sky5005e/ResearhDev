@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       //console.log('user experience = ', data);
       if (this.isViewALL) {
         this.experienceList = data['product_details'];
-        console.log('this.experienceList', this.experienceList);
+        //console.log('this.experienceList', this.experienceList);
       }
       else {
 
@@ -41,17 +41,17 @@ export class HomeComponent implements OnInit {
         this.RCexperienceList = list.filter(q =>
           q.price < 40
         );
-        console.log('this.RCexperienceList', this.RCexperienceList);
+        //console.log('this.RCexperienceList', this.RCexperienceList);
         this.NEexperienceList = list.filter(q =>
           q.sprice < 40
         );
 
-        console.log('this.NEexperienceList', this.NEexperienceList);
+        //console.log('this.NEexperienceList', this.NEexperienceList);
         this.MPexperienceList = list.filter(q =>
           q.title.toLowerCase().includes('yoga')
         );
 
-        console.log('this.MPexperienceList', this.MPexperienceList);
+        //console.log('this.MPexperienceList', this.MPexperienceList);
       }
     });
   }
