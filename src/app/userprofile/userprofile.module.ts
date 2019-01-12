@@ -5,9 +5,13 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AuthGuard } from '../services/auth-guard.service';
 import { UserProfilestep1Component } from './profilestep1.component';
+import { UserProfilestep2Component } from './profilestep2.component';
+import { UserProfilestep3Component } from './profilestep3.component';
 
 const routes: Routes = [
-    { path: 'profile-step1', component: UserProfilestep1Component, canActivate:[AuthGuard] }
+    { path: 'profile-step1', component: UserProfilestep1Component, canActivate:[AuthGuard] },    
+    { path: 'profile-step2', component: UserProfilestep2Component, canActivate:[AuthGuard] },
+    { path: 'profile-step3', component: UserProfilestep3Component, canActivate:[AuthGuard] }
 ];
 @NgModule({
     imports: [
@@ -20,7 +24,9 @@ const routes: Routes = [
         RouterModule
     ],
     declarations: [
-        UserProfilestep1Component
+        UserProfilestep1Component,
+        UserProfilestep2Component,
+        UserProfilestep3Component
     ]
 })
 

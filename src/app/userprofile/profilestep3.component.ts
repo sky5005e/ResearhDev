@@ -4,17 +4,16 @@ import { Router } from '@angular/router';
 declare var $: any;
 
 @Component({
-  selector: 'app-profilestep1',
-  templateUrl: './profilestep1.component.html',
+  selector: 'app-profilestep3',
+  templateUrl: './profilestep3.component.html',
   styleUrls: ['./userprofile.component.css']
 })
-export class UserProfilestep1Component implements OnInit {
+export class UserProfilestep3Component implements OnInit {
 
   isBuyer: boolean = false;
   UserName : string;
   Email : string;
-  constructor(private _userService: UserService,
-    private _router : Router) { }
+  constructor(private _userService: UserService, private _router : Router) { }
 
   ngOnInit() {
 
@@ -26,7 +25,10 @@ export class UserProfilestep1Component implements OnInit {
   }
   goto()
   {
-    
+    this._router.navigate(['dashboard']);
+  }
+  gotoback()
+  {
     this._router.navigate(['user/profile-step2']);
   }
   

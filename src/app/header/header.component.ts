@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
   IsUserName: boolean;
   isBuyer: boolean;
   UserName: string;
+  Email : string;
   constructor(private _router: Router) { }
 
   ngOnInit() {
@@ -19,6 +20,8 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('UserName') !== undefined && localStorage.getItem('UserName') !== null) {
       this.IsUserName = true;
       this.UserName = localStorage.getItem('UserName');
+      this.Email = localStorage.getItem('email_id');
+
     }
     else {
       this.IsUserName = false;

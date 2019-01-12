@@ -1,0 +1,220 @@
+<div class="wrap">
+		<div class="package-list inside-sec">
+			<h2><span>EDIT YOUR PROFILE</span></h2>
+			<div class="edit-profile-steps">
+			<ul>
+				<li class="step"><span class="edit-step">1</span>Personal Details</li>
+				<li class="step step-active"><span class="edit-step">2</span>List an Experience</li>
+				<li class="step"><span class="edit-step">3</span>Payment Details</li>
+			</ul>
+			</div>
+            <form class="form-inline" novalidate (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+
+                    <div class="package-list inside-sec">
+                      
+                        <ul class="main-form create-experience">
+                            <li>
+                                <label>Experience Headline</label>
+                                <input type="text" #title="ngModel" name="title" [(ngModel)]="Model.title" required>
+                                <div *ngIf="title.touched || f.submitted && !Model.title">
+                                    <div *ngIf="title.hasError('required')" class="val-error">** title is required</div>
+                                </div>
+                            </li>
+                            <li class="exp-country">
+                                <label>Country</label>
+                                <select #country="ngModel" name="country" [(ngModel)]="Model.country" required>
+                                    <option>Select</option>
+                                    <option *ngFor="let p of places" [value]="p">{{p}}</option>
+                                </select>
+                                <div *ngIf="country.touched">
+                                    <div *ngIf="country.hasError('required')" class="val-error">** country is required</div>
+                                </div>
+                            </li>
+                            <li class="cover-img">
+                                <label>Cover Image</label>
+                                <span class="input-file"><input type="file" type="file" #file (change)="onFileChange($event)" name="file" required />Browse
+                                    File
+                                </span>
+                                <p *ngIf="!fileIsValid" class="val-error">{{msgError}}</p>
+            
+                                <span class="upload-preview">
+                                    <i class="fas fa-times-circle"></i>
+                                </span>
+                            </li>
+                            <li>
+                                <label>Experience Video</label>
+                                <input placeholder="Paste the link from Vimeo or Youtube" type="text" #url="ngModel" name="url" [(ngModel)]="Model.url"
+                                 required>
+                                <div *ngIf="url.touched">
+                                    <div *ngIf="url.hasError('required')" class="val-error">** url is required</div>
+                                </div>
+                                <span class="upload-preview">
+                                    <i class="fas fa-times-circle"></i>
+                                </span>
+                            </li>
+                            <li>
+                                <label>About the Experience</label>
+                                <textarea #about="ngModel" name="about" [(ngModel)]="Model.about" required></textarea>
+                                <div *ngIf="about.touched">
+                                    <div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
+                                </div>
+                            </li>
+                            <li>
+                                <label>Explain how your Experience is Special and Unique to Bukkzy Customers</label>
+                                <textarea #explain="ngModel" name="explain" [(ngModel)]="Model.explain" required></textarea>
+                                <div *ngIf="explain.touched">
+                                    <div *ngIf="explain.hasError('required')" class="val-error">** explain is required</div>
+                                </div>
+                            </li>
+                            <li class="clearfix price-esperiance">
+                                <div class="put-price">
+                                    <label>Put a Price to your Experience</label>
+                                    <select>
+                                        <option>$</option>
+                                    </select>
+                                    <input type="text" #price="ngModel" name="price" [(ngModel)]="Model.price" required />
+                                    <div *ngIf="price.touched">
+                                        <div *ngIf="price.hasError('required')" class="val-error">** price is required</div>
+                                    </div>
+                                </div>
+                                <div class="discount"><label>Discount/Offer</label>
+                                    <input type="text" #sprice="ngModel" name="sprice" [(ngModel)]="Model.sprice" required />
+                                    <div *ngIf="sprice.touched">
+                                        <div *ngIf="sprice.hasError('required')" class="val-error">** sprice is required</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix for-people-bx">
+                                <div class="for-people">
+                                    <label>For People</label>
+                                    <select>
+                                        <option>Select</option>
+                                    </select>
+                                </div>
+                                <div class="duration">
+                                    <label>Duration</label>
+                                    <div class="duration-hrs">
+                                        <span class="sub-txt">Hours</span>
+            
+                                        <select #hours="ngModel" name="hours" [(ngModel)]="Model.hours" required>
+                                            <option>Select</option>
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        <div *ngIf="hours.touched">
+                                            <div *ngIf="hours.hasError('required')" class="val-error">** hours is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="duration-mnts">
+                                        <span class="sub-txt">Minutes</span>
+                                        <select #minet="ngModel" name="minet" [(ngModel)]="Model.minet" required>
+                                            <option>Select</option>
+                                            <option value="00">00</option>
+                                            <option value="15">15</option>
+                                            <option value="30">30</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                        <div *ngIf="minet.touched">
+                                            <div *ngIf="minet.hasError('required')" class="val-error">** minet is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="category">
+                                    <label>Category</label>
+                                    <select #category="ngModel" name="category" [(ngModel)]="Model.category" required>
+                                        <option>Select</option>
+                                        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                                    </select>
+                                    <div *ngIf="category.touched">
+                                        <div *ngIf="category.hasError('required')" class="val-error">** category is required</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="availability clearfix">
+                                <label>My Availability</label>
+                                <div class="clearfix">
+                                    <div class="availability-year">
+                                        <span class="sub-txt">Year</span>
+                                        <select #year="ngModel" name="year" [(ngModel)]="Model.year" required>
+                                            <option>Select</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                        </select>
+                                    </div>
+                                    <div class="availability-month">
+                                        <span class="sub-txt">Month</span>
+                                        <select #month="ngModel" name="month" [(ngModel)]="Model.month" required>
+                                            <option>Select</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                    <div class="availability-day">
+                                        <span class="sub-txt">Day</span>
+                                        <select #day="ngModel" name="day" [(ngModel)]="Model.day" required>
+                                            <option>Select</option>
+                                            <option *ngFor="let d of days" [value]="d">{{d}}</option>
+                                        </select>
+                                        <div *ngIf="day.touched">
+                                            <div *ngIf="day.hasError('required')" class="val-error">** day is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="availability-slot">
+                                        <span class="sub-txt">Time Slot</span>
+                                        <select #time="ngModel" name="time" [(ngModel)]="Model.time" required>
+                                            <option>Select</option>
+                                            <option *ngFor="let t of times" [value]="t">{{t}}</option>
+                                        </select>
+                                        <div *ngIf="time.touched">
+                                            <div *ngIf="time.hasError('required')" class="val-error">** time is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix custom-experiences">
+                                <label>Are you ok with Providing Custom Experiences</label>
+                                <div class="clearfix"><input id="yes" type="checkbox">
+                                    <label for="yes">Yes</label> <input id="no" type="checkbox">
+                                    <label for="no">No</label></div>
+                            </li>
+                            <li><input type="submit" class="add-btn" value="SAVE">
+            
+                            </li>
+                            <li>
+                                <span class="add-more">
+                                    <i class="fas fa-plus"></i>
+                                    <span class="add-txt">Add More Experience</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+            
+                </form>
+
+
+			<div class="form-act"><input type="button" value="GO BACK" class="add-btn" (click)="gotoback()"> <input type="button" value="CONTINUE" (click)="goto()"></div>
+		</div>
+	</div>
+	
