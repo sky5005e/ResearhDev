@@ -11,8 +11,13 @@ declare var $: any;
 export class PayNowComponent implements OnInit {
 
   experienceList: any[] = [];
+  selectedProduct: any = {};
   model: any = {};
+  AddModel: any = {};
   isBuyer: boolean = false;
+  SavePrice: number;
+  Price: number;
+  TotalPrice: number;
   constructor(private _userService: UserService,
     private route: ActivatedRoute,
     private _router: Router) { }
@@ -36,12 +41,25 @@ export class PayNowComponent implements OnInit {
 
   LoadModel() {
     //localStorage.setItem('currentexp', JSON.stringify(this.model));
-      var currentexp = JSON.parse(localStorage.getItem('currentexp'));
-      this.model = currentexp;
-      //localStorage.clear();
+    var currentexp = JSON.parse(localStorage.getItem('currentexp'));
+    this.model = currentexp;
+    console.log(this.model, 'currentexp');
+    this.selectedProduct = JSON.parse(localStorage.getItem('SelectedProduct'));
+    console.log(this.selectedProduct, 'SelectedProduct');
+    if (this.selectedProduct != null) {
+      this.SavePrice = this.model['sprice'] * this.selectedProduct.selectedPersonVal;
+      this.Price = this.model['price'] * this.selectedProduct.selectedPersonVal;
+      this.TotalPrice = this.selectedProduct.totalprice;
+    }
+    //localStorage.clear();
   }
-  sumbit() {
+  onSubmit() {
+
+    $("#preloader").show();
+    console.log('UserCardInfo Model = ', this.AddModel);
+    localStorage.setItem('UserCardInfo', JSON.stringify(this.AddModel));
     this._router.navigate(['checkout/thank-you']);
+    $("#preloader").hide();
   }
 
 }

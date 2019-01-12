@@ -38,9 +38,7 @@ export class HeaderComponent implements OnInit {
 
     window.localStorage.removeItem('UserName');
     window.localStorage.removeItem('email_id');
-    window.location.href = `${environment.appurl}login`
-
-
+    window.location.href = `${environment.appurl}`
     //this._router.navigate(['login']);
   }
 

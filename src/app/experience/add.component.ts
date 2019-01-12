@@ -121,7 +121,7 @@ export class AddExpComponent implements OnInit {
 
       _formData.append('price', this.Model.price);
       _formData.append('sprice', this.Model.sprice);
-      _formData.append('people', 'this.Model.people');
+      _formData.append('people', this.Model.person);
       _formData.append('hours', this.Model.hours);
       _formData.append('minet', this.Model.minet);
       _formData.append('category', this.Model.category);

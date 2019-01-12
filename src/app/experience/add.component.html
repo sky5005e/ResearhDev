@@ -78,9 +78,19 @@
 				<li class="clearfix for-people-bx">
 					<div class="for-people">
 						<label>For People</label>
-						<select>
-							<option>Select</option>
-						</select>
+						<select #person="ngModel" name="person" [(ngModel)]="Model.person" required>
+								<option>Select</option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								
+							</select>
+							<div *ngIf="person.touched">
+								<div *ngIf="person.hasError('required')" class="val-error">** person is required</div>
+							</div>
 					</div>
 					<div class="duration">
 						<label>Duration</label>

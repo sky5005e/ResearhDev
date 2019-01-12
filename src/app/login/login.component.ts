@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService, GoogleLoginProvider, FacebookLoginProvider, SocialUser } from 'angularx-social-login';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FormApiService } from '../services/formapi.service';
 declare var $: any;
@@ -18,15 +18,17 @@ export class LoginComponent implements OnInit {
   loginModel: any = {};
   isFormValid: boolean = true;
   user: SocialUser;
-  
-  constructor(private socialAuthService: AuthService, private _router: Router,
+
+  constructor(private socialAuthService: AuthService,
+    private route: ActivatedRoute,
+    private _router: Router,
     private userService: UserService,
-    private formapiService : FormApiService
-    ) {
+    private formapiService: FormApiService
+  ) {
     //   gapi.load('auth2', function () {
     //     gapi.auth2.init()
     //  });
-     }
+  }
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
   loginWithFacebook() {
     console.log(FacebookLoginProvider.PROVIDER_ID);
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then(userData => {
-       console.log('userData = ', userData);
+      console.log('userData = ', userData);
     })
   }
 
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
     // });
 
     // console.log('click login');    
-   
+
     // this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
     //    console.log('userData = ',  userData);
     // })
@@ -92,19 +94,25 @@ export class LoginComponent implements OnInit {
         console.log("success : ", d);
         if (d.status == "1") {
 
-          window.localStorage['UserName'] = d.login_detail[0].user_name;          
+          window.localStorage['UserName'] = d.login_detail[0].user_name;
           window.localStorage['user_id'] = d.login_detail[0].id;
-          window.localStorage['email_id'] = d.login_detail[0].email_id;          
+          window.localStorage['email_id'] = d.login_detail[0].email_id;
           window.localStorage['type'] = d.login_detail[0].type;
           window.location.href = `${environment.appurl}dashboard`
-          
+
           //this._router.navigate(['dashboard']);
           localStorage.setItem('user', JSON.stringify(d.login_detail[0]));
           //var user = JSON.parse(localStorage.getItem('user'));
           //localStorage.clear();
+          var redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+          if (redirectUrl == '') {
+            this._router.navigate(['user/profile-step1']);
+          }
+          else {
+            this._router.navigate([redirectUrl]);
+          }
         }
-        else
-        {
+        else {
           $("#preloader").hide();
           alert(d.message);
         }

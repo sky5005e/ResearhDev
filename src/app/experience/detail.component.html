@@ -17,9 +17,12 @@
                 <li class="exp-duration">Duration: 2 Hours</li>
                 <li>
                     <label>People</label>
-                    <select>
-                        <option>Select</option>
+                    <select #people="ngModel" name="people" [(ngModel)]="AddModel.people" required (change)="onChange($event.target.value)">
+                        <option *ngFor="let p of persons" [value]="p">{{p}}</option>
                     </select>
+                    <div *ngIf="people.touched">
+                        <div *ngIf="people.hasError('required')" class="val-error">** people is required</div>
+                    </div>
                 </li>
                 <li>
                     <label>Preferred Date and Time</label>
@@ -28,14 +31,12 @@
                     </select>
                 </li>
                 <li class="clearfix exp-cost">
-                    <span class="per-person-cost">US $45 <span>per person</span></span>
-                    <span class="total-cost"><span>Total</span> US $90</span>
+                    <span class="per-person-cost">US $ {{model['price'] - model['sprice']}}.00 <span>per person</span></span>
+                    <span class="total-cost"><span>Total</span> US ${{totalprice}}.00</span>
                 </li>
-                <span class="amt-saved">You Save $ {{model['price'] - model['sprice']}}.00</span>
-                <span class="original-price">$ {{model['price']}}.00</span>
-                <span class="actual-price">$ {{model['sprice']}}.00</span>
-             
-                <li><a routerLink="/checkout/pay-now"><input type="button" value="BUY NOW" class="primery-btn"></a></li>
+              
+
+                <li><a style="cursor: pointer;" (click)="BuyNow()"><input type="button" value="BUY NOW" class="primery-btn" ></a></li>
                 <li><input type="button" value="ADD TO WISHLIST" class="add-btn"></li>
                 <li class="social-share">
                     <strong>Share</strong>
