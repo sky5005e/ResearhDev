@@ -105,7 +105,7 @@ export class AddExpComponent implements OnInit {
   onSubmit() {
     $("#preloader").show();
     console.log('Model = ', this.Model);
-    debugger;
+    //debugger;
     if (this.Model.title !== undefined && this.Model.title.length > 0
       && this.Model.url !== undefined && this.Model.url.length > 0) {
 
@@ -114,7 +114,7 @@ export class AddExpComponent implements OnInit {
       _formData.append('user_id', localStorage['user_id']);
       _formData.append('title', this.Model.title);
       _formData.append('country', this.Model.country);
-      _formData.append('image', this.file);
+      _formData.append('files', this.file);
       _formData.append('url', this.Model.url);
       _formData.append('about', this.Model.about);
       _formData.append('explain', this.Model.explain);
@@ -123,7 +123,7 @@ export class AddExpComponent implements OnInit {
       _formData.append('sprice', this.Model.sprice);
       _formData.append('people', this.Model.person);
       _formData.append('hours', this.Model.hours);
-      _formData.append('minet', this.Model.minet);
+      _formData.append('minutes', this.Model.minet);
       _formData.append('category', this.Model.category);
 
       _formData.append('year', this.Model.year);
@@ -132,15 +132,13 @@ export class AddExpComponent implements OnInit {
       _formData.append('time', this.Model.time);
       _formData.append('custom', 'true')//this.Model.custom);
 
-      debugger;
-      var _url = `${environment.apiUrl}?req=addexperiance`;
+      //debugger;
+      var _url = `${environment.apiUrl}FileUpload/addExp`;
       this.formapiService.post(_url, _formData).then((d) => {
         $("#preloader").show();
         console.log("success : ", d);
         if (d.status == "1") {
-
           window.location.href = `${environment.appurl}dashboard`
-
           //this._router.navigate(['dashboard']);
         }
         else {

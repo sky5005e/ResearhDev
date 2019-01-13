@@ -15,8 +15,8 @@
 
         <li>
           <label>Login ID</label>
-          <input type="text" autofocus #email="ngModel" name="email" [(ngModel)]="loginModel.email" required >
-          <div *ngIf="!isFormValid && !email.valid" class="val-error">email
+          <input type="text" autofocus #email_id="ngModel" name="email_id" [(ngModel)]="loginModel.email_id" required >
+          <div *ngIf="!isFormValid && !email_id.valid" class="val-error">email
             is required</div>
         </li>
         <li>

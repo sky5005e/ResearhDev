@@ -33,12 +33,19 @@ export class ListExpComponent implements OnInit {
      let search = localStorage.getItem('search')
 
       let searchText = search.toLowerCase();
-      this._userService.getUserExperience().subscribe(data => {
-        //console.log('user experience = ', data);
-        this.experienceList = data['product_details'];
+      this._userService.getUserExperienceNew().subscribe(data => {
+        console.log('user experience = ', data);
+        if(data.status == "1")
+        {
+        this.experienceList = data.content;
         this.experienceList = this.experienceList.filter(q =>
           q.title.toLowerCase().includes(searchText)
         );
+        }
+        else
+        {
+          console.log('No Experience found');
+        }
         $("#preloader").hide();
 
         console.log(this.experienceList);

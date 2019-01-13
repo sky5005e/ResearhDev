@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FormApiService } from '../services/formapi.service';
+import { ApiService } from '../services/api.service';
 declare var $: any;
 
 //declare const gapi : any;
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private _router: Router,
     private userService: UserService,
-    private formapiService: FormApiService
+    private formapiService: FormApiService,
+    private apiservice : ApiService
   ) {
     //   gapi.load('auth2', function () {
     //     gapi.auth2.init()
@@ -66,13 +68,15 @@ export class LoginComponent implements OnInit {
     $("#preloader").show();
     console.log('loginModel = ', this.loginModel);
     // debugger;
-    if (this.loginModel.email !== undefined && this.loginModel.email.length > 0 && this.loginModel.password !== undefined && this.loginModel.password.length > 0) {
+    if (this.loginModel.email_id !== undefined && this.loginModel.email_id.length > 0 && this.loginModel.password !== undefined && this.loginModel.password.length > 0) {
 
       this.isFormValid = true;
       let _formData: FormData = new FormData();
       _formData.append('email_id', this.loginModel.email);
       _formData.append('password', this.loginModel.password);
-      var _url = `${environment.apiUrl}?req=login`;
+     // var _url = `${environment.apiUrl}?req=login`;
+      var _url = `${environment.apiUrl}api/user/login`;
+     
       // $.ajax({
       //   type: "POST",
       //   url: _url,
@@ -89,19 +93,21 @@ export class LoginComponent implements OnInit {
       //     return e;
       //   }
       // })
-      this.formapiService.post(_url, _formData).then((d) => {
+      //this.formapiService.post(_url, _formData).then(
+        this.userService.emailLoginNew(this.loginModel).subscribe(
+        d => {
         $("#preloader").show();
         console.log("success : ", d);
         if (d.status == "1") {
 
-          window.localStorage['UserName'] = d.login_detail[0].user_name;
-          window.localStorage['user_id'] = d.login_detail[0].id;
-          window.localStorage['email_id'] = d.login_detail[0].email_id;
-          window.localStorage['type'] = d.login_detail[0].type;
+          window.localStorage['UserName'] = d.content.first_name + '' + d.content.last_name;
+          window.localStorage['user_id'] = d.content.id;
+          window.localStorage['email_id'] = d.content.email_id;
+          window.localStorage['type'] = d.content.type;
           //window.location.href = `${environment.appurl}dashboard`
 
           //this._router.navigate(['dashboard']);
-          localStorage.setItem('user', JSON.stringify(d.login_detail[0]));
+          localStorage.setItem('user', JSON.stringify(d.content));
           //var user = JSON.parse(localStorage.getItem('user'));
           //localStorage.clear();
           $("#preloader").hide();

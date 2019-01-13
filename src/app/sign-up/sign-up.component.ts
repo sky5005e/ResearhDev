@@ -40,8 +40,11 @@ export class SignUpComponent implements OnInit {
   }
 
   registerUser() {
+    $("#preloader").show();
     debugger;
     console.log('signUpModel = ', this.signUpModel);
+
+
     // this._router.navigate(['thankYou']);
     /*
     this._userService.signUp(this.signUpModel).subscribe(data => {
@@ -53,12 +56,21 @@ export class SignUpComponent implements OnInit {
     */
     if (this.signUpModel.email_id !== undefined && this.signUpModel.email_id.length > 0
       && this.signUpModel.password !== undefined && this.signUpModel.password.length > 0
-      && this.signUpModel.name !== undefined && this.signUpModel.name.length > 0
+      && this.signUpModel.first_name !== undefined && this.signUpModel.first_name.length > 0
+      && this.signUpModel.last_name !== undefined && this.signUpModel.last_name.length > 0
       && this.signUpModel.mobile !== undefined && this.signUpModel.mobile !== ''
       && this.signUpModel.city !== undefined && this.signUpModel.city.length > 0
     ) {
+      this.signUpModel.user_name = this.signUpModel.user_name;
+      this._userService.signUpNew(this.signUpModel).subscribe(data => {
+        console.log('registration data = ', data);
+        $("#preloader").hide();
+        if (data.status == "1") {
+          this._router.navigate(['thankYou']);
+        }
+      });
 
-
+      /*
       let _formData: FormData = new FormData();
       _formData.append('email_id', this.signUpModel.email_id);
       _formData.append('password', this.signUpModel.password);
@@ -100,6 +112,7 @@ export class SignUpComponent implements OnInit {
           alert(d.message);
         }
       });
+      */
     }
     else {
       //this.isFormValid = false;

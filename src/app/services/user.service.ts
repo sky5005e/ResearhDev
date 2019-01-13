@@ -9,7 +9,7 @@ export class UserService {
 
   apiBaseUrl = environment.apiUrl;
   constructor(private _apiService: ApiService) { }
-
+/*
   emailLogin(data) {
     return this._apiService.post(this.apiBaseUrl + '?req=login', data)
   }
@@ -21,8 +21,21 @@ export class UserService {
   signUp(data) {
     return this._apiService.post(this.apiBaseUrl + '?req=registration', data);
   }
-
+*/
   getUserExperience() {
     return this._apiService.get(this.apiBaseUrl + '?req=listexperiance');
   }
+
+  getUserExperienceNew() {
+    return this._apiService.getNew(this.apiBaseUrl + 'api/experience');
+  }
+  
+  emailLoginNew(data) {
+    return this._apiService.postNew(this.apiBaseUrl + 'api/user/login', data)
+  }
+
+  signUpNew(data) {
+    return this._apiService.postNew(this.apiBaseUrl + 'api/user/signup', data);
+  }
+  
 }

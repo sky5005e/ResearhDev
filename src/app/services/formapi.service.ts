@@ -16,6 +16,7 @@ export class FormApiService {
   post(url, formData) {
    return $.ajax({
         type: "POST",
+        crossDomain: true,
         url: url,
         data: formData,
         cache: false,
@@ -23,11 +24,11 @@ export class FormApiService {
         contentType: false,
         timeout: 600000,
         success: function (data) {
-            //console.log(data, 'success');
+            console.log(data, 'success');
           return data;
         },
         error: function (e) {
-            //console.log(e, 'error');
+            console.log(e, 'error');
           return e;
         }
       });

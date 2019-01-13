@@ -26,4 +26,20 @@ export class ApiService {
       map((res: Response) => { return res;})
     );
   }
+
+  postNew(url, data){
+    this.customHeaders.append('Content-Type', 'application/json');
+    this.customHeaders.append("Access-Control-Allow-Origin", "*");
+    return this._http.post(url, data, {headers: this.customHeaders}).pipe(
+      map((res: any) => { return res;})
+    );
+  }
+
+  getNew(url) {
+    this.customHeaders.append('Content-Type', 'application/json');
+    this.customHeaders.append("Access-Control-Allow-Origin", "*");
+    return this._http.get(url, {headers: this.customHeaders}).pipe(
+      map((res: any) => { return res;})
+    );
+  }
 }

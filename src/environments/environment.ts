@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   appurl : '/',
-  apiUrl: 'http://akwebtech.com/demo/bukkzy/api/api.php'
+  apiUrl: 'http://localhost:64271/'
+  //'http://akwebtech.com/demo/bukkzy/api/api.php'
 };
 
 /*

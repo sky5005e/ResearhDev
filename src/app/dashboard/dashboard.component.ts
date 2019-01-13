@@ -27,17 +27,15 @@ export class DashboardComponent implements OnInit {
   }
 
   showExperience() {
-    //debugger;
-    // this.experienceList = JSON.parse('[{"id":"1","title":"Bespoke Yoga Training","image":"http:\/\/akwebtech.com\/demo\/bukkzy\/image\/1546760179product_7.png","price":"1000","sprice":"800","address":"Noida","user_name":"Anil kumar"}]');
-    this._userService.getUserExperience().subscribe(data => {
+    this._userService.getUserExperienceNew().subscribe(data => {
       //console.log('user experience = ', data);
       if (this.isViewALL) {
-        this.experienceList = data['product_details'];
+        this.experienceList = data.content;
         //console.log('this.experienceList', this.experienceList);
       }
       else {
 
-        let list = data['product_details'];
+        let list = data.content;
         this.RCexperienceList = list.filter(q =>
           q.price < 40
         );
