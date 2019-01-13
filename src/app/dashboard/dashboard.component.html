@@ -16,13 +16,13 @@
         <div class="package-image"><a routerLink="/experience/detail/{{RCexpList.id}}"><img src="{{RCexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
           <h3><a routerLink="/experience/detail/{{RCexpList.id}}">{{RCexpList.title}}</a></h3>
-          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{RCexpList.address}}</div>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{RCexpList.country}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
               Reviews</a></div>
           <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
                 alt="" /></span>By
-            <a href="#" class="auth-name">{{RCexpList.user_name}}</a>
+            <a href="#" class="auth-name">{{RCexpList.username}}</a>
             <span class="auth-verified">Video Verified</span></div>
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
@@ -31,9 +31,9 @@
             <span class="people-viewing">10 People Viewing</span>
           </div>
           <div class="package-price">
-            <span class="amt-saved">You Save $ {{RCexpList['price'] - RCexpList['sprice']}}.00</span>
-            <span class="original-price">$ {{RCexpList['price']}}.00</span>
-            <span class="actual-price">$ {{RCexpList['sprice']}}.00</span>
+              <span class="amt-saved">You Save $ {{RCexpList['sprice']}}.00</span>
+              <span class="original-price">$ {{RCexpList['price']}}.00</span>
+              <span class="actual-price">$ {{RCexpList['price'] - RCexpList['sprice']}}.00</span>
           </div>
           <i class="fas fa-heart wishlist"></i>
         </div>
@@ -51,13 +51,13 @@
         <div class="package-image"><a routerLink="/experience/detail/{{MPexpList.id}}"><img src="{{MPexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
           <h3><a routerLink="/experience/detail/{{MPexpList.id}}">{{MPexpList.title}}</a></h3>
-          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{MPexpList.address}}</div>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{MPexpList.country}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
               Reviews</a></div>
           <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
                 alt="" /></span>By
-            <a href="#" class="auth-name">{{MPexpList.user_name}}</a>
+            <a href="#" class="auth-name">{{MPexpList.username}}</a>
             <span class="auth-verified">Video Verified</span></div>
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
@@ -66,9 +66,9 @@
             <span class="people-viewing">10 People Viewing</span>
           </div>
           <div class="package-price">
-            <span class="amt-saved">You Save $ {{MPexpList['price'] - MPexpList['sprice']}}.00</span>
-            <span class="original-price">$ {{MPexpList['price']}}.00</span>
-            <span class="actual-price">$ {{MPexpList['sprice']}}.00</span>
+              <span class="amt-saved">You Save $ {{MPexpList['sprice']}}.00</span>
+              <span class="original-price">$ {{MPexpList['price']}}.00</span>
+              <span class="actual-price">$ {{MPexpList['price'] - expList['sprice']}}.00</span>
           </div>
           <i class="fas fa-heart wishlist"></i>
         </div>
@@ -85,13 +85,13 @@
         <div class="package-image"><a routerLink="/experience/detail/{{NEexpList.id}}"><img src="{{NEexpList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
           <h3><a routerLink="/experience/detail/{{NEexpList.id}}">{{NEexpList.title}}</a></h3>
-          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{NEexpList.address}}</div>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{NEexpList.country}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
               Reviews</a></div>
           <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
                 alt="" /></span>By
-            <a href="#" class="auth-name">{{NEexpList.user_name}}</a>
+            <a href="#" class="auth-name">{{NEexpList.username}}</a>
             <span class="auth-verified">Video Verified</span></div>
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
@@ -120,13 +120,13 @@
         <div class="package-image"><a routerLink="/experience/detail/{{expList.id}}"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
         <div class="package-details">
           <h3><a routerLink="/experience/detail/{{expList.id}}">{{expList.title}}</a></h3>
-          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.address}}</div>
+          <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.country}}</div>
           <div class="package-star"><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i class="fas fa-star selected"></i><i
               class="fas fa-star selected"></i><i class="fas fa-star"></i> 4/5 Very Good <a href="#" class="package-review">1025
               Reviews</a></div>
           <div class="package-auth"><span class="auth-img"><img src="assets/images/auth-image.png" width="36" height="36"
                 alt="" /></span>By
-            <a href="#" class="auth-name">{{expList.user_name}}</a>
+            <a href="#" class="auth-name">{{expList.username}}</a>
             <span class="auth-verified">Video Verified</span></div>
           <div class="package-last-booked">Last Booked - 6 hours ago</div>
           <div class="package-btm clearfix">
@@ -135,9 +135,9 @@
             <span class="people-viewing">10 People Viewing</span>
           </div>
           <div class="package-price">
-            <span class="amt-saved">You Save $ {{expList['price'] - expList['sprice']}}.00</span>
-            <span class="original-price">$ {{expList['price']}}.00</span>
-            <span class="actual-price">$ {{expList['sprice']}}.00</span>
+              <span class="amt-saved">You Save $ {{expList['sprice']}}.00</span>
+              <span class="original-price">$ {{expList['price']}}.00</span>
+              <span class="actual-price">$ {{expList['price'] - expList['sprice']}}.00</span>
           </div>
           <i class="fas fa-heart wishlist"></i>
         </div>

@@ -100,7 +100,7 @@ export class LoginComponent implements OnInit {
         console.log("success : ", d);
         if (d.status == "1") {
 
-          window.localStorage['UserName'] = d.content.first_name + '' + d.content.last_name;
+          window.localStorage['UserName'] = d.content.first_name + ' ' + d.content.last_name;
           window.localStorage['user_id'] = d.content.id;
           window.localStorage['email_id'] = d.content.email_id;
           window.localStorage['type'] = d.content.type;

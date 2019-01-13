@@ -38,7 +38,9 @@ export class HeaderComponent implements OnInit {
 
     window.localStorage.removeItem('UserName');
     window.localStorage.removeItem('email_id');
-    window.localStorage.removeItem('user_id');
+    window.localStorage.removeItem('user_id');    
+    window.localStorage.removeItem('type');
+    localStorage.clear();
     if (val == 1) {
       window.location.href = `${environment.appurl}login`
     }

@@ -133,7 +133,7 @@ export class AddExpComponent implements OnInit {
       _formData.append('custom', 'true')//this.Model.custom);
 
       //debugger;
-      var _url = `${environment.apiUrl}FileUpload/addExp`;
+      var _url = `${environment.apiUrl}FileUpload/addExp`;//api/experience`;//FileUpload/addExp`;
       this.formapiService.post(_url, _formData).then((d) => {
         $("#preloader").show();
         console.log("success : ", d);
@@ -146,6 +146,8 @@ export class AddExpComponent implements OnInit {
           alert(d.message);
         }
       });
+      setInterval( window.location.href = `${environment.appurl}dashboard`, 9000
+      )
     }
     else {
       this.isFormValid = false;

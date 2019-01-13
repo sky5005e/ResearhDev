@@ -2,7 +2,7 @@
     color: red;
 }
 
-input[type="submit"].add-btn {
+input[type="submit"] {
     padding: 18px 40px;
     font-size: 20px;
     color: #fff;
@@ -12,6 +12,9 @@ input[type="submit"].add-btn {
     border-radius: 2px;
     vertical-align: top;
     display: inline-block;
+}
+input[type="submit"].paypal-btn {
+    background: #ffcc00;
 }
 
 .main-form .input-file input[type="file"] {

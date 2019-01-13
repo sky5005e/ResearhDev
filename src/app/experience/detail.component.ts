@@ -16,7 +16,7 @@ export class DetailExpComponent implements OnInit {
   AddModel: any = {};
   persons: number[] = [];
   totalprice: number;
-  selectedPersonVal: number;
+  selectedPersonVal: number = 1;
   constructor(private _userService: UserService,
     private route: ActivatedRoute,
     private _router : Router ) { }
@@ -42,8 +42,8 @@ export class DetailExpComponent implements OnInit {
 
   LoadModel(id) {
     $("#preloader").show();
-    this._userService.getUserExperience().subscribe(data => {
-      this.experienceList = data['product_details'];
+    this._userService.getUserExperienceNew().subscribe(data => {
+      this.experienceList = data.content;
       this.model = this.experienceList.filter(q =>
         q.id == id
       )[0];
@@ -61,7 +61,14 @@ export class DetailExpComponent implements OnInit {
   onChange(val) {
     let price = this.model['price'] - this.model['sprice'];
     let calculateval = val * price;
+    if(val != null)
+    {
     this.selectedPersonVal = val;
+    }
+    else
+    {
+      this.selectedPersonVal = 1;
+    }
     this.totalprice = calculateval;
   }
 
