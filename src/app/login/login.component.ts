@@ -98,18 +98,20 @@ export class LoginComponent implements OnInit {
           window.localStorage['user_id'] = d.login_detail[0].id;
           window.localStorage['email_id'] = d.login_detail[0].email_id;
           window.localStorage['type'] = d.login_detail[0].type;
-          window.location.href = `${environment.appurl}dashboard`
+          //window.location.href = `${environment.appurl}dashboard`
 
           //this._router.navigate(['dashboard']);
           localStorage.setItem('user', JSON.stringify(d.login_detail[0]));
           //var user = JSON.parse(localStorage.getItem('user'));
           //localStorage.clear();
+          $("#preloader").hide();
           var redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '';
           if (redirectUrl == '') {
-            this._router.navigate(['user/profile-step1']);
+            window.location.href = `${environment.appurl}user/profile-step1`;
           }
           else {
-            this._router.navigate([redirectUrl]);
+            //this._router.navigate([redirectUrl]);
+            window.location.href = redirectUrl;//`${environment.appurl}experience/add`;
           }
         }
         else {

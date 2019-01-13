@@ -23,12 +23,19 @@
 
       <form #signUpForm="ngForm">
         <li>
-          <label>Name</label>
-          <input type="text" #uname="ngModel" name="userName" [(ngModel)]="signUpModel.name" required>
-          <div *ngIf="uname.touched">
-            <div *ngIf="uname.hasError('required')" class="val-error">** UserName is required</div>
+          <label>First Name</label>
+          <input type="text" #first_name="ngModel" name="first_name" [(ngModel)]="signUpModel.first_name" required>
+          <div *ngIf="first_name.touched">
+            <div *ngIf="first_name.hasError('required')" class="val-error">** First name is required</div>
           </div>
         </li>
+        <li>
+            <label>Last Name</label>
+            <input type="text" #last_name="ngModel" name="last_name" [(ngModel)]="signUpModel.last_name" required>
+            <div *ngIf="last_name.touched">
+              <div *ngIf="last_name.hasError('required')" class="val-error">** Last name is required</div>
+            </div>
+          </li>
         <li>
           <label>Email</label>
           <input type="text" #uemail="ngModel" name="userEmail" [(ngModel)]="signUpModel.email_id" required>
@@ -45,7 +52,11 @@
           </li>
         <li class="mobile-no">
           <label>Phone</label>
-          <input type="number" placeholder="Country Code">
+          <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code" [(ngModel)]="signUpModel.mobile_code"
+            required minlength="3" maxlength="3">
+            <div *ngIf="mobile_code.touched">
+                <div *ngIf="mobile_code.hasError('required')" class="val-error">** Country code is required</div>
+              </div>
           <input type="number" placeholder="Number" #phone="ngModel" name="userPhoneNo" [(ngModel)]="signUpModel.mobile"
             required minlength="10" maxlength="10">
             <div *ngIf="phone.touched">

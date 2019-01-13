@@ -62,10 +62,10 @@ export class SignUpComponent implements OnInit {
       let _formData: FormData = new FormData();
       _formData.append('email_id', this.signUpModel.email_id);
       _formData.append('password', this.signUpModel.password);
-
-      _formData.append('name', this.signUpModel.name);
+      _formData.append('first_name', this.signUpModel.first_name);      
+      _formData.append('last_name', this.signUpModel.last_name);
       _formData.append('mobile', this.signUpModel.mobile);
-
+      _formData.append('mobile', this.signUpModel.mobile_code);
       _formData.append('city', this.signUpModel.city);
       _formData.append('type', this.signUpModel['type']);
 

@@ -57,7 +57,7 @@
         <!-- <li><a href="add-experiance.html">List an Experience</a></li>  -->
         <li *ngIf="!isBuyer"><a routerLink='/experience/add'>List an Experience</a></li>
 
-        <li *ngIf="!IsUserName" style="cursor:pointer;"><a (click)="goToLogin()">Log In</a></li>
+        <li *ngIf="!IsUserName" style="cursor:pointer;"><a (click)="goToLogin(1)">Log In</a></li>
 
         <li *ngIf="!IsUserName" style="cursor:pointer;"><a (click)="goToSignUp()">Sign Up</a></li>
 
@@ -83,7 +83,7 @@
               <li><a href="#">Customer Support</a></li>
               <li><a href="#">How it Works</a></li>
               <li>
-                <a style="cursor: pointer;" (click)="goToLogin()"> Log Out</a>
+                <a style="cursor: pointer;" (click)="goToLogin(2)"> Log Out</a>
               </li>
             </ul>
           </div>

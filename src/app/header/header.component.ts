@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   IsUserName: boolean;
   isBuyer: boolean;
   UserName: string;
-  Email : string;
+  Email: string;
   constructor(private _router: Router) { }
 
   ngOnInit() {
@@ -34,11 +34,17 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  goToLogin() {
+  goToLogin(val) {
 
     window.localStorage.removeItem('UserName');
     window.localStorage.removeItem('email_id');
-    window.location.href = `${environment.appurl}`
+    window.localStorage.removeItem('user_id');
+    if (val == 1) {
+      window.location.href = `${environment.appurl}login`
+    }
+    else {
+      window.location.href = `${environment.appurl}`
+    }
     //this._router.navigate(['login']);
   }
 
