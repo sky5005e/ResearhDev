@@ -109,57 +109,63 @@ export class UserProfilestep2Component implements OnInit {
     onSubmit() {
         $("#preloader").show();
         console.log('Model = ', this.Model);
-        debugger;
+        //debugger;
         if (this.Model.title !== undefined && this.Model.title.length > 0
-            && this.Model.url !== undefined && this.Model.url.length > 0) {
-
-            this.isFormValid = true;
-            let _formData: FormData = new FormData();
-            _formData.append('user_id', localStorage['user_id']);
-            _formData.append('title', this.Model.title);
-            _formData.append('country', this.Model.country);
-            _formData.append('image', this.file);
-            _formData.append('url', this.Model.url);
-            _formData.append('about', this.Model.about);
-            _formData.append('explain', this.Model.explain);
-
-            _formData.append('price', this.Model.price);
-            _formData.append('sprice', this.Model.sprice);
-            _formData.append('people', this.Model.person);
-            _formData.append('hours', this.Model.hours);
-            _formData.append('minet', this.Model.minet);
-            _formData.append('category', this.Model.category);
-
-            _formData.append('year', this.Model.year);
-            _formData.append('month', this.Model.month);
-            _formData.append('day', this.Model.day);
-            _formData.append('time', this.Model.time);
-            _formData.append('custom', 'true')//this.Model.custom);
-
-            debugger;
-            var _url = `${environment.apiUrl}?req=addexperiance`;
-            this.formapiService.post(_url, _formData).then((d) => {
-                $("#preloader").show();
-                console.log("success : ", d);
-                if (d.status == "1") {
-
-                    this._router.navigate(['user/profile-step3']);
-                    $("#preloader").hide();
-                }
-                else {
-                    $("#preloader").hide();
-                    alert(d.message);
-                }
-            });
+          && this.Model.url !== undefined && this.Model.url.length > 0) {
+    
+          this.isFormValid = true;
+          let _formData: FormData = new FormData();
+          _formData.append('user_id', localStorage['user_id']);
+          _formData.append('title', this.Model.title);
+          _formData.append('country', this.Model.country);
+          _formData.append('files', this.file);
+          _formData.append('url', this.Model.url);
+          _formData.append('about', this.Model.about);
+          _formData.append('explain', this.Model.explain);
+    
+          _formData.append('price', this.Model.price);
+          _formData.append('sprice', this.Model.sprice);
+          _formData.append('people', this.Model.person);
+          _formData.append('hours', this.Model.hours);
+          _formData.append('minutes', this.Model.minet);
+          _formData.append('category', this.Model.category);
+    
+          _formData.append('year', this.Model.year);
+          _formData.append('month', this.Model.month);
+          _formData.append('day', this.Model.day);
+          _formData.append('time', this.Model.time);
+          _formData.append('custom', 'true')//this.Model.custom);
+          var _url = `${environment.apiUrl}FileUpload/addExp`;
+          this.formapiService.post(_url, _formData).then((d) => {
+            $("#preloader").show();
+            console.log("success : ", d);
+            if (d.status == "1") {
+              window.location.href = `${environment.appurl}user/profile-step3`
+            }
+            else {
+              $("#preloader").hide();
+              alert(d.message);
+            }
+          })
+            .fail(function (xhr, status, error) {          // error handling
+              console.log('error handling', error);
+    
+              $("#preloader").hide();
+              console.log('error handling status', status);
+              console.log('error handling xhr', xhr);
+              setInterval(window.location.href = `${environment.appurl}user/profile-step3`, 9000)
+            }
+    
+            );
         }
         else {
-            this.isFormValid = false;
-            console.log('Invalid form');
-            $("#preloader").hide();
-            return;
+          this.isFormValid = false;
+          console.log('Invalid form');
+          $("#preloader").hide();
+          return;
         }
-    }
-
+      }
+    
 
     goto() {
 

@@ -2,160 +2,219 @@
     <div class="package-list inside-sec">
         <h2><span>EDIT YOUR PROFILE</span></h2>
         <div class="edit-profile-steps">
-        <ul>
-            <li class="step step-active"><span class="edit-step">1</span>Personal Details</li>
-            <li class="step"><span class="edit-step">2</span>List an Experience</li>
-            <li class="step"><span class="edit-step">3</span>Payment Details</li>
-        </ul>
+            <ul>
+                <li class="step step-active"><span class="edit-step">1</span>Personal Details</li>
+                <li class="step"><span class="edit-step">2</span>List an Experience</li>
+                <li class="step"><span class="edit-step">3</span>Payment Details</li>
+            </ul>
         </div>
-        <ul class="main-form create-experience">
-            <li class="clearfix buyer-name">
-                <div>
-                <label>First Name</label>
-                <input type="text">
-                </div>
-                <div>
-                <label>Last Name</label>
-                <input type="text">
-                </div>
-            </li>
-            <li class="clearfix buyer-name">
-                <div>
-                <label>You are Good at</label>
-                <input type="text">
-                </div>
-                <div>
-                <label>Country</label>
-                <select>
-                  <option>Select</option>
-              </select>
-                </div>
-            </li>
-            <li class="cover-img">
-            <label>Cover Image</label>
-              <span class="input-file"><input type="file">Browse File</span>
-              <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-            </li>
-            <li class="cover-img">
-            <label>Profile Image</label>
-              <span class="input-file"><input type="file">Browse File</span>
-              <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-            </li>
-            <li class="clearfix">
-                <div class="mobile-no">
-                <label>Mobile</label>
-                <input type="number" placeholder="Country Code"><input type="number" placeholder="Number">
-                </div>
-                <div>
-                <label>Native Language</label>
-                <select>
-                  <option>Select</option>
-              </select></div>
-            </li>
-            <li class="exp-country">
-                <label>About Yourself</label>
-                <textarea></textarea>
-            </li>
-          <li class="cover-img">
-            <label>Experiences I offer (Max 5)</label>
-              <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-                                <span class="upload-preview add-cat">
-              <i class="fas fa-plus-circle"></i>
-                  Yoga
-              </span>
-            </li>
-            <li class="cover-img">
-            <label>My Photos</label>
-              <span class="input-file"><input type="file">Browse File</span>
-              <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-                <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-                <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-                <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-                <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-            </li>
-            <li>
-                <label>My Videos</label>
-                <span class="input-file"><input type="file">Browse File</span>
-              <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-                <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-                <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-                <span class="upload-preview">
-              <i class="fas fa-times-circle"></i>
-              </span>
-            </li>
-        </ul>
+        <form class="form-inline" novalidate (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
 
-        <div class="form-act"><input type="button" value="SKIP FOR NOW" class="add-btn" (click)="goto()"> <input type="button" value="CONTINUE" (click)="goto()"></div>
+            <ul class="main-form create-experience">
+                <li class="clearfix buyer-name">
+                    <div>
+                        <label>First Name</label>
+                        <input type="text" #first_name="ngModel" name="first_name" [(ngModel)]="Model.first_name"
+                            required>
+                        <div *ngIf="first_name.touched || f.submitted && !Model.first_name">
+                            <div *ngIf="first_name.hasError('required')" class="val-error">** first name is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Last Name</label>
+                        <input type="text" #last_name="ngModel" name="last_name" [(ngModel)]="Model.last_name" required>
+                        <div *ngIf="last_name.touched || f.submitted && !Model.last_name">
+                            <div *ngIf="last_name.hasError('required')" class="val-error">** last name is required</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="clearfix buyer-name">
+                    <div>
+                        <label>You are Good at</label>
+                        <input type="text" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required>
+                        <div *ngIf="Good_at.touched || f.submitted && !Model.Good_at">
+                            <div *ngIf="Good_at.hasError('required')" class="val-error">** Good at name is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Country</label>
+                        <select #country="ngModel" name="country" [(ngModel)]="Model.country" required>
+                            <option>Select</option>
+                            <option *ngFor="let p of places" [value]="p">{{p}}</option>
+                        </select>
+                        <div *ngIf="country.touched">
+                            <div *ngIf="country.hasError('required')" class="val-error">** country is required</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="cover-img">
+                    <label>Cover Image</label>
+                    <span class="input-file">
+                        <input type="file" type="file" #coverimage (change)="onCoverFileChange($event)" name="coverimage"
+                            required />Browse
+                        File
+                    </span>
+                    <p *ngIf="!coverimagefileIsValid" class="val-error">{{msgCoverImageError}}</p>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </li>
+                <li class="cover-img">
+                    <label>Profile Image</label>
+
+                    <span class="input-file">
+                        <input type="file" type="file" #profileimage (change)="onProfileFileChange($event)" name="profileimage"
+                            required />Browse
+                        File
+                    </span>
+                    <p *ngIf="!profileimagefileIsValid" class="val-error">{{msgProfileImageError}}</p>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </li>
+                <li class="clearfix">
+                    <div class="mobile-no">
+                        <label>Mobile</label>
+                      
+                        <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code"
+                            [(ngModel)]="Model.mobile_code" required minlength="3" maxlength="3">
+                        <div *ngIf="mobile_code.touched">
+                            <div *ngIf="mobile_code.hasError('required')" class="val-error">** Country code is required</div>
+                        </div>
+                        <input type="number" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="Model.mobile_no"
+                            required minlength="10" maxlength="10">
+                        <div *ngIf="mobile_no.touched">
+                            <div *ngIf="mobile_no.hasError('required')" class="val-error">** Mobile No is required</div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <label>Native Language</label>
+                        <select #native_language="ngModel" name="native_language" [(ngModel)]="Model.native_language" required>
+                                <option>Select</option>
+                                <option *ngFor="let l of native_languages" [value]="l">{{l}}</option>
+                            </select>
+                            <div *ngIf="native_language.touched">
+                                <div *ngIf="native_language.hasError('required')" class="val-error">** native language is required</div>
+                            </div>
+                    </div>
+                </li>
+                <li class="exp-country">
+                    <label>About Yourself</label>
+                    <textarea #about="ngModel" name="about" [(ngModel)]="Model.about" required></textarea>
+					<div *ngIf="about.touched">
+						<div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
+					</div>
+                </li>
+                <li class="cover-img">
+                    <label>Experiences I offer (Max 5)</label>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                    <span class="upload-preview add-cat">
+                        <i class="fas fa-plus-circle"></i>
+                        Yoga
+                    </span>
+                </li>
+                <li class="cover-img">
+                    <label>My Photos</label>
+                    <span class="input-file"><input type="file">Browse File</span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </li>
+                <li>
+                    <label>My Videos</label>
+                    <span class="input-file">
+                            <input type="file" type="file" #videos (change)="onVideoFileChange($event)" name="videos"
+                                required />Browse
+                            File
+                        </span>
+                        <p *ngIf="!vidoeimagefileIsValid" class="val-error">{{msgVideoError}}</p>
+                        <span class="upload-preview">
+                            <i class="fas fa-times-circle"></i>
+                        </span>
+
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    <span class="upload-preview">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="form-act">
+                <input type="button" value="SKIP FOR NOW" class="add-btn" (click)="goto()">
+                <input type="submit" value="SAVE and CONTINUE">
+            </div>
+        </form>
     </div>
 </div>

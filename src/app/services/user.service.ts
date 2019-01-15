@@ -29,13 +29,18 @@ export class UserService {
   getUserExperienceNew() {
     return this._apiService.getNew(this.apiBaseUrl + 'api/experience');
   }
-  
+  getUserPaymentInfo(id) {
+    return this._apiService.getNew(this.apiBaseUrl + 'api/user/paymentinfo/' + id);
+  }
   emailLoginNew(data) {
     return this._apiService.postNew(this.apiBaseUrl + 'api/user/login', data)
   }
 
   signUpNew(data) {
     return this._apiService.postNew(this.apiBaseUrl + 'api/user/signup', data);
+  }
+  SavePaymentInfo(data) {
+    return this._apiService.postNew(this.apiBaseUrl + 'api/user/paymentinfo', data);
   }
   
 }

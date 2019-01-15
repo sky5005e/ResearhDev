@@ -145,9 +145,17 @@ export class AddExpComponent implements OnInit {
           $("#preloader").hide();
           alert(d.message);
         }
-      });
-      setInterval( window.location.href = `${environment.appurl}dashboard`, 9000
-      )
+      })
+        .fail(function (xhr, status, error) {          // error handling
+          console.log('error handling', error);
+
+          $("#preloader").hide();
+          console.log('error handling status', status);
+          console.log('error handling xhr', xhr);
+          setInterval(window.location.href = `${environment.appurl}dashboard`, 9000)
+        }
+
+        );
     }
     else {
       this.isFormValid = false;

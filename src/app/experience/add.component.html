@@ -23,7 +23,8 @@
 				</li>
 				<li class="cover-img">
 					<label>Cover Image</label>
-					<span class="input-file"><input type="file" type="file" #file (change)="onFileChange($event)" name="file" required />Browse
+					<span class="input-file">
+						<input type="file" type="file" #file (change)="onFileChange($event)" name="file" required />Browse
 						File
 					</span>
 					<p *ngIf="!fileIsValid" class="val-error">{{msgError}}</p>
@@ -119,15 +120,15 @@
 						</div>
 						<div class="duration-mnts">
 							<span class="sub-txt">Minutes</span>
-							<select #minet="ngModel" name="minet" [(ngModel)]="Model.minet" required>
+							<select #minutes="ngModel" name="minutes" [(ngModel)]="Model.minutes" required>
 								<option>Select</option>
 								<option value="00">00</option>
 								<option value="15">15</option>
 								<option value="30">30</option>
 								<option value="45">45</option>
 							</select>
-							<div *ngIf="minet.touched">
-								<div *ngIf="minet.hasError('required')" class="val-error">** minet is required</div>
+							<div *ngIf="minutes.touched">
+								<div *ngIf="minutes.hasError('required')" class="val-error">** minet is required</div>
 							</div>
 						</div>
 					</div>

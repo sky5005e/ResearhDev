@@ -1,51 +1,80 @@
 <div class="wrap">
-		<div class="package-list inside-sec">
-			<h2><span>EDIT YOUR PROFILE</span></h2>
-			<div class="edit-profile-steps">
+	<div class="package-list inside-sec">
+		<h2><span>EDIT YOUR PROFILE</span></h2>
+		<div class="edit-profile-steps">
 			<ul>
 				<li class="step"><span class="edit-step">1</span>Personal Details</li>
 				<li class="step"><span class="edit-step">2</span>List an Experience</li>
 				<li class="step step-active"><span class="edit-step">3</span>Payment Details</li>
 			</ul>
-			</div>
-						<ul class="main-form create-experience">
+		</div>
+		<form class="form-inline" novalidate (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+
+			<ul class="main-form create-experience">
 				<li>
 					<label>Bank Account Number</label>
-					<input type="text">
+					<input type="text" #bank_account_number="ngModel" name="bank_account_number" [(ngModel)]="Model.bank_account_number"
+					 required>
+					<div *ngIf="bank_account_number.touched || f.submitted && !Model.bank_account_number">
+						<div *ngIf="bank_account_number.hasError('required')" class="val-error">** bank account number is required</div>
+					</div>
 				</li>
 				<li class="exp-country">
 					<label>Country</label>
-					<select>
-				  	<option>Select</option>
-				  </select>
+					<select #country="ngModel" name="country" [(ngModel)]="Model.country" required>
+						<option>Select</option>
+						<option *ngFor="let p of places" [value]="p">{{p}}</option>
+					</select>
+					<div *ngIf="country.touched">
+						<div *ngIf="country.hasError('required')" class="val-error">** country is required</div>
+					</div>
 				</li>
 				<li>
 					<label>IBAN</label>
-					<input type="text">
+					<input type="text" #iban="ngModel" name="iban" [(ngModel)]="Model.iban"
+					 required>
+					<div *ngIf="iban.touched || f.submitted && !Model.iban">
+						<div *ngIf="iban.hasError('required')" class="val-error">** iban is required</div>
+					</div>
 				</li>
 				<li>
 					<label>IFSC (If Applicable)</label>
-					<input type="text">
+					<input type="text" #ifsc_code="ngModel" name="ifsc_code" [(ngModel)]="Model.ifsc_code"
+					 required>
+					<div *ngIf="ifsc_code.touched || f.submitted && !Model.ifsc_code">
+						<div *ngIf="ifsc_code.hasError('required')" class="val-error">** ifsc code is required</div>
+					</div>
 				</li>
 				<li>
 					<label>Bank Account Holder Name</label>
-					<input type="text">
+					<input type="text" #account_holder_name="ngModel" name="account_holder_name" [(ngModel)]="Model.account_holder_name"
+					 required>
+					<div *ngIf="account_holder_name.touched || f.submitted && !Model.account_holder_name">
+						<div *ngIf="account_holder_name.hasError('required')" class="val-error">** account holder name is required</div>
+					</div>
 				</li>
 				<li>
 					<label>Account Type</label>
-					<select>
-				  	<option>Select</option>
-				  </select>
+					<select #account_type="ngModel" name="account_type" [(ngModel)]="Model.account_type" required>
+						<option>Select</option>
+						<option value="current">Current</option>
+						<option value="saving">Saving</option>
+					</select>
+					<div *ngIf="account_type.touched">
+						<div *ngIf="account_type.hasError('required')" class="val-error">** account type is required</div>
+					</div>
 				</li>
 				<li class="sign-up-or">OR</li>
 				<li class="add-paypal">
 					<label>Add Paypal Account</label>
-					<input type="text"><input type="button" value="ADD" class="add-btn">
-				</li>			
+					<input type="text" #paypal="ngModel" name="paypal" [(ngModel)]="Model.paypal">
+
+				</li>
 			</ul>
 
 
-			<div class="form-act"><input type="button" value="GO BACK" class="add-btn" (click)="gotoback()"> <input type="button" value="I M DONE" (click)="goto()"></div>
-		</div>
+			<div class="form-act"><input type="button" value="GO BACK" class="add-btn" (click)="gotoback()">
+				<input type="submit" value="I M DONE"></div>
+		</form>
 	</div>
-	
+</div>

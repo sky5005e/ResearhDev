@@ -57,10 +57,10 @@
             <div *ngIf="mobile_code.touched">
                 <div *ngIf="mobile_code.hasError('required')" class="val-error">** Country code is required</div>
               </div>
-          <input type="number" placeholder="Number" #phone="ngModel" name="userPhoneNo" [(ngModel)]="signUpModel.mobile"
+          <input type="number" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="signUpModel.mobile_no"
             required minlength="10" maxlength="10">
-            <div *ngIf="phone.touched">
-                <div *ngIf="phone.hasError('required')" class="val-error">** Mobile No is required</div>
+            <div *ngIf="mobile_no.touched">
+                <div *ngIf="mobile_no.hasError('required')" class="val-error">** Mobile No is required</div>
               </div>
         </li>
         <li>
