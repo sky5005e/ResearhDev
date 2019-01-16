@@ -49,7 +49,8 @@ export class UserProfilestep1Component implements OnInit {
       this.Email = localStorage.getItem('Email');
     }
     this.Model = JSON.parse(localStorage.getItem('user'));
-
+    $('html,body').animate({
+      scrollTop: $("body").offset().top},      'slow');
   }
   goto() {
 
@@ -137,7 +138,7 @@ export class UserProfilestep1Component implements OnInit {
   onSubmit() {
     $("#preloader").show();
     console.log('Model = ', this.Model);
-    //debugger;
+    debugger;
     if (this.Model.first_name !== undefined && this.Model.first_name.length > 0
       && this.Model.last_name !== undefined && this.Model.last_name.length > 0) {
 
@@ -167,6 +168,7 @@ export class UserProfilestep1Component implements OnInit {
       var _url = `${environment.apiUrl}FileUpload/UpdateUser`;
       this.formapiService.post(_url, _formData).then((d) => {
         $("#preloader").show();
+        debugger;
         console.log("success : ", d);
         if (d.status == "1") {
           window.location.href = `${environment.appurl}profile-step2`
@@ -183,7 +185,7 @@ export class UserProfilestep1Component implements OnInit {
           $("#preloader").hide();
           console.log('error handling status', status);
           console.log('error handling xhr', xhr);
-          //setInterval(window.location.href = `${environment.appurl}profile-step2`, 9000)
+          setInterval(window.location.href = `${environment.appurl}profile-step2`, 9000)
         }
 
         );

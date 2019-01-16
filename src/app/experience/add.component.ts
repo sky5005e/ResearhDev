@@ -105,7 +105,7 @@ export class AddExpComponent implements OnInit {
   onSubmit() {
     $("#preloader").show();
     console.log('Model = ', this.Model);
-    //debugger;
+    debugger;
     if (this.Model.title !== undefined && this.Model.title.length > 0
       && this.Model.url !== undefined && this.Model.url.length > 0) {
 
@@ -123,7 +123,7 @@ export class AddExpComponent implements OnInit {
       _formData.append('sprice', this.Model.sprice);
       _formData.append('people', this.Model.person);
       _formData.append('hours', this.Model.hours);
-      _formData.append('minutes', this.Model.minet);
+      _formData.append('minutes', this.Model.minutes);
       _formData.append('category', this.Model.category);
 
       _formData.append('year', this.Model.year);
@@ -136,6 +136,7 @@ export class AddExpComponent implements OnInit {
       var _url = `${environment.apiUrl}FileUpload/addExp`;//api/experience`;//FileUpload/addExp`;
       this.formapiService.post(_url, _formData).then((d) => {
         $("#preloader").show();
+        debugger;
         console.log("success : ", d);
         if (d.status == "1") {
           window.location.href = `${environment.appurl}dashboard`

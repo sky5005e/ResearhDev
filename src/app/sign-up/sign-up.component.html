@@ -53,7 +53,7 @@
         <li class="mobile-no">
           <label>Phone</label>
           <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code" [(ngModel)]="signUpModel.mobile_code"
-            required minlength="3" maxlength="3">
+            required minlength="2" maxlength="4">
             <div *ngIf="mobile_code.touched">
                 <div *ngIf="mobile_code.hasError('required')" class="val-error">** Country code is required</div>
               </div>

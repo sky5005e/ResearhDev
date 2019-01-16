@@ -42,7 +42,7 @@
                             <option>Select</option>
                             <option *ngFor="let p of places" [value]="p">{{p}}</option>
                         </select>
-                        <div *ngIf="country.touched">
+                        <div *ngIf="country.touched || f.submitted && !Model.country">
                             <div *ngIf="country.hasError('required')" class="val-error">** country is required</div>
                         </div>
                     </div>
@@ -72,18 +72,19 @@
                         <i class="fas fa-times-circle"></i>
                     </span>
                 </li>
+           
                 <li class="clearfix">
                     <div class="mobile-no">
                         <label>Mobile</label>
                       
                         <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code"
-                            [(ngModel)]="Model.mobile_code" required minlength="3" maxlength="3">
-                        <div *ngIf="mobile_code.touched">
+                            [(ngModel)]="Model.mobile_code" required minlength="2" maxlength="4">
+                        <div *ngIf="mobile_code.touched || f.submitted && !Model.mobile_code">
                             <div *ngIf="mobile_code.hasError('required')" class="val-error">** Country code is required</div>
                         </div>
                         <input type="number" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="Model.mobile_no"
                             required minlength="10" maxlength="10">
-                        <div *ngIf="mobile_no.touched">
+                        <div *ngIf="mobile_no.touched || f.submitted && !Model.mobile_no">
                             <div *ngIf="mobile_no.hasError('required')" class="val-error">** Mobile No is required</div>
                         </div>
 
@@ -94,7 +95,7 @@
                                 <option>Select</option>
                                 <option *ngFor="let l of native_languages" [value]="l">{{l}}</option>
                             </select>
-                            <div *ngIf="native_language.touched">
+                            <div *ngIf="native_language.touched  || f.submitted && !Model.native_language">
                                 <div *ngIf="native_language.hasError('required')" class="val-error">** native language is required</div>
                             </div>
                     </div>
@@ -102,7 +103,7 @@
                 <li class="exp-country">
                     <label>About Yourself</label>
                     <textarea #about="ngModel" name="about" [(ngModel)]="Model.about" required></textarea>
-					<div *ngIf="about.touched">
+					<div *ngIf="about.touched || f.submitted && !Model.about">
 						<div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
 					</div>
                 </li>
@@ -208,11 +209,11 @@
                     <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
                     </span>
-                </li>
+                </li> 
             </ul>
 
             <div class="form-act">
-                <input type="button" value="SKIP FOR NOW" class="add-btn" (click)="goto()">
+                <input type="button" value="SKIP FOR NOW" class="add-btn" (click)="goto()"> &nbsp;
                 <input type="submit" value="SAVE and CONTINUE" class="add-btn">
             </div>
         </form>

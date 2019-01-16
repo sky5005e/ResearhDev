@@ -53,6 +53,7 @@ export class SignUpComponent implements OnInit {
     ) {
       this.signUpModel.user_name = this.signUpModel.email_id;
       this._userService.signUpNew(this.signUpModel).subscribe(data => {
+        debugger;
         console.log('registration data = ', data);
         $("#preloader").hide();
         if (data.status == "1") {

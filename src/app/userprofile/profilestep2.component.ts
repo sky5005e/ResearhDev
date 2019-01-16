@@ -127,7 +127,7 @@ export class UserProfilestep2Component implements OnInit {
           _formData.append('sprice', this.Model.sprice);
           _formData.append('people', this.Model.person);
           _formData.append('hours', this.Model.hours);
-          _formData.append('minutes', this.Model.minet);
+          _formData.append('minutes', this.Model.minutes);
           _formData.append('category', this.Model.category);
     
           _formData.append('year', this.Model.year);
@@ -138,6 +138,7 @@ export class UserProfilestep2Component implements OnInit {
           var _url = `${environment.apiUrl}FileUpload/addExp`;
           this.formapiService.post(_url, _formData).then((d) => {
             $("#preloader").show();
+            debugger;
             console.log("success : ", d);
             if (d.status == "1") {
               window.location.href = `${environment.appurl}user/profile-step3`
@@ -149,7 +150,7 @@ export class UserProfilestep2Component implements OnInit {
           })
             .fail(function (xhr, status, error) {          // error handling
               console.log('error handling', error);
-    
+              debugger;
               $("#preloader").hide();
               console.log('error handling status', status);
               console.log('error handling xhr', xhr);

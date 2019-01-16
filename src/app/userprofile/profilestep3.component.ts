@@ -35,6 +35,7 @@ export class UserProfilestep3Component implements OnInit {
   loadPaymentInfo(id: any) {
     this._userService.getUserPaymentInfo(id).subscribe(data => {
       console.log('getUserPaymentInfo = ', data);
+      debugger;
       if (data.status == "1") {
         this.Model = data.content;
       }
@@ -42,7 +43,7 @@ export class UserProfilestep3Component implements OnInit {
         console.log('No record found');
       }
       $("#preloader").hide();
-
+      debugger;
       console.log(this.Model);
     });
   }
