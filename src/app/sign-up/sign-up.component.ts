@@ -44,24 +44,14 @@ export class SignUpComponent implements OnInit {
     debugger;
     console.log('signUpModel = ', this.signUpModel);
 
-
-    // this._router.navigate(['thankYou']);
-    /*
-    this._userService.signUp(this.signUpModel).subscribe(data => {
-      // console.log('registration data = ', data);
-      if (data) {
-        this._router.navigate(['thankYou']);
-      }
-    });
-    */
     if (this.signUpModel.email_id !== undefined && this.signUpModel.email_id.length > 0
       && this.signUpModel.password !== undefined && this.signUpModel.password.length > 0
       && this.signUpModel.first_name !== undefined && this.signUpModel.first_name.length > 0
       && this.signUpModel.last_name !== undefined && this.signUpModel.last_name.length > 0
-      && this.signUpModel.mobile !== undefined && this.signUpModel.mobile !== ''
+      && this.signUpModel.mobile_no !== undefined && this.signUpModel.mobile_no !== ''
       && this.signUpModel.city !== undefined && this.signUpModel.city.length > 0
     ) {
-      this.signUpModel.user_name = this.signUpModel.user_name;
+      this.signUpModel.user_name = this.signUpModel.email_id;
       this._userService.signUpNew(this.signUpModel).subscribe(data => {
         console.log('registration data = ', data);
         $("#preloader").hide();
