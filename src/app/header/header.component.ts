@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Event } from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+declare var $: any;
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -32,13 +32,18 @@ export class HeaderComponent implements OnInit {
     else {
       this.isBuyer = false;
     }
+    this._router.events.subscribe((event: Event) => {
+      $('html,body').animate({
+        scrollTop: $("body").offset().top
+      }, 'slow');
+    });
   }
 
   goToLogin(val) {
 
     window.localStorage.removeItem('UserName');
     window.localStorage.removeItem('email_id');
-    window.localStorage.removeItem('user_id');    
+    window.localStorage.removeItem('user_id');
     window.localStorage.removeItem('type');
     localStorage.clear();
     if (val == 1) {

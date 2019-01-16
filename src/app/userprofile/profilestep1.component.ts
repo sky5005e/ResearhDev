@@ -48,7 +48,9 @@ export class UserProfilestep1Component implements OnInit {
       this.UserName = localStorage.getItem('UserName');
       this.Email = localStorage.getItem('Email');
     }
-    this.Model = JSON.parse(localStorage.getItem('user'));
+    //this.Model = JSON.parse(localStorage.getItem('user'));
+    let id = localStorage.getItem('user_id')
+    this.loadUderInfo(id);
     $('html,body').animate({
       scrollTop: $("body").offset().top},      'slow');
   }
@@ -56,7 +58,22 @@ export class UserProfilestep1Component implements OnInit {
 
     this._router.navigate(['user/profile-step2']);
   }
-
+loadUderInfo(userId)
+{
+  this._userService.getUserInfo(userId).subscribe(data => {
+    console.log('getUserPaymentInfo = ', data);
+    debugger;
+    if (data.status == "1") {
+      this.Model = data.content;
+    }
+    else {
+      console.log('No record found');
+    }
+    $("#preloader").hide();
+    debugger;
+    console.log(this.Model);
+  });
+}
   onProfileFileChange(event) {
     let files = event.target.files;
     if (files.length > 0) {

@@ -42,5 +42,7 @@ export class UserService {
   SavePaymentInfo(data) {
     return this._apiService.postNew(this.apiBaseUrl + 'api/user/paymentinfo', data);
   }
-  
+  getUserInfo(id) {
+    return this._apiService.getNew(this.apiBaseUrl + 'api/user/' + id);
+  }
 }
