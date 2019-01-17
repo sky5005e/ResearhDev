@@ -54,8 +54,8 @@
           <label>Phone</label>
           <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code" [(ngModel)]="signUpModel.mobile_code"
             required minlength="2" maxlength="4">
-            <div *ngIf="mobile_code.touched">
-                <div *ngIf="mobile_code.hasError('required')" class="val-error">** Country code is required</div>
+            <div *ngIf="mobile_code.touched" style="width : 50px;">
+                <div *ngIf="mobile_code.hasError('required')" class="val-error">** code</div>
               </div>
           <input type="number" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="signUpModel.mobile_no"
             required minlength="10" maxlength="10">

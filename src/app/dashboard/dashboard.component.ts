@@ -31,25 +31,25 @@ export class DashboardComponent implements OnInit {
       //console.log('user experience = ', data);
       if (this.isViewALL) {
         this.experienceList = data.content;
-        //console.log('this.experienceList', this.experienceList);
+        console.log('this.experienceList', this.experienceList);
       }
       else {
 
         let list = data.content;
-        this.RCexperienceList = list.filter(q =>
-          q.price < 40
+        this.RCexperienceList = list.filter(q => q.ExpType == 'RC'
+         //q.country.toLowerCase().includes(localStorage.getItem('city'))
         );
-        //console.log('this.RCexperienceList', this.RCexperienceList);
-        this.NEexperienceList = list.filter(q =>
-          q.sprice < 40
-        );
-
-        //console.log('this.NEexperienceList', this.NEexperienceList);
-        this.MPexperienceList = list.filter(q =>
-          q.title.toLowerCase().includes('yoga')
+        console.log('this.RCexperienceList', this.RCexperienceList);
+        this.NEexperienceList = list.filter(q =>  q.ExpType == 'NE'        
+          //q.category.toLowerCase().includes('diving')
         );
 
-        //console.log('this.MPexperienceList', this.MPexperienceList);
+        console.log('this.NEexperienceList', this.NEexperienceList);
+        this.MPexperienceList = list.filter(q => q.ExpType == 'MP'
+          //q.category.toLowerCase().includes('yoga')
+      );
+
+        console.log('this.MPexperienceList', this.MPexperienceList);
       }
     });
   }

@@ -35,6 +35,10 @@ export class UserService {
   emailLoginNew(data) {
     return this._apiService.postNew(this.apiBaseUrl + 'api/user/login', data)
   }
+  socialLoginNew(data) {
+    return this._apiService.postNew(this.apiBaseUrl + 'api/user/sociallogin', data)
+  }
+
 
   signUpNew(data) {
     return this._apiService.postNew(this.apiBaseUrl + 'api/user/signup', data);

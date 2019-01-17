@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private userService: UserService,
     private formapiService: FormApiService,
-    private apiservice : ApiService
+    private apiservice: ApiService
   ) {
     //   gapi.load('auth2', function () {
     //     gapi.auth2.init()
@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.socialAuthService.authState.subscribe((user) => {
-      this.user = user;
-    });
+    // this.socialAuthService.authState.subscribe((user) => {
+    //   this.user = user;
+    // });
   }
 
   loginWithFacebook() {
@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
   loginWithGmail() {
     console.log('click login gmail');
 
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    //this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+
     // let googleAuth = gapi.auth2.getAuthInstance();
     // googleAuth.then(() => {
     //    googleAuth.signIn({scope: 'profile email'}).then(googleUser => {
@@ -58,9 +59,47 @@ export class LoginComponent implements OnInit {
 
     // console.log('click login');    
 
-    // this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
-    //    console.log('userData = ',  userData);
-    // })
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
+      debugger;
+      console.log('userData = ', userData);
+      let signUpModel: any = {};
+      signUpModel.email_id = userData.email;
+      signUpModel.first_name = userData.firstName;
+      signUpModel.last_name = userData.lastName;
+      signUpModel.user_name = userData.provider;
+      signUpModel.profile_image = userData.photoUrl
+      signUpModel.code = userData.provider;
+      this.SaveSocialLogin(signUpModel);
+
+    });
+  }
+  SaveSocialLogin(data) {
+    $("#preloader").show();
+    this.userService.socialLoginNew(data).subscribe(d => {
+      console.log("success : ", d);
+      if (d.status == "1") {
+        debugger;
+        window.localStorage['UserName'] = d.content.first_name + ' ' + d.content.last_name;
+        window.localStorage['user_id'] = d.content.id;
+        window.localStorage['email_id'] = d.content.email_id;
+        window.localStorage['type'] = d.content.type;
+        window.localStorage['city'] = d.content.city;
+
+        localStorage.setItem('user', JSON.stringify(d.content));
+        $("#preloader").hide();
+        var redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+        if (redirectUrl == '') {
+          window.location.href = `${environment.appurl}user/profile-step1`;
+        }
+        else {
+          window.location.href = redirectUrl;
+        }
+      }
+      else {
+        $("#preloader").hide();
+        alert(d.message);
+      }
+    });
   }
 
   login() {
@@ -74,9 +113,9 @@ export class LoginComponent implements OnInit {
       let _formData: FormData = new FormData();
       _formData.append('email_id', this.loginModel.email);
       _formData.append('password', this.loginModel.password);
-     // var _url = `${environment.apiUrl}?req=login`;
+      // var _url = `${environment.apiUrl}?req=login`;
       var _url = `${environment.apiUrl}api/user/login`;
-     
+
       // $.ajax({
       //   type: "POST",
       //   url: _url,
@@ -94,37 +133,38 @@ export class LoginComponent implements OnInit {
       //   }
       // })
       //this.formapiService.post(_url, _formData).then(
-        this.userService.emailLoginNew(this.loginModel).subscribe(
+      this.userService.emailLoginNew(this.loginModel).subscribe(
         d => {
-        $("#preloader").show();
-        console.log("success : ", d);
-        if (d.status == "1") {
+          $("#preloader").show();
+          console.log("success : ", d);
+          if (d.status == "1") {
 
-          window.localStorage['UserName'] = d.content.first_name + ' ' + d.content.last_name;
-          window.localStorage['user_id'] = d.content.id;
-          window.localStorage['email_id'] = d.content.email_id;
-          window.localStorage['type'] = d.content.type;
-          //window.location.href = `${environment.appurl}dashboard`
+            window.localStorage['UserName'] = d.content.first_name + ' ' + d.content.last_name;
+            window.localStorage['user_id'] = d.content.id;
+            window.localStorage['email_id'] = d.content.email_id;
+            window.localStorage['type'] = d.content.type;
+            //window.location.href = `${environment.appurl}dashboard`
+            window.localStorage['city'] = d.content.city;
 
-          //this._router.navigate(['dashboard']);
-          localStorage.setItem('user', JSON.stringify(d.content));
-          //var user = JSON.parse(localStorage.getItem('user'));
-          //localStorage.clear();
-          $("#preloader").hide();
-          var redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '';
-          if (redirectUrl == '') {
-            window.location.href = `${environment.appurl}user/profile-step1`;
+            //this._router.navigate(['dashboard']);
+            localStorage.setItem('user', JSON.stringify(d.content));
+            //var user = JSON.parse(localStorage.getItem('user'));
+            //localStorage.clear();
+            $("#preloader").hide();
+            var redirectUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+            if (redirectUrl == '') {
+              window.location.href = `${environment.appurl}user/profile-step1`;
+            }
+            else {
+              //this._router.navigate([redirectUrl]);
+              window.location.href = redirectUrl;//`${environment.appurl}experience/add`;
+            }
           }
           else {
-            //this._router.navigate([redirectUrl]);
-            window.location.href = redirectUrl;//`${environment.appurl}experience/add`;
+            $("#preloader").hide();
+            alert(d.message);
           }
-        }
-        else {
-          $("#preloader").hide();
-          alert(d.message);
-        }
-      });
+        });
     }
     else {
       this.isFormValid = false;

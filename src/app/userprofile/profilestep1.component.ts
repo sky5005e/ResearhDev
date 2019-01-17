@@ -47,12 +47,12 @@ export class UserProfilestep1Component implements OnInit {
     if (localStorage.getItem('UserName') !== undefined && localStorage.getItem('UserName') !== null) {
       this.UserName = localStorage.getItem('UserName');
       this.Email = localStorage.getItem('Email');
-    }
+    
     //this.Model = JSON.parse(localStorage.getItem('user'));
     let id = localStorage.getItem('user_id')
     this.loadUderInfo(id);
-    $('html,body').animate({
-      scrollTop: $("body").offset().top},      'slow');
+    }
+   
   }
   goto() {
 

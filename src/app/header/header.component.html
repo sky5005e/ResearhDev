@@ -70,9 +70,10 @@
             </ul>
           </div>
         </li>
-        <li *ngIf="IsUserName"><span class="user-tab"><span class="user-small-img"><img src="assets/images/auth-image.png" alt=""></span></span>
+        <li *ngIf="IsUserName"><span class="user-tab"><span class="user-small-img">
+          <img src="{{photoURL}}" alt=""></span></span>
           <div class="sub-nav user-act">
-            <span class="user-img"><img src="assets/images/testi-image.png" alt=""></span>
+            <span class="user-img"><img src="{{photoURL}}" alt=""></span>
             <ul>
               <li class="user-detail">
                 <span class="user-name">{{UserName}}</span>
