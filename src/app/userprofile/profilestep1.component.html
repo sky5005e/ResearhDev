@@ -55,9 +55,12 @@
                         File
                     </span>
                     <p *ngIf="!coverimagefileIsValid" class="val-error">{{msgCoverImageError}}</p>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
+                    <!-- <span class="upload-preview"> -->
+                        <!-- <i class="fas fa-times-circle"></i> -->
+                        <span class="upload-preview">
+                            <img *ngFor="let url of CoverUrls" [src]="url" class="rounded mb-3" width="90" height="90">
+                        </span>
+                    <!-- </span> -->
                 </li>
                 <li class="cover-img">
                     <label>Profile Image</label>
@@ -68,8 +71,11 @@
                         File
                     </span>
                     <p *ngIf="!profileimagefileIsValid" class="val-error">{{msgProfileImageError}}</p>
-                    <span class="upload-preview">
+                    <!-- <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
+                    </span> -->
+                    <span class="upload-preview">
+                        <img *ngFor="let url of ProfileUrls" [src]="url" class="rounded mb-3" width="90" height="90">
                     </span>
                 </li>
            

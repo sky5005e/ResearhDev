@@ -39,8 +39,8 @@
 					<p *ngIf="!fileIsValid" class="val-error">{{msgError}}</p>
 
 					<span class="upload-preview">
-						<i class="fas fa-times-circle"></i>
-					</span>
+                        <img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="90" height="90">
+                    </span>
 				</li>
 				<li>
 					<label>Experience Video</label>

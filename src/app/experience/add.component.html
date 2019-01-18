@@ -40,8 +40,11 @@
 					<div *ngIf="url.touched">
 						<div *ngIf="url.hasError('required')" class="val-error">** url is required</div>
 					</div>
-					<span class="upload-preview">
+					<!-- <span class="upload-preview">
 						<i class="fas fa-times-circle"></i>
+					</span> -->
+					<span class="upload-preview">
+						<img *ngFor="let url of urls" [src]="url" class="rounded mb-3" width="90" height="90">
 					</span>
 				</li>
 				<li>

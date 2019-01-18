@@ -23,7 +23,7 @@ export class UserProfilestep1Component implements OnInit {
   coverimagefileIsValid: boolean;
   profileimagefileIsValid: boolean;
   vidoeimagefileIsValid: boolean;
-  
+
 
   msgProfileImageError: string;
   msgCoverImageError: string;
@@ -47,33 +47,34 @@ export class UserProfilestep1Component implements OnInit {
     if (localStorage.getItem('UserName') !== undefined && localStorage.getItem('UserName') !== null) {
       this.UserName = localStorage.getItem('UserName');
       this.Email = localStorage.getItem('Email');
-    
-    //this.Model = JSON.parse(localStorage.getItem('user'));
-    let id = localStorage.getItem('user_id')
-    this.loadUderInfo(id);
+
+      //this.Model = JSON.parse(localStorage.getItem('user'));
+      let id = localStorage.getItem('user_id')
+      this.loadUderInfo(id);
     }
-   
+
   }
   goto() {
 
     this._router.navigate(['user/profile-step2']);
   }
-loadUderInfo(userId)
-{
-  this._userService.getUserInfo(userId).subscribe(data => {
-    console.log('getUserPaymentInfo = ', data);
-    debugger;
-    if (data.status == "1") {
-      this.Model = data.content;
-    }
-    else {
-      console.log('No record found');
-    }
-    $("#preloader").hide();
-    debugger;
-    console.log(this.Model);
-  });
-}
+  loadUderInfo(userId) {
+    this._userService.getUserInfo(userId).subscribe(data => {
+      console.log('getUserPaymentInfo = ', data);
+      debugger;
+      if (data.status == "1") {
+        this.Model = data.content;
+      }
+      else {
+        console.log('No record found');
+      }
+      $("#preloader").hide();
+      debugger;
+      console.log(this.Model);
+    });
+  }
+  ProfileUrls = new Array<string>();
+  CoverUrls = new Array<string>();
   onProfileFileChange(event) {
     let files = event.target.files;
     if (files.length > 0) {
@@ -85,6 +86,16 @@ loadUderInfo(userId)
     }
     else {
       this.profileimagefileIsValid = true;
+    }
+    this.ProfileUrls = [];
+    if (this.profileimagefileIsValid) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.ProfileUrls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
     }
 
   }
@@ -101,6 +112,17 @@ loadUderInfo(userId)
     else {
       this.coverimagefileIsValid = true;
     }
+    this.CoverUrls = [];
+    if (this.coverimagefileIsValid) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.CoverUrls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
 
   }
   onVideoFileChange(event) {
@@ -173,7 +195,7 @@ loadUderInfo(userId)
       _formData.append('coverimage', this.coverimage);
       _formData.append('vidoes', this.video);
 
-      
+
       _formData.append('Good_at', this.Model.Good_at);
       _formData.append('about', this.Model.about);
       _formData.append('mobile_code', this.Model.mobile_code);

@@ -75,7 +75,7 @@ export class AddExpComponent implements OnInit {
       k = k + 10;
     }
   }
-
+  urls = [];
   onFileChange(event) {
     let files = event.target.files;
     if (files.length > 0) {
@@ -87,6 +87,15 @@ export class AddExpComponent implements OnInit {
     }
     else {
       this.fileIsValid = true;
+    }
+    if (this.fileIsValid) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.urls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
     }
 
   }
