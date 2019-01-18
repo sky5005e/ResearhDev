@@ -2,7 +2,7 @@
     <div class="header-content">
         <h1>Amazing Experiences Crafted by the Best</h1>
         <div class="header-search">
-            <input type="text"><input type="button" value="Search">
+            <input type="text" id="txtsearch" name="txtsearch"><input type="button" value="Search" (click)="SearchList()">
         </div>
     </div>
 </div>
@@ -107,8 +107,9 @@
         </div>
     </div>
     <div class="package-list rhs-list">
-        <div *ngFor="let expList of experienceList" class="package-bx clearfix">
-            <div class="package-image"><a routerLink="/experience/detail/{{expList.id}}"><img src="{{expList.image}}" width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
+        <div *ngFor="let expList of data$ | async" class="package-bx clearfix">
+            <div class="package-image"><a routerLink="/experience/detail/{{expList.id}}"><img src="{{expList.image}}"
+                        width="332" height="233" alt="Bespoke Yoga Training" /></a></div>
             <div class="package-details">
                 <h3><a routerLink="/experience/detail/{{expList.id}}">{{expList.title}}</a></h3>
                 <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{expList.country}}</div>
@@ -127,11 +128,17 @@
                     <span class="people-viewing">10 People Viewing</span>
                 </div>
                 <div class="package-price">
-                        <span class="amt-saved">You Save $ {{expList.sprice}}.00</span>
-                        <span class="original-price">$ {{expList.price}}.00</span>
-                        <span class="actual-price">$ {{expList.price - expList.sprice}}.00</span>
+                    <span class="amt-saved">You Save $ {{expList.sprice}}.00</span>
+                    <span class="original-price">$ {{expList.price}}.00</span>
+                    <span class="actual-price">$ {{expList.price - expList.sprice}}.00</span>
                 </div>
                 <i class="fas fa-heart wishlist"></i>
+            </div>
+        </div>
+        <div *ngIf="data$ | async" class="package-bx clearfix">
+            <div class="package-details">
+                <h3>
+                    No matchin record found</h3>
             </div>
         </div>
 

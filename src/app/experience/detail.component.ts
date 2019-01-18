@@ -17,9 +17,12 @@ export class DetailExpComponent implements OnInit {
   persons: number[] = [];
   totalprice: number;
   selectedPersonVal: number = 1;
+
+  userInfo: any = {};
+
   constructor(private _userService: UserService,
     private route: ActivatedRoute,
-    private _router : Router ) { }
+    private _router: Router) { }
 
   ngOnInit() {
 
@@ -47,6 +50,9 @@ export class DetailExpComponent implements OnInit {
       this.model = this.experienceList.filter(q =>
         q.id == id
       )[0];
+      if (this.model != null && this.model != undefined) {
+        this.loadUderInfo(this.model.user_id);
+      }
       localStorage.setItem('currentexp', JSON.stringify(this.model));
       //var user = JSON.parse(localStorage.getItem('user'));
       //localStorage.clear();
@@ -58,28 +64,50 @@ export class DetailExpComponent implements OnInit {
 
   }
 
+  loadUderInfo(userId) {
+    this._userService.getUserInfo(userId).subscribe(data => {
+      console.log('user info = ', data);
+      debugger;
+      if (data.status == "1") {
+        this.userInfo = data.content;
+      }
+      else {
+        console.log('No record found');
+      }
+      $("#preloader").hide();
+      debugger;
+      console.log(this.userInfo);
+    });
+  }
   onChange(val) {
     let price = this.model['price'] - this.model['sprice'];
     let calculateval = val * price;
-    if(val != null)
-    {
-    this.selectedPersonVal = val;
+    if (val != null) {
+      this.selectedPersonVal = val;
+      this.msgError = '';
     }
-    else
-    {
+    else {
       this.selectedPersonVal = 1;
+      this.msgError = 'please select people';
     }
     this.totalprice = calculateval;
   }
-
+  msgError: string = '';
   BuyNow() {
-    const SelectProduct: any = {};
-    SelectProduct.price = this.model['price']
-    SelectProduct.sprice = this.model['sprice'];
-    SelectProduct.selectedPersonVal = this.selectedPersonVal;
-    SelectProduct.totalprice = this.totalprice;
-    localStorage.setItem('SelectedProduct', JSON.stringify(SelectProduct));
-    this._router.navigate(['checkout/pay-now']);
+    debugger;
+    if (this.AddModel.people !== undefined && this.AddModel.people.length > 0) {
+      this.msgError;
+      const SelectProduct: any = {};
+      SelectProduct.price = this.model['price']
+      SelectProduct.sprice = this.model['sprice'];
+      SelectProduct.selectedPersonVal = this.selectedPersonVal;
+      SelectProduct.totalprice = this.totalprice;
+      localStorage.setItem('SelectedProduct', JSON.stringify(SelectProduct));
+      this._router.navigate(['checkout/pay-now']);
+    }
+    else {
+      this.msgError = 'please select people';
+      return false;
+    }
   }
-
 }

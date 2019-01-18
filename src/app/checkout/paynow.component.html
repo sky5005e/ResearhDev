@@ -43,7 +43,13 @@
                 </div>
             </li>
         </ul>
-        <div class="form-act"><input type="submit" value="PAY NOW" > <span class="or-sep">OR</span> <input type="submit" value="PAY WITH PAYPAL" class="paypal-btn"></div>
+        <div class="form-act"><input type="submit" value="PAY NOW" > <span class="or-sep">OR</span> 
+            
+            <input type="button" value="PAY WITH PAYPAL" class="paypal-btn" (click)="showpaypalcon()"></div>
+
+        <div id="showpaypaldiv" style="display: none;">
+            <div id="paypal-button-container"></div>
+        </div>
     </form>
     </div>
 </div>

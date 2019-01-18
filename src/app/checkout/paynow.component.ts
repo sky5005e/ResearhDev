@@ -61,5 +61,9 @@ export class PayNowComponent implements OnInit {
     this._router.navigate(['checkout/thank-you']);
     $("#preloader").hide();
   }
-
+  showpaypal : boolean = true;
+  showpaypalcon()
+  {
+    $("#showpaypaldiv").show();
+  }
 }

@@ -60,7 +60,7 @@ export class UserProfilestep1Component implements OnInit {
   }
   loadUderInfo(userId) {
     this._userService.getUserInfo(userId).subscribe(data => {
-      console.log('getUserPaymentInfo = ', data);
+      console.log('user info = ', data);
       debugger;
       if (data.status == "1") {
         this.Model = data.content;
@@ -74,7 +74,6 @@ export class UserProfilestep1Component implements OnInit {
     });
   }
   ProfileUrls = new Array<string>();
-  CoverUrls = new Array<string>();
   onProfileFileChange(event) {
     let files = event.target.files;
     if (files.length > 0) {
@@ -99,6 +98,7 @@ export class UserProfilestep1Component implements OnInit {
     }
 
   }
+  CoverUrls = new Array<string>();
 
   onCoverFileChange(event) {
     let files = event.target.files;
@@ -125,6 +125,7 @@ export class UserProfilestep1Component implements OnInit {
 
 
   }
+  videoUrls = new Array<string>();
   onVideoFileChange(event) {
     let files = event.target.files;
     if (files.length > 0) {
@@ -137,9 +138,53 @@ export class UserProfilestep1Component implements OnInit {
     else {
       this.vidoeimagefileIsValid = true;
     }
-
+    //if (this.vidoeimagefileIsValid) {
+    // var $source = $('#video_here');
+    // $source[0].src = URL.createObjectURL(files[0]);
+    // $source.parent()[0].load();
+    //}
+    this.videoUrls = [];
+    if (this.vidoeimagefileIsValid) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.videoUrls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
   }
 
+  myphotosimageIsValid: boolean;
+  myphotosimageImageError: string;
+  myphotosimageUrls = new Array<string>();
+
+  onmyphotosimageChange(event) {
+    let files = event.target.files;
+    let myphotos = files;
+    if (files.length > 0) {
+      this.coverimage = files[0];
+    }
+    //check file is valid
+    if (!this.validateFile(files[0].name, 'cover')) {
+      return false;
+    }
+    else {
+      this.myphotosimageIsValid = true;
+    }
+    this.myphotosimageUrls = [];
+    if (this.myphotosimageIsValid) {
+      for (let file of files) {
+        let reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.myphotosimageUrls.push(e.target.result);
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+
+  }
   validateFile(name: String, type: string) {
     var ext = name.substring(name.lastIndexOf('.') + 1);
     if (type == 'cover') {
@@ -162,8 +207,18 @@ export class UserProfilestep1Component implements OnInit {
         return false;
       }
     }
+    if (type == 'myphotos') {
+      if (ext.toLowerCase() == 'jpg' || ext.toLowerCase() == 'png') {
+        return true;
+      }
+      else {
+        this.myphotosimageIsValid = false;
+        this.myphotosimageImageError = "Please upload jpg or png file only";
+        return false;
+      }
+    }
     if (type == 'vidoe') {
-      if (ext.toLowerCase() == 'mp4') {
+      if (ext.toLowerCase() == 'mp4' ||ext.toLowerCase() == '3gp') {
         return true;
       }
       else {

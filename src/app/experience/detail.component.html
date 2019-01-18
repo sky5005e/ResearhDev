@@ -17,8 +17,12 @@
                 <li class="exp-duration">Duration: 2 Hours</li>
                 <li>
                     <label>People</label>
-                    <select #people="ngModel" name="people" [(ngModel)]="AddModel.people" required (change)="onChange($event.target.value)">
-                        <option *ngFor="let p of persons" [value]="p">{{p}}</option>
+                    <select #people="ngModel" name="people" [(ngModel)]="AddModel.people" required 
+                    (change)="onChange($event.target.value)">
+                        
+                        <option *ngFor="let p of persons" value="{{p}}"
+                        [selected]="p == 1">
+                            {{p}}</option>
                     </select>
                     <div *ngIf="people.touched">
                         <div *ngIf="people.hasError('required')" class="val-error">** people is required</div>
@@ -34,9 +38,12 @@
                     <span class="per-person-cost">US $ {{model['price'] - model['sprice']}}.00 <span>per person</span></span>
                     <span class="total-cost"><span>Total</span> US ${{totalprice}}.00</span>
                 </li>
-              
 
-                <li><a style="cursor: pointer;" (click)="BuyNow()"><input type="button" value="BUY NOW" class="primery-btn" ></a></li>
+
+                <li><a style="cursor: pointer;" (click)="BuyNow()">
+                    <input type="button" value="BUY NOW" class="primery-btn"></a>
+                   <div class="val-error" *ngIf = "msgError" ></div> {{msgError}}
+                </li>
                 <li><input type="button" value="ADD TO WISHLIST" class="add-btn"></li>
                 <li class="social-share">
                     <strong>Share</strong>
@@ -52,11 +59,18 @@
         <h3>The Experience Provider</h3>
         <div class="clearfix">
             <div class="profile-lhs">
-                <div class="main-prof-img"><img src="assets/images/provider-image.jpg" width="309" height="309" alt="Stuart Alex" /></div>
-                <h4 class="prof-name">Stuart Alex</h4>
-                <div class="prof-loc"><i class="fas fa-map-marker-alt"></i> Paris, France</div>
-                <div class="prof-lang">Language: English, French</div>
-                <div class="prof-intro">Small intro may be just 2 lines or few words (50 words)</div>
+                <div class="main-prof-img">
+                    <ng-template *ngIf="!userInfo.profile_image; else profilepic">
+                        <img *ngIf="!userInfo.profile_image" src="" width="309" height="309" alt="{{userInfo.first_name}}" />
+                    </ng-template>
+                    <ng-template #profilepic>
+                        <img src="assets/images/provider-image.jpg" width="309" height="309" alt="user" />
+                    </ng-template>
+                </div>
+                <h4 class="prof-name">{{userInfo.first_name}} &nbsp; {{userInfo.first_name}}</h4>
+                <div class="prof-loc"><i class="fas fa-map-marker-alt"></i> {{userInfo.city}}, {{userInfo.country}}</div>
+                <div class="prof-lang">Language: {{userInfo.native_language}}</div>
+                <div class="prof-intro"> {{userInfo.Good_at}} (50 words)</div>
                 <div class="prof-categories">
                     <h5>Categories I Love</h5>
                     <ul>
@@ -74,26 +88,7 @@
             </div>
             <div class="profile-rhs">
                 <h4>Aboout Me</h4>
-                <p>Hi it is about the person who is buying the experience Hi it is about the person who is buying the
-                    experience Hi it is about the person who is buying the experience Hi it is about the person who is
-                    buying the experience Hi it is about the person who is buying the experience Hi it is about the
-                    person who is buying the experience Hi it is about the person who is buying the experience Hi it is
-                    about the person who is buying the experience Hi it is about the person who is buying the
-                    experience Hi it is about the person who is buying the experience Hi it is about the person who is
-                    buying the experience Hi it is about the person who is buying the experience Hi it is about the
-                    person who is buying the experience Hi it is about the person who is buying the experience Hi it is
-                    about the person who is buying the experience Hi it is about the person who is buying the
-                    experience Hi it is about the person who is buying the experience Hi it is about the person who is
-                    buying the experience Hi it is about the person who is buying the experience Hi it is about the
-                    person who is buying the experience</p>
-
-                <p>Hi it is about the person who is buying the experience Hi it is about the person who is buying the
-                    experience Hi it is about the person who is buying the experience Hi it is about the person who is
-                    buying the experience </p>
-
-                <p>Hi it is about the person who is buying the experience Hi it is about the person who is buying the
-                    experience Hi it is about the person who is buying the experience Hi it is about the person who is
-                    buying the experience</p>
+                <p>{{userInfo.about}}</p>
             </div>
         </div>
     </div>

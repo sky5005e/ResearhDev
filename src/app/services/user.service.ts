@@ -29,6 +29,9 @@ export class UserService {
   getUserExperienceNew() {
     return this._apiService.getNew(this.apiBaseUrl + 'api/experience');
   }
+  getUserExperienceDetails(id) {
+    return this._apiService.getNew(this.apiBaseUrl + 'api/experience/details/' + id);
+  }
   getUserPaymentInfo(id) {
     return this._apiService.getNew(this.apiBaseUrl + 'api/user/paymentinfo/' + id);
   }

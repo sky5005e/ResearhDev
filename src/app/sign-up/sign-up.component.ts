@@ -39,7 +39,7 @@ export class SignUpComponent implements OnInit {
     this.signUpModel['type'] = this.sellerCheckValue || this.buyerCheckValue;
   }
 
-  registerUser() {
+  onSubmit() {
     $("#preloader").show();
     debugger;
     console.log('signUpModel = ', this.signUpModel);

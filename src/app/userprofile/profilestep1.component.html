@@ -31,7 +31,7 @@
                 <li class="clearfix buyer-name">
                     <div>
                         <label>You are Good at</label>
-                        <input type="text" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required>
+                        <input type="text" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required maxlength="50">
                         <div *ngIf="Good_at.touched || f.submitted && !Model.Good_at">
                             <div *ngIf="Good_at.hasError('required')" class="val-error">** Good at name is required</div>
                         </div>
@@ -56,10 +56,11 @@
                     </span>
                     <p *ngIf="!coverimagefileIsValid" class="val-error">{{msgCoverImageError}}</p>
                     <!-- <span class="upload-preview"> -->
-                        <!-- <i class="fas fa-times-circle"></i> -->
-                        <span class="upload-preview">
-                            <img *ngFor="let url of CoverUrls" [src]="url" class="rounded mb-3" width="90" height="90">
-                        </span>
+                    <!-- <i class="fas fa-times-circle"></i> -->
+                    <span class="upload-preview" *ngFor="let url of CoverUrls">
+                            <i class="fas fa-times-circle"></i>
+                        <img  [src]="url" class="rounded mb-3" width="90" height="90">
+                    </span>
                     <!-- </span> -->
                 </li>
                 <li class="cover-img">
@@ -74,15 +75,16 @@
                     <!-- <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
                     </span> -->
-                    <span class="upload-preview">
-                        <img *ngFor="let url of ProfileUrls" [src]="url" class="rounded mb-3" width="90" height="90">
+                    <span class="upload-preview" *ngFor="let url of ProfileUrls">
+                            <i class="fas fa-times-circle"></i>
+                        <img  [src]="url" class="rounded mb-3" width="90" height="90">
                     </span>
                 </li>
-           
+
                 <li class="clearfix">
                     <div class="mobile-no">
                         <label>Mobile</label>
-                      
+
                         <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code"
                             [(ngModel)]="Model.mobile_code" required minlength="2" maxlength="4">
                         <div *ngIf="mobile_code.touched || f.submitted && !Model.mobile_code" style="width : 50px;">
@@ -97,21 +99,23 @@
                     </div>
                     <div>
                         <label>Native Language</label>
-                        <select #native_language="ngModel" name="native_language" [(ngModel)]="Model.native_language" required>
-                                <option>Select</option>
-                                <option *ngFor="let l of native_languages" [value]="l">{{l}}</option>
-                            </select>
-                            <div *ngIf="native_language.touched  || f.submitted && !Model.native_language">
-                                <div *ngIf="native_language.hasError('required')" class="val-error">** native language is required</div>
-                            </div>
+                        <select #native_language="ngModel" name="native_language" [(ngModel)]="Model.native_language"
+                            required>
+                            <option>Select</option>
+                            <option *ngFor="let l of native_languages" [value]="l">{{l}}</option>
+                        </select>
+                        <div *ngIf="native_language.touched  || f.submitted && !Model.native_language">
+                            <div *ngIf="native_language.hasError('required')" class="val-error">** native language is
+                                required</div>
+                        </div>
                     </div>
                 </li>
                 <li class="exp-country">
                     <label>About Yourself</label>
                     <textarea #about="ngModel" name="about" [(ngModel)]="Model.about" required></textarea>
-					<div *ngIf="about.touched || f.submitted && !Model.about">
-						<div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
-					</div>
+                    <div *ngIf="about.touched || f.submitted && !Model.about">
+                        <div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
+                    </div>
                 </li>
                 <li class="cover-img">
                     <label>Experiences I offer (Max 5)</label>
@@ -174,8 +178,22 @@
                 </li>
                 <li class="cover-img">
                     <label>My Photos</label>
-                    <span class="input-file"><input type="file">Browse File</span>
-                    <span class="upload-preview">
+                    
+                    <span class="input-file">
+                            <input type="file" type="file" #myphotosimage multiple
+                            (change)="onmyphotosimageChange($event)" name="myphotosimage"
+                                required />Browse
+                            File
+                        </span>
+                        <p *ngIf="!myphotosimageIsValid" class="val-error">{{myphotosimageImageError}}</p>
+                        <!-- <span class="upload-preview">
+                            <i class="fas fa-times-circle"></i>
+                        </span> -->
+                        <span class="upload-preview" *ngFor="let url of myphotosimageUrls">
+                                <i class="fas fa-times-circle"></i>
+                            <img  [src]="url" class="rounded mb-3" width="90" height="90">
+                        </span>
+                    <!-- <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
                     </span>
                     <span class="upload-preview">
@@ -186,23 +204,23 @@
                     </span>
                     <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
-                    </span>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
+                    </span> -->
                 </li>
                 <li>
                     <label>My Videos</label>
                     <span class="input-file">
-                            <input type="file" type="file" #videos (change)="onVideoFileChange($event)" name="videos"
-                                required />Browse
-                            File
-                        </span>
-                        <p *ngIf="!vidoeimagefileIsValid" class="val-error">{{msgVideoError}}</p>
-                        <span class="upload-preview">
-                            <i class="fas fa-times-circle"></i>
-                        </span>
-
+                        <input type="file" type="file" #videos multiple (change)="onVideoFileChange($event)" name="videos"
+                            required />Browse
+                        File
+                    </span>
+                    <p *ngIf="!vidoeimagefileIsValid" class="val-error">{{msgVideoError}}</p>
+                    <span class="upload-preview" *ngFor="let vurl of videoUrls">
+                        <i class="fas fa-times-circle"></i>
+                        <video width="90px" height="90px" controls>
+                            <source [src]="vurl" id="video_here">                            
+                        </video>
+                    </span>
+<!--                     
                     <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
                     </span>
@@ -214,8 +232,8 @@
                     </span>
                     <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
-                    </span>
-                </li> 
+                    </span> -->
+                </li>
             </ul>
 
             <div class="form-act">
