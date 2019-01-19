@@ -56,4 +56,12 @@ export class UserService {
   AddUserExperiences(data) {
     return this._apiService.postNew(this.apiBaseUrl + 'api/user/InsertUserExperiences', data);
   }
+
+  getUserExperiences(id) {
+    return this._apiService.getNew(this.apiBaseUrl + 'api/user/GetUserExperiences/' + id);
+  }
+
+  getUserDocuments(id) {
+    return this._apiService.getNew(this.apiBaseUrl + 'api/user/GetUserDocuments/' + id);
+  }
 }

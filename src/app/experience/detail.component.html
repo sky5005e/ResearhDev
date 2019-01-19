@@ -30,9 +30,14 @@
                 </li>
                 <li>
                     <label>Preferred Date and Time</label>
-                    <select>
-                        <option>Select</option>
-                    </select>
+                    <input type="text" #preferedDateTime="ngModel" name="preferedDateTime" [(ngModel)]="AddModel.preferedDateTime" required 
+                       pattern="^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$" placeholder="dd-mm-yyyy hh:mm">
+                    <div *ngIf="preferedDateTime.touched">
+                        <div *ngIf="preferedDateTime.hasError('required')" class="val-error">** Preferred Date and Time is required</div>
+                        <div *ngIf="preferedDateTime.errors && preferedDateTime.errors.pattern" class="val-error">
+                            ** Preferred Date and Time is invalid
+                        </div>
+                    </div>
                 </li>
                 <li class="clearfix exp-cost">
                     <span class="per-person-cost">US $ {{model['price'] - model['sprice']}}.00 <span>per person</span></span>
@@ -42,7 +47,7 @@
 
                 <li><a style="cursor: pointer;" (click)="BuyNow()">
                     <input type="button" value="BUY NOW" class="primery-btn"></a>
-                   <div class="val-error" *ngIf = "msgError" ></div> {{msgError}}
+                   <div class="val-error" *ngIf="msgError" > {{msgError}}</div>
                 </li>
                 <li><input type="button" value="ADD TO WISHLIST" class="add-btn"></li>
                 <li class="social-share">

@@ -24,7 +24,7 @@ import { UserProfileModule } from './userprofile/userprofile.module';
 let configHindustanDomain = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('106774232600-fi1pgqhtq7f7csol11vbfm88kg83p4vv.apps.googleusercontent.com')    
+    provider: new GoogleLoginProvider('510888144384-5n8a89kiib5jsh3vodpob275qbs6ui54.apps.googleusercontent.com')    
     //provider:  new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
   },
   {

@@ -3,53 +3,69 @@
         <h2>Pay Now</h2>
         <form class="form-inline" novalidate (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
 
-        <div class="package-details clearfix">
-            <h3><a href="#">{{model['title']}}</a></h3>
-            <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{model['country']}}</div>
-            <div class="package-price">
-                <span class="amt-saved">You Save $ {{SavePrice}}.00</span>
-                <span class="original-price">$ {{Price}}.00</span>
-                <span class="actual-price">$ {{TotalPrice}}.00</span>
+            <div class="package-details clearfix">
+                <h3><a href="#">{{model['title']}}</a></h3>
+                <div class="package-loc"><i class="fas fa-map-marker-alt"></i> {{model['country']}}</div>
+                <div class="package-price">
+                    <span class="amt-saved">You Save $ {{SavePrice}}.00</span>
+                    <span class="original-price">$ {{Price}}.00</span>
+                    <span class="actual-price">$ {{TotalPrice}}.00</span>
+                </div>
             </div>
-        </div>
 
-        <ul class="main-form">
-            <li>
-                <label>Name on Card</label>
-                <input type="text" #name="ngModel" name="name" [(ngModel)]="AddModel.name" required>
-					<div *ngIf="name.touched || f.submitted && !AddModel.name">
-						<div *ngIf="name.hasError('required')" class="val-error">** name is required</div>
-					</div>
-            </li>
-            <li>
-                <label>Card Number</label>
-                <input type="text" #cardnumber="ngModel" name="cardnumber" [(ngModel)]="AddModel.cardnumber" required>
-                <div *ngIf="cardnumber.touched || f.submitted && !AddModel.cardnumber">
-                    <div *ngIf="cardnumber.hasError('required')" class="val-error">** card number is required</div>
-                </div>
-            </li>
-            <li class="expiry-date">
-                <label>Expiry Date (MM/YY)</label>
-                <input type="text" #cardexpiry="ngModel" name="cardexpiry" [(ngModel)]="AddModel.cardexpiry" required placeholder="MM/YY">
-                <div *ngIf="cardexpiry.touched || f.submitted && !AddModel.cardexpiry">
-                    <div *ngIf="cardexpiry.hasError('required')" class="val-error">** Expiry is required</div>
-                </div>
-            </li>
-            <li class="cvvcvd">
-                <label>CVV/CVD</label>
-                <input type="text" #cvvcvd="ngModel" name="cvvcvd" [(ngModel)]="AddModel.cvvcvd" required minlength="3" maxlength="3">
-                <div *ngIf="cvvcvd.touched || f.submitted && !AddModel.cardexpiry">
-                    <div *ngIf="cvvcvd.hasError('required')" class="val-error">** Expiry is required</div>
-                </div>
-            </li>
-        </ul>
-        <div class="form-act"><input type="submit" value="PAY NOW" > <span class="or-sep">OR</span> 
-            
-            <input type="button" value="PAY WITH PAYPAL" class="paypal-btn" (click)="showpaypalcon()"></div>
+            <ul class="main-form">
+                <li>
+                    <label>Name on Card</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="AddModel.name" required>
+                    <div *ngIf="name.touched || f.submitted && !AddModel.name">
+                        <div *ngIf="name.hasError('required')" class="val-error">** name is required</div>
+                    </div>
+                </li>
+                <li>
+                    <label>Card Number</label>
+                    <input type="text" #cardnumber="ngModel" name="cardnumber" [(ngModel)]="AddModel.cardnumber"
+                        required pattern="\d{4}-?\d{4}-?\d{4}-?\d{4}">
+                    <div *ngIf="cardnumber.touched || f.submitted && !AddModel.cardnumber">
+                        <div *ngIf="cardnumber.hasError('required')" class="val-error">** card number is required</div>
+                        <div *ngIf="cardnumber.errors && cardnumber.errors.pattern" class="val-error">
+                            ** card number is invalid.
+                        </div>
+                    </div>
+                </li>
+                <li class="expiry-date">
+                    <label>Expiry Date (MM/YYYY)</label>
+                    <input type="text" #cardexpiry="ngModel" name="cardexpiry" pattern="(0[1-9]|10|11|12)/20[0-9]{2}$"
+                        [(ngModel)]="AddModel.cardexpiry" required placeholder="MM/YYYY">
+                    <div *ngIf="cardexpiry.touched || f.submitted && !AddModel.cardexpiry">
+                        <!-- <div *ngIf="cardexpiry.hasError('required')" class="val-error">** Expiry is required</div> -->
+                        <div *ngIf="cardexpiry.errors && cardexpiry.errors.required" class="val-error">
+                            ** Expiry is required
+                        </div>
+                        <div *ngIf="cardexpiry.errors && cardexpiry.errors.pattern" class="val-error">
+                            Expiry is invalid.
+                        </div>
+                    </div>
 
-        <div id="showpaypaldiv" style="display: none;">
-            <div id="paypal-button-container"></div>
-        </div>
-    </form>
+                </li>
+                <li class="cvvcvd">
+                    <label>CVV/CVD</label>
+                    <input type="text" #cvvcvd="ngModel" name="cvvcvd" [(ngModel)]="AddModel.cvvcvd" required minlength="3"
+                        maxlength="3" pattern="[0-9]{3}$">
+                    <div *ngIf="cvvcvd.touched || f.submitted && !AddModel.cvvcvd">
+                        <div *ngIf="cvvcvd.hasError('required')" class="val-error">** CVV/CVD is required</div>
+                        <div *ngIf="cvvcvd.errors && cvvcvd.errors.pattern" class="val-error">
+                            ** CVV/CVD is invalid.
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="form-act"><input type="submit" value="PAY NOW"> <span class="or-sep">OR</span>
+
+                <input type="button" value="PAY WITH PAYPAL" class="paypal-btn" (click)="showpaypalcon()"></div>
+
+            <div id="showpaypaldiv" style="display: none;">
+                <div id="paypal-button-container"></div>
+            </div>
+        </form>
     </div>
 </div>

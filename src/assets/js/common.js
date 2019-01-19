@@ -16,17 +16,17 @@ $(document).ready(function () {
     //   'info'        : true,
     //   'autoWidth'   : true
     // });
-    $('input[type=submit]').click(function () {
-        if($(".val-error:visible").length > 0)
-        {
-            console.log('please fill all the required fields');
-        }
-        // $('html,body').animate({
-        //     scrollTop: $("div.val-error").offset()
-        // }, 'slow');
-    }
+    // $('input[type=submit]').click(function () {
+    //     if($(".val-error:visible").length > 0)
+    //     {
+    //        // console.log('please fill all the required fields');
+    //     }
+    //     // $('html,body').animate({
+    //     //     scrollTop: $("div.val-error").offset()
+    //     // }, 'slow');
+    // }
 
-    )
+    //)
 });
 
 

@@ -53,8 +53,13 @@ export class UserProfilestep1Component implements OnInit {
 
       //this.Model = JSON.parse(localStorage.getItem('user'));
       let id = localStorage.getItem('user_id')
-      this.loadUderInfo(id);
+      this.loadUserInfo(id);
+
+      this.LoadUserExpereinces(id);
+      this.LoadUserDocuments(id);
+
       this.LoadExperiences();
+
     }
 
   }
@@ -77,7 +82,7 @@ export class UserProfilestep1Component implements OnInit {
     let expModel: any = {};
     expModel.user_id = this.Model.id;
     expModel.experience_id = expid;
-    
+
     this._userService.AddUserExperiences(expModel).subscribe(d => {
       console.log(d.content, 'AddUserExperience');
     });
@@ -87,7 +92,7 @@ export class UserProfilestep1Component implements OnInit {
 
     this._router.navigate(['user/profile-step2']);
   }
-  loadUderInfo(userId) {
+  loadUserInfo(userId) {
     this._userService.getUserInfo(userId).subscribe(data => {
       console.log('user info = ', data);
       debugger;
@@ -182,7 +187,7 @@ export class UserProfilestep1Component implements OnInit {
         }
         reader.readAsDataURL(file);
       }
-      this.SaveFiles('myvidoes');
+      //this.SaveFiles('myvidoes');
     }
   }
 
@@ -268,6 +273,11 @@ export class UserProfilestep1Component implements OnInit {
     $("#preloader").show();
     console.log('Model = ', this.Model);
     debugger;
+
+    for (let file of this.myvideosFiles) {
+      this.SaveVidoesFiles(file);
+    }
+
     if (this.Model.first_name !== undefined && this.Model.first_name.length > 0
       && this.Model.last_name !== undefined && this.Model.last_name.length > 0) {
 
@@ -283,9 +293,7 @@ export class UserProfilestep1Component implements OnInit {
 
       _formData.append('profileimage', this.profileimage);
       _formData.append('coverimage', this.coverimage);
-      _formData.append('vidoes', this.video);
-
-
+      //_formData.append('vidoes', this.video);
       _formData.append('Good_at', this.Model.Good_at);
       _formData.append('about', this.Model.about);
       _formData.append('mobile_code', this.Model.mobile_code);
@@ -327,6 +335,27 @@ export class UserProfilestep1Component implements OnInit {
     }
   }
 
+  SaveVidoesFiles(file: File) {
+    let _formData: FormData = new FormData();
+    _formData.append('user_id', this.Model.id);//localStorage['user_id']);
+    _formData.append('files', file);
+    _formData.append('doc_type', 'myvidoes');
+    var _url = `${environment.apiUrl}FileUpload/UserDocuments`;
+    this.formapiService.post(_url, _formData).then((d) => {
+      console.log("success : ", d);
+      if (d.status == "1") {
+      }
+      else {
+        console.log(d.message);
+      }
+    })
+      .fail(function (xhr, status, error) {          // error handling
+        console.log('error handling status', status);
+        console.log('error handling xhr', xhr);
+      }
+      );
+  }
+
   SaveFiles(type) {
     let _formData: FormData = new FormData();
     _formData.append('user_id', this.Model.id);//localStorage['user_id']);
@@ -359,5 +388,25 @@ export class UserProfilestep1Component implements OnInit {
         console.log('error handling xhr', xhr);
       }
       );
+  }
+  UserExpreincesModelsOffers: any[];
+  LoadUserExpereinces(id) {
+    this._userService.getUserExperiences(id).subscribe(d => {
+      if (d.status == "1") {
+        this.UserExpreincesModelsOffers = d.content;
+      }
+    })
+  }
+  UserPhotosDocuemnts: any[];
+  UserVidoesDocuemnts: any[];
+  LoadUserDocuments(id) {
+    this._userService.getUserDocuments(id).subscribe(d => {
+      console.log(d.content, "user Docuemnts ")
+      if (d.status == "1") {
+        let Docuemnts = d.content;
+        this.UserPhotosDocuemnts = Docuemnts.filter(q => q.doc_type.toLowerCase().includes('myphotos'));
+        this.UserVidoesDocuemnts = Docuemnts.filter(q => q.doc_type.toLowerCase().includes('myvidoes'));
+      }
+    })
   }
 }

@@ -2,8 +2,10 @@
   <div class="package-list inside-sec">
     <h2><span>Sign up</span></h2>
     <ul class="main-form sign-up-form">
-      <li><input id="buyer" type="radio" value="buyer" checked [(ngModel)]="buyerCheckValue"><label for="buyer"> &nbsp; Buyer </label></li>
-      <li><input id="seller" type="radio" value="seller" [(ngModel)]="sellerCheckValue"><label for="seller"> &nbsp; Seller</label></li>
+      <li><input id="buyer" type="radio" value="buyer" checked [(ngModel)]="buyerCheckValue"><label for="buyer"> &nbsp;
+          Buyer </label></li>
+      <li><input id="seller" type="radio" value="seller" [(ngModel)]="sellerCheckValue"><label for="seller"> &nbsp;
+          Seller</label></li>
     </ul>
     <div class="form-act">
       <input type="button" value="CONTINUE" (click)="continueRegistration()">
@@ -17,13 +19,14 @@
   <div class="package-list inside-sec">
     <h2><span>Sign up</span></h2>
     <form class="form-inline" novalidate (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
-     
-    <ul class="main-form sign-up-width">
-      <li class="sign-up-opt clearfix"><a href="#" class="facebook-signup">SIGN UP WITH FACEBOOK</a> <a href="#" class="gmail-signup">SIGN
-          UP WITH GMAIL</a></li>
-      <li class="sign-up-or">OR</li>
 
-          <li>
+      <ul class="main-form sign-up-width">
+        <li class="sign-up-opt clearfix"><a href="#" class="facebook-signup">SIGN UP WITH FACEBOOK</a> <a href="#"
+            class="gmail-signup">SIGN
+            UP WITH GMAIL</a></li>
+        <li class="sign-up-or">OR</li>
+
+        <li>
           <label>First Name</label>
           <input type="text" #first_name="ngModel" name="first_name" [(ngModel)]="signUpModel.first_name" required>
           <div *ngIf="first_name.touched || f.submitted && !signUpModel.first_name">
@@ -31,57 +34,68 @@
           </div>
         </li>
         <li>
-            <label>Last Name</label>
-            <input type="text" #last_name="ngModel" name="last_name" [(ngModel)]="signUpModel.last_name" required>
-            <div *ngIf="last_name.touched || f.submitted && !signUpModel.last_name">
-              <div *ngIf="last_name.hasError('required')" class="val-error">** Last name is required</div>
-            </div>
-          </li>
-        <li>
-          <label>Email</label>
-          <input type="text" #email_id="ngModel" name="email_id" [(ngModel)]="signUpModel.email_id" required>
-          <div *ngIf="email_id.touched || f.submitted && !signUpModel.email_id">
-              <div *ngIf="email_id.hasError('required')" class="val-error">** Email is required</div>
-            </div>
+          <label>Last Name</label>
+          <input type="text" #last_name="ngModel" name="last_name" [(ngModel)]="signUpModel.last_name" required>
+          <div *ngIf="last_name.touched || f.submitted && !signUpModel.last_name">
+            <div *ngIf="last_name.hasError('required')" class="val-error">** Last name is required</div>
+          </div>
         </li>
         <li>
-            <label>Password</label>
-            <input type="password" #password="ngModel" name="password" [(ngModel)]="signUpModel.password" required>
-            <div *ngIf="password.touched || f.submitted && !signUpModel.password">
-                <div *ngIf="password.hasError('required')" class="val-error">** Password is required</div>
-              </div>
-          </li>
+          <label>Email</label>
+          <input type="text" #email_id="ngModel" name="email_id" [(ngModel)]="signUpModel.email_id" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <div *ngIf="email_id.touched || f.submitted && !signUpModel.email_id" class="val-error">
+            <!-- <div *ngIf="email_id.hasError('required')" class="val-error">** Email is required</div> -->
+            <div *ngIf="email_id.errors && email_id.errors.required">
+              ** Email is required
+            </div>
+            <div *ngIf="email_id.errors && email_id.errors.pattern">
+              ** Email is invalid.
+            </div>
+          </div>
+
+        </li>
+        <li>
+          <label>Password</label>
+          <input type="password" #password="ngModel" name="password" [(ngModel)]="signUpModel.password" required>
+          <div *ngIf="password.touched || f.submitted && !signUpModel.password">
+            <div *ngIf="password.hasError('required')" class="val-error">** Password is required</div>
+          </div>
+        </li>
         <li class="mobile-no">
           <label>Phone</label>
-          <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code" 
-          [(ngModel)]="signUpModel.mobile_code"
+          <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code" [(ngModel)]="signUpModel.mobile_code"
             required minlength="2" maxlength="4">
-            <div *ngIf="mobile_code.touched || f.submitted && !signUpModel.mobile_code">
-                <div *ngIf="mobile_code.hasError('required')" class="val-error">** code is required</div>
-              </div>
           <input type="number" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="signUpModel.mobile_no"
-            required minlength="10" maxlength="10">
-            <div *ngIf="mobile_no.touched || f.submitted && !signUpModel.mobile_no">
-                <div *ngIf="mobile_no.hasError('required')" class="val-error">** Mobile No is required</div>
-              </div>
+            required >
+          <div *ngIf="mobile_no.touched || f.submitted && !signUpModel.mobile_no">
+            <div *ngIf="mobile_no.hasError('required')" class="val-error">** mobile no is required</div>
+            <!-- <div *ngIf="mobile_no.errors && mobile_no.errors.pattern" class="val-error">
+              ** mobile no is invalid.
+            </div> -->
+          </div>
+          <div *ngIf="mobile_code.touched || f.submitted && !signUpModel.mobile_code">
+              <div *ngIf="mobile_code.hasError('required')" class="val-error">** code is required</div>
+              <!-- <div *ngIf="mobile_code.errors && mobile_code.errors.pattern" class="val-error">
+                ** code is invalid.
+              </div> -->
+            </div>
         </li>
         <li>
           <label>Location (City)</label>
           <select #city="ngModel" name="city" required [(ngModel)]="signUpModel.city">
-              <option value="" selected="selected">Select</option>
-              <option *ngFor="let c of cities" [value]="c">{{c}}</option>
+            <option value="" selected="selected">Select</option>
+            <option *ngFor="let c of cities" [value]="c">{{c}}</option>
           </select>
           <div *ngIf="city.touched || f.submitted && !signUpModel.city">
-              <div *ngIf="city.hasError('required')" class="val-error">** city is required</div>
-            </div>
-            
+            <div *ngIf="city.hasError('required')" class="val-error">** city is required</div>
+          </div>
         </li>
-    </ul>
-    <div class="form-act">
-      <input type="submit" value="REGISTER" class="add-btn">
-      <!-- <button type="button" (click)="registerUser()">REGISTER</button> -->
-    </div>
-  </form>
-    
+      </ul>
+      <div class="form-act">
+        <input type="submit" value="REGISTER" class="add-btn">
+        <!-- <button type="button" (click)="registerUser()">REGISTER</button> -->
+      </div>
+    </form>
+
   </div>
 </div>

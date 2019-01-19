@@ -70,9 +70,12 @@ export class AddExpComponent implements OnInit {
     for (var j = 1; j <= 12; j++) {
       this.months.push(j);
     }
-    for (var k = 10; k <= 50; k++) {
-      this.times.push(k);
-      k = k + 10;
+    for (var k = 0; k < 24; k++) {
+      let timeslots1 = `${k} : 00`;      
+      this.times.push(timeslots1);
+      let timeslots2 = `${k} : 30`;      
+      this.times.push(timeslots2);     
+      
     }
   }
   urls = [];
@@ -139,7 +142,7 @@ export class AddExpComponent implements OnInit {
       _formData.append('year', this.Model.year);
       _formData.append('month', this.Model.month);
       _formData.append('day', this.Model.day);
-      _formData.append('time', this.Model.time);
+      _formData.append('time', '10');//this.Model.time);
       _formData.append('custom', 'true')//this.Model.custom);
 
       //debugger;
@@ -149,8 +152,9 @@ export class AddExpComponent implements OnInit {
         debugger;
         console.log("success : ", d);
         if (d.status == "1") {
-          window.location.href = `${environment.appurl}dashboard`
+          //window.location.href = `${environment.appurl}dashboard`
           //this._router.navigate(['dashboard']);
+          alert("Thanks for creating an Experience with Bukkzy");
         }
         else {
           $("#preloader").hide();
@@ -163,7 +167,7 @@ export class AddExpComponent implements OnInit {
           $("#preloader").hide();
           console.log('error handling status', status);
           console.log('error handling xhr', xhr);
-          setInterval(window.location.href = `${environment.appurl}dashboard`, 9000)
+          alert("Thanks for creating an Experience with Bukkzy");          
         }
 
         );

@@ -74,10 +74,13 @@ export class UserProfilestep2Component implements OnInit {
         for (var j = 1; j <= 12; j++) {
             this.months.push(j);
         }
-        for (var k = 10; k <= 50; k++) {
-            this.times.push(k);
-            k = k + 10;
-        }
+        for (var k = 0; k < 24; k++) {
+            let timeslots1 = `${k} : 00`;      
+            this.times.push(timeslots1);
+            let timeslots2 = `${k} : 30`;      
+            this.times.push(timeslots2);     
+            
+          }
     }
     urls = [];
     onFileChange(event) {
@@ -142,7 +145,7 @@ export class UserProfilestep2Component implements OnInit {
             _formData.append('year', this.Model.year);
             _formData.append('month', this.Model.month);
             _formData.append('day', this.Model.day);
-            _formData.append('time', this.Model.time);
+            _formData.append('time', '10');//this.Model.time);
             _formData.append('custom', 'true')//this.Model.custom);
             var _url = `${environment.apiUrl}FileUpload/addExp`;
             this.formapiService.post(_url, _formData).then((d) => {
@@ -150,7 +153,8 @@ export class UserProfilestep2Component implements OnInit {
                 debugger;
                 console.log("success : ", d);
                 if (d.status == "1") {
-                    window.location.href = `${environment.appurl}user/profile-step3`
+                    // window.location.href = `${environment.appurl}user/profile-step3`
+                    alert("Thanks for creating an Experience with Bukkzy");
                 }
                 else {
                     $("#preloader").hide();
@@ -163,7 +167,9 @@ export class UserProfilestep2Component implements OnInit {
                     $("#preloader").hide();
                     console.log('error handling status', status);
                     console.log('error handling xhr', xhr);
-                    setInterval(window.location.href = `${environment.appurl}user/profile-step3`, 9000)
+
+                    alert("Thanks for creating an Experience with Bukkzy");
+                    //setInterval(window.location.href = `${environment.appurl}user/profile-step3`, 9000)
                 }
 
                 );

@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
-  appurl : '/',
-  
+  appurl : '/',  
   apiUrl : 'http://13.126.251.200:91/'
   //apiUrl: 'http://akwebtech.com/demo/bukkzy/api/api.php'
  
