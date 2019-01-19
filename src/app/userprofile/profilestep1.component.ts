@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FormApiService } from '../services/formapi.service';
+import { Subject } from 'rxjs';
 declare var $: any;
 
 @Component({
@@ -29,6 +30,8 @@ export class UserProfilestep1Component implements OnInit {
   msgCoverImageError: string;
   msgVideoError: string;
 
+  myphotosFiles: File[] = [];
+  myvideosFiles: File[] = [];
 
   constructor(private _userService: UserService,
     private formapiService: FormApiService,
@@ -51,9 +54,35 @@ export class UserProfilestep1Component implements OnInit {
       //this.Model = JSON.parse(localStorage.getItem('user'));
       let id = localStorage.getItem('user_id')
       this.loadUderInfo(id);
+      this.LoadExperiences();
     }
 
   }
+
+  ExperiencesList: any[] = [];
+  data$ = new Subject<any>();
+
+  LoadExperiences() {
+    this._userService.getUserExperienceNew().subscribe(data => {
+      console.log('user experience = ', data);
+      if (data.status == "1") {
+        this.data$.next(data.content);
+        //  this.ExperiencesList = data.content;
+        //this.data$.next(this.experienceList.filter(_q => _q.title.toLowerCase().includes(searchText.toLowerCase())));
+        // console.log(this.data$.hasError, 'this data$')
+      }
+    });
+  }
+  AddUserExperience(expid) {
+    let expModel: any = {};
+    expModel.user_id = this.Model.id;
+    expModel.experience_id = expid;
+    
+    this._userService.AddUserExperiences(expModel).subscribe(d => {
+      console.log(d.content, 'AddUserExperience');
+    });
+  }
+
   goto() {
 
     this._router.navigate(['user/profile-step2']);
@@ -145,6 +174,7 @@ export class UserProfilestep1Component implements OnInit {
     //}
     this.videoUrls = [];
     if (this.vidoeimagefileIsValid) {
+      this.myvideosFiles = files;
       for (let file of files) {
         let reader = new FileReader();
         reader.onload = (e: any) => {
@@ -152,6 +182,7 @@ export class UserProfilestep1Component implements OnInit {
         }
         reader.readAsDataURL(file);
       }
+      this.SaveFiles('myvidoes');
     }
   }
 
@@ -161,6 +192,7 @@ export class UserProfilestep1Component implements OnInit {
 
   onmyphotosimageChange(event) {
     let files = event.target.files;
+
     let myphotos = files;
     if (files.length > 0) {
       this.coverimage = files[0];
@@ -174,6 +206,8 @@ export class UserProfilestep1Component implements OnInit {
     }
     this.myphotosimageUrls = [];
     if (this.myphotosimageIsValid) {
+      this.myphotosFiles = files;
+
       for (let file of files) {
         let reader = new FileReader();
         reader.onload = (e: any) => {
@@ -181,6 +215,7 @@ export class UserProfilestep1Component implements OnInit {
         }
         reader.readAsDataURL(file);
       }
+      this.SaveFiles('myphotos');
     }
 
 
@@ -218,7 +253,7 @@ export class UserProfilestep1Component implements OnInit {
       }
     }
     if (type == 'vidoe') {
-      if (ext.toLowerCase() == 'mp4' ||ext.toLowerCase() == '3gp') {
+      if (ext.toLowerCase() == 'mp4' || ext.toLowerCase() == '3gp') {
         return true;
       }
       else {
@@ -290,5 +325,39 @@ export class UserProfilestep1Component implements OnInit {
       $("#preloader").hide();
       return;
     }
+  }
+
+  SaveFiles(type) {
+    let _formData: FormData = new FormData();
+    _formData.append('user_id', this.Model.id);//localStorage['user_id']);
+    if (type == 'myphotos') {
+      for (let file of this.myphotosFiles) {
+        _formData.append('files', file);
+      }
+    }
+    else {
+      // for videos
+      for (let file of this.myvideosFiles) {
+        _formData.append('files', file);
+      }
+    }
+
+    _formData.append('doc_type', type);
+    var _url = `${environment.apiUrl}FileUpload/UserDocuments`;
+    this.formapiService.post(_url, _formData).then((d) => {
+      console.log("success : ", d);
+      if (d.status == "1") {
+
+      }
+      else {
+
+        console.log(d.message);
+      }
+    })
+      .fail(function (xhr, status, error) {          // error handling
+        console.log('error handling status', status);
+        console.log('error handling xhr', xhr);
+      }
+      );
   }
 }

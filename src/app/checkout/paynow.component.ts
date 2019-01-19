@@ -65,5 +65,6 @@ export class PayNowComponent implements OnInit {
   showpaypalcon()
   {
     $("#showpaypaldiv").show();
+    //$(".paypal-button-logo-gold").click();
   }
 }

@@ -31,7 +31,8 @@
                 <li class="clearfix buyer-name">
                     <div>
                         <label>You are Good at</label>
-                        <input type="text" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required maxlength="50">
+                        <input type="text" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required
+                            maxlength="50">
                         <div *ngIf="Good_at.touched || f.submitted && !Model.Good_at">
                             <div *ngIf="Good_at.hasError('required')" class="val-error">** Good at name is required</div>
                         </div>
@@ -58,8 +59,8 @@
                     <!-- <span class="upload-preview"> -->
                     <!-- <i class="fas fa-times-circle"></i> -->
                     <span class="upload-preview" *ngFor="let url of CoverUrls">
-                            <i class="fas fa-times-circle"></i>
-                        <img  [src]="url" class="rounded mb-3" width="90" height="90">
+                        <i class="fas fa-times-circle"></i>
+                        <img [src]="url" class="rounded mb-3" width="90" height="90">
                     </span>
                     <!-- </span> -->
                 </li>
@@ -76,8 +77,8 @@
                         <i class="fas fa-times-circle"></i>
                     </span> -->
                     <span class="upload-preview" *ngFor="let url of ProfileUrls">
-                            <i class="fas fa-times-circle"></i>
-                        <img  [src]="url" class="rounded mb-3" width="90" height="90">
+                        <i class="fas fa-times-circle"></i>
+                        <img [src]="url" class="rounded mb-3" width="90" height="90">
                     </span>
                 </li>
 
@@ -119,6 +120,12 @@
                 </li>
                 <li class="cover-img">
                     <label>Experiences I offer (Max 5)</label>
+
+                    <span class="upload-preview add-cat" *ngFor="let exp of data$ | async">
+                        <i class="fas fa-plus-circle" (click)="AddUserExperience(exp.id)"></i>
+                        <img [src]="exp.image" class="rounded mb-3" width="90" height="90">
+                    </span>
+                    <!--                     
                     <span class="upload-preview add-cat">
                         <i class="fas fa-plus-circle"></i>
                         Yoga
@@ -170,29 +177,24 @@
                     <span class="upload-preview add-cat">
                         <i class="fas fa-plus-circle"></i>
                         Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
+                    </span> -->
                 </li>
                 <li class="cover-img">
                     <label>My Photos</label>
-                    
+
                     <span class="input-file">
-                            <input type="file" type="file" #myphotosimage multiple
-                            (change)="onmyphotosimageChange($event)" name="myphotosimage"
-                                required />Browse
-                            File
-                        </span>
-                        <p *ngIf="!myphotosimageIsValid" class="val-error">{{myphotosimageImageError}}</p>
-                        <!-- <span class="upload-preview">
+                        <input type="file" type="file" #myphotosimage multiple (change)="onmyphotosimageChange($event)"
+                            name="myphotosimage" required />Browse
+                        File
+                    </span>
+                    <p *ngIf="!myphotosimageIsValid" class="val-error">{{myphotosimageImageError}}</p>
+                    <!-- <span class="upload-preview">
                             <i class="fas fa-times-circle"></i>
                         </span> -->
-                        <span class="upload-preview" *ngFor="let url of myphotosimageUrls">
-                                <i class="fas fa-times-circle"></i>
-                            <img  [src]="url" class="rounded mb-3" width="90" height="90">
-                        </span>
+                    <span class="upload-preview" *ngFor="let url of myphotosimageUrls">
+                        <i class="fas fa-times-circle"></i>
+                        <img [src]="url" class="rounded mb-3" width="90" height="90">
+                    </span>
                     <!-- <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
                     </span>
@@ -217,10 +219,10 @@
                     <span class="upload-preview" *ngFor="let vurl of videoUrls">
                         <i class="fas fa-times-circle"></i>
                         <video width="90px" height="90px" controls>
-                            <source [src]="vurl" id="video_here">                            
+                            <source [src]="vurl" id="video_here">
                         </video>
                     </span>
-<!--                     
+                    <!--                     
                     <span class="upload-preview">
                         <i class="fas fa-times-circle"></i>
                     </span>

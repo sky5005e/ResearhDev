@@ -81,6 +81,7 @@ export class UserProfilestep2Component implements OnInit {
     }
     urls = [];
     onFileChange(event) {
+        this.urls = [];
         let files = event.target.files;
         if (files.length > 0) {
             this.file = files[0];
@@ -92,7 +93,6 @@ export class UserProfilestep2Component implements OnInit {
         else {
             this.fileIsValid = true;
         }
-        this.urls = [];
         if (this.fileIsValid) {
             for (let file of files) {
                 let reader = new FileReader();

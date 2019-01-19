@@ -9,17 +9,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- <link rel="icon" type="image/x-icon" href="assets/images/bukkzy-logo.png">  -->
+  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-client_id" content="106774232600-fi1pgqhtq7f7csol11vbfm88kg83p4vv.apps.googleusercontent.com"> -->
+
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
     crossorigin="anonymous">
-
-    <link rel="stylesheet" href="assets/css/global.css?v=3">
+        <link rel="stylesheet" href="assets/css/global.css?v=3">
 
   <link rel="stylesheet" href="assets/css/style.css?v=3">
   <script src="assets/js/jquery.min.js?v=3"></script>
-
-  
+  <!-- <script>
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log('User signed out.');
+        });
+      }
+    </script>
+   -->
   <script src="https://www.paypalobjects.com/api/checkout.js"></script>
   <script>
   // Render the PayPal button
@@ -43,8 +52,8 @@
   // - paypal.FUNDING.ELV
   funding: {
     allowed: [
-      paypal.FUNDING.CARD,
-      paypal.FUNDING.CREDIT
+     // paypal.FUNDING.CARD,
+      //paypal.FUNDING.CREDIT
     ],
     disallowed: []
   },
@@ -81,6 +90,14 @@
       });
   }
   }, '#paypal-button-container');
+
+//   function onSignIn(googleUser) {
+//   var profile = googleUser.getBasicProfile();
+//   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//   console.log('Name: ' + profile.getName());
+//   console.log('Image URL: ' + profile.getImageUrl());
+//   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+// }
   </script>
 
 
@@ -89,6 +106,8 @@
 
 
 <body>
+    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> &nbsp; |
+    <a href="#" onclick="signOut();">Sign out</a> -->
   <app-root></app-root>
 </body>
 

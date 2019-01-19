@@ -33,20 +33,19 @@
 					<li class="cover-img">
 						<label>Cover Image</label>
 						<span class="input-file">
-							<input type="file" type="file" #file (change)="onFileChange($event)" #file="ngModel" name="file"  [(ngModel)]="Model.file"
+							<input type="file" type="file" #file (change)="onFileChange($event)" #file="ngModel" name="file" [(ngModel)]="Model.file"
 							 required />Browse
 							File
 						</span>
 						<div *ngIf="f.submitted && !Model.file">
-								<div class="val-error">** file is required</div>
-							</div>
+							<div class="val-error">** file is required</div>
+						</div>
 						<p *ngIf="!fileIsValid" class="val-error">{{msgError}}</p>
-						<ng-template *ngIf="!fileIsValid">
-							<span class="upload-preview" *ngFor="let url of urls">
-								<i class="fas fa-times-circle"></i>
-								<img [src]="url" class="rounded mb-3" width="90" height="90">
-							</span>
-						</ng-template>
+						<span class="upload-preview" *ngFor="let url of urls">
+							<i class="fas fa-times-circle"></i>
+							<img [src]="url" class="rounded mb-3" width="90" height="90">
+						</span>
+
 					</li>
 					<li>
 						<label>Experience Video</label>

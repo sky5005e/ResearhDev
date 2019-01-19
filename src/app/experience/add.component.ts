@@ -77,6 +77,7 @@ export class AddExpComponent implements OnInit {
   }
   urls = [];
   onFileChange(event) {
+    this.urls = [];
     let files = event.target.files;
     if (files.length > 0) {
       this.file = files[0];
