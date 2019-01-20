@@ -71,10 +71,8 @@ export class UserProfilestep1Component implements OnInit {
     this._userService.getUserExperienceNew().subscribe(data => {
       console.log('user experience = ', data);
       if (data.status == "1") {
+        data.content.sort((a, b) => b.RecordId - a.RecordId);
         this.data$.next(data.content);
-        //  this.ExperiencesList = data.content;
-        //this.data$.next(this.experienceList.filter(_q => _q.title.toLowerCase().includes(searchText.toLowerCase())));
-        // console.log(this.data$.hasError, 'this data$')
       }
     });
   }
@@ -391,6 +389,7 @@ export class UserProfilestep1Component implements OnInit {
       }
       );
   }
+  /*
   UserExpreincesModelsOffers: any[];
   LoadUserExpereinces(id) {
     this._userService.getUserExperiences(id).subscribe(d => {
@@ -399,6 +398,7 @@ export class UserProfilestep1Component implements OnInit {
       }
     })
   }
+  */
   UserPhotosDocuemnts: any[];
   UserVidoesDocuemnts: any[];
   LoadUserDocuments(id) {
