@@ -51,24 +51,11 @@ export class LoginComponent implements OnInit {
       signUpModel.profile_image = userData.photoUrl
       signUpModel.code = userData.provider;
       this.SaveSocialLogin(signUpModel);
-
     })
   }
 
   loginWithGmail() {
-    console.log('click login gmail');
-
-    //this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-
-    // let googleAuth = gapi.auth2.getAuthInstance();
-    // googleAuth.then(() => {
-    //    googleAuth.signIn({scope: 'profile email'}).then(googleUser => {
-    //       console.log(googleUser.getBasicProfile());
-    //    });
-    // });
-
-    // console.log('click login');    
-
+    
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
       debugger;
       console.log('userData GB= ', userData);

@@ -14,7 +14,7 @@ export class ThankYouComponent implements OnInit {
   }
 
   goToEmail() {
-    this._router.navigate(['login']);
+    this._router.navigate(['home']);
   }
 
 }

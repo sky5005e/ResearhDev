@@ -22,7 +22,8 @@
                     </div>
                     <div>
                         <label>Last Name</label>
-                        <input type="text" placeholder="Last name" #last_name="ngModel" name="last_name" [(ngModel)]="Model.last_name" required>
+                        <input type="text" placeholder="Last name" #last_name="ngModel" name="last_name" [(ngModel)]="Model.last_name"
+                            required>
                         <div *ngIf="last_name.touched || f.submitted && !Model.last_name">
                             <div *ngIf="last_name.hasError('required')" class="val-error">** last name is required</div>
                         </div>
@@ -31,8 +32,8 @@
                 <li class="clearfix buyer-name">
                     <div>
                         <label>You are Good at</label>
-                        <input type="text" placeholder="Good at" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required
-                            maxlength="50">
+                        <input type="text" placeholder="Good at" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at"
+                            required maxlength="50">
                         <div *ngIf="Good_at.touched || f.submitted && !Model.Good_at">
                             <div *ngIf="Good_at.hasError('required')" class="val-error">** Good at name is required</div>
                         </div>
@@ -51,8 +52,8 @@
                 <li class="cover-img">
                     <label>Cover Image</label>
                     <span class="input-file">
-                        <input type="file"  placeholder="Cover image" type="file" #coverimage (change)="onCoverFileChange($event)" name="coverimage"
-                            required />Browse
+                        <input type="file" placeholder="Cover image" type="file" #coverimage (change)="onCoverFileChange($event)"
+                            name="coverimage" required />Browse
                         File
                     </span>
                     <p *ngIf="!coverimagefileIsValid" class="val-error">{{msgCoverImageError}}</p>
@@ -62,14 +63,18 @@
                         <i class="fas fa-times-circle"></i>
                         <img [src]="url" class="rounded mb-3" width="90" height="90">
                     </span>
+                    <span class="upload-preview" *ngIf="Model.profile_image && !CoverUrls">
+                        <i class="fas fa-times-circle"></i>
+                        <img [src]="Model.cover_image" class="rounded mb-3" width="90" height="90">
+                    </span>
                     <!-- </span> -->
                 </li>
                 <li class="cover-img">
                     <label>Profile Image</label>
 
                     <span class="input-file">
-                        <input type="file" type="file" placeholder="Profile image" #profileimage (change)="onProfileFileChange($event)" name="profileimage"
-                            required />Browse
+                        <input type="file" type="file" placeholder="Profile image" #profileimage (change)="onProfileFileChange($event)"
+                            name="profileimage" required />Browse
                         File
                     </span>
                     <p *ngIf="!profileimagefileIsValid" class="val-error">{{msgProfileImageError}}</p>
@@ -80,6 +85,10 @@
                         <i class="fas fa-times-circle"></i>
                         <img [src]="url" class="rounded mb-3" width="90" height="90">
                     </span>
+                    <span class="upload-preview" *ngIf="Model.profile_image && !ProfileUrls">
+                        <i class="fas fa-times-circle"></i>
+                        <img [src]="Model.profile_image" class="rounded mb-3" width="90" height="90">
+                    </span>
                 </li>
 
                 <li class="clearfix">
@@ -88,9 +97,9 @@
 
                         <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code"
                             [(ngModel)]="Model.mobile_code" required>
-                        
-                        <input type="number" placeholder="Mobile number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="Model.mobile_no"
-                            required>
+
+                        <input type="number" placeholder="Mobile number" #mobile_no="ngModel" name="mobile_no"
+                            [(ngModel)]="Model.mobile_no" required>
                         <div *ngIf="mobile_no.touched || f.submitted && !Model.mobile_no">
                             <div *ngIf="mobile_no.hasError('required')" class="val-error">** Mobile no is required</div>
                             <!-- <div *ngIf="mobile_no.errors && mobile_no.errors.pattern" class="val-error">
@@ -98,11 +107,11 @@
                             </div> -->
                         </div>
                         <div *ngIf="mobile_code.touched || f.submitted && !Model.mobile_code">
-                                <div *ngIf="mobile_code.hasError('required')" class="val-error">**code</div>
-                                <!-- <div *ngIf="mobile_code.errors && mobile_code.errors.pattern" class="val-error">
+                            <div *ngIf="mobile_code.hasError('required')" class="val-error">**code</div>
+                            <!-- <div *ngIf="mobile_code.errors && mobile_code.errors.pattern" class="val-error">
                                     ** code no is invalid.
                                 </div> -->
-                            </div>
+                        </div>
 
 
                     </div>
@@ -121,7 +130,8 @@
                 </li>
                 <li class="exp-country">
                     <label>About Yourself</label>
-                    <textarea #about="ngModel" placeholder="About yourself" name="about" [(ngModel)]="Model.about" required></textarea>
+                    <textarea #about="ngModel" placeholder="About yourself" name="about" [(ngModel)]="Model.about"
+                        required></textarea>
                     <div *ngIf="about.touched || f.submitted && !Model.about">
                         <div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
                     </div>
@@ -130,74 +140,25 @@
                     <label>Experiences I offer (Max 5)</label>
 
                     <span class="upload-preview add-cat" *ngFor="let exp of data$ | async">
-                        <i class="fas fa-plus-circle" (click)="AddUserExperience(exp.id)"></i>
+                        <ng-template *ngIf="exp.RecordId > 0; else plusexp">
+                            <i class="fas fa-remove-circle" (click)="RemoveUserExperience(exp.id)"></i>
+                        </ng-template>
+                        <ng-template #plusexp>
+                            <i class="fas fa-plus-circle" (click)="AddUserExperience(exp.id)"></i>
+                        </ng-template>
+
                         <img [src]="exp.image" class="rounded mb-3" width="90" height="90">
                     </span>
-                    <!--                     
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span>
-                    <span class="upload-preview add-cat">
-                        <i class="fas fa-plus-circle"></i>
-                        Yoga
-                    </span> -->
+
                 </li>
                 <li class="cover-img">
                     <label>My Photos</label>
 
                     <span class="input-file">
                         <input type="file" placeholder="My photos" type="file" #myphotosimage (change)="onmyphotosimageChange($event)"
-                            name="myphotosimage" required />Browse File
+                            name="myphotosimage" multiple required />Browse File
                     </span>
                     <p *ngIf="!myphotosimageIsValid" class="val-error">{{myphotosimageImageError}}</p>
-                    <!-- <span class="upload-preview">
-                            <i class="fas fa-times-circle"></i>
-                        </span> -->
                     <span class="upload-preview" *ngFor="let url of myphotosimageUrls">
                         <i class="fas fa-times-circle"></i>
                         <img [src]="url" class="rounded mb-3" width="90" height="90">
@@ -206,24 +167,13 @@
                         <i class="fas fa-times-circle"></i>
                         <img [src]="v.doc_path" class="rounded mb-3" width="90" height="90">
                     </span>
-                    <!-- <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span> -->
+
                 </li>
                 <li>
                     <label>My Videos</label>
                     <span class="input-file">
-                        <input type="file" placeholder="My videos" type="file" #videos (change)="onVideoFileChange($event)" name="videos"
-                            required />Browse File
+                        <input type="file" placeholder="My videos" type="file" #videos (change)="onVideoFileChange($event)"
+                            name="videos" required />Browse File
                     </span>
                     <p *ngIf="!vidoeimagefileIsValid" class="val-error">{{msgVideoError}}</p>
                     <span class="upload-preview" *ngFor="let vurl of videoUrls">
@@ -237,19 +187,6 @@
                             <source [src]="v.doc_path" id="video_here">
                         </video>
                     </span>
-                    <!--                     
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span>
-                    <span class="upload-preview">
-                        <i class="fas fa-times-circle"></i>
-                    </span> -->
                 </li>
             </ul>
 

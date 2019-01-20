@@ -81,13 +81,13 @@
 							<select>
 								<option selected="selected" value="$">$</option>
 							</select>
-							<input type="number" #price="ngModel" name="price" [(ngModel)]="Model.price" required />
+							<input type="text" #price="ngModel" name="price" [(ngModel)]="Model.price" required />
 							<div *ngIf="price.touched || f.submitted && !Model.price">
 								<div *ngIf="price.hasError('required')" class="val-error">** price is required</div>
 							</div>
 						</div>
 						<div class="discount"><label>Discount/Offer</label>
-							<input type="number" #sprice="ngModel" name="sprice" [(ngModel)]="Model.sprice" required />
+							<input type="text" #sprice="ngModel" name="sprice" [(ngModel)]="Model.sprice" required />
 							<div *ngIf="sprice.touched || f.submitted && !Model.sprice">
 								<div *ngIf="sprice.hasError('required')" class="val-error">** sprice is required</div>
 							</div>
