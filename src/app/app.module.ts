@@ -20,6 +20,7 @@ import { FormApiService } from './services/formapi.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { CheckOutModule } from './checkout/checkout.module';
 import { UserProfileModule } from './userprofile/userprofile.module';
+import { FilterExpService } from './services/filter-experience.service';
 
 let configHindustanDomain = new AuthServiceConfig([
   {
@@ -100,7 +101,7 @@ export function provideConfig() {
     UserProfileModule,
     SocialLoginModule//.initialize(config)
   ],
-  providers: [UserService, ApiService, FormApiService, AuthGuard,
+  providers: [UserService, ApiService, FormApiService, FilterExpService, AuthGuard,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

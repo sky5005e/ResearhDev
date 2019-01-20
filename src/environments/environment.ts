@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   appurl : '/',
-  //apiUrl: 'http://localhost:64271/'
-  apiUrl : 'http://13.126.251.200:91/'
+  apiUrl: 'http://localhost:64271/'
+ // apiUrl : 'http://13.126.251.200:91/'
 
   //'http://akwebtech.com/demo/bukkzy/api/api.php'
 };

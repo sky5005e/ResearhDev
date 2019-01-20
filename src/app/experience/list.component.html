@@ -10,7 +10,7 @@
     <div class="lhs-filter">
         <div class="filter-bx">
             <h4>Price</h4>
-            <ul>
+            <ul class="filterprice" (click)="SideFilter();">
                 <li class="clearfix">
                     <input id="price1" type="checkbox">
                     <label for="price1">$15-45</label>
@@ -35,7 +35,7 @@
         </div>
         <div class="filter-bx">
             <h4>City</h4>
-            <ul>
+            <ul class="filtercity" (click)="SideFilter();">
                 <li class="clearfix">
                     <input id="city1" type="checkbox">
                     <label for="city1">Paris</label>
@@ -55,7 +55,7 @@
         </div>
         <div class="filter-bx">
             <h4>Star Rating</h4>
-            <ul>
+            <ul class="filterrating" (click)="SideFilter();">
                 <li class="clearfix">
                     <input id="star1" type="checkbox">
                     <label for="star1"><i class="fas fa-star"></i></label>
@@ -87,7 +87,7 @@
         </div>
         <div class="filter-bx">
             <h4>Categories</h4>
-            <ul>
+            <ul class="filtercategories" (click)="SideFilter();">
                 <li class="clearfix">
                     <input id="category1" type="checkbox">
                     <label for="category1">Adventure</label>
@@ -135,12 +135,12 @@
                 <i class="fas fa-heart wishlist"></i>
             </div>
         </div>
-        <div *ngIf="data$ | async" class="package-bx clearfix">
+        <!-- <div *ngIf="noRecord" class="package-bx clearfix">
             <div class="package-details">
                 <h3>
-                    No matchin record found</h3>
+                    No matching record found</h3>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>
