@@ -95,10 +95,10 @@
                     <div class="mobile-no">
                         <label>Mobile</label>
 
-                        <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code"
+                        <input type="number" class="only-numeric" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code"
                             [(ngModel)]="Model.mobile_code" required>
 
-                        <input type="number" placeholder="Mobile number" #mobile_no="ngModel" name="mobile_no"
+                        <input type="number" class="only-numeric" placeholder="Mobile number" #mobile_no="ngModel" name="mobile_no"
                             [(ngModel)]="Model.mobile_no" required>
                         <div *ngIf="mobile_no.touched || f.submitted && !Model.mobile_no">
                             <div *ngIf="mobile_no.hasError('required')" class="val-error">** Mobile no is required</div>
@@ -140,7 +140,7 @@
                     <label>Experiences I offer (Max 5)</label>
 
                     <span class="upload-preview add-cat" *ngFor="let exp of data$ | async">
-                        <ng-template *ngIf="exp.RecordId > 0; else plusexp">
+                        <ng-template *ngIf="exp.RecordId == Model.id; else plusexp">
                             <i class="fas fa-times-circle" (click)="RemoveUserExperience(exp.id)"></i>
                         </ng-template>
                         <ng-template #plusexp>

@@ -63,9 +63,9 @@
         </li>
         <li class="mobile-no">
           <label>Phone</label>
-          <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code" [(ngModel)]="signUpModel.mobile_code"
+          <input type="number" class="only-numeric" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code" [(ngModel)]="signUpModel.mobile_code"
             required minlength="2" maxlength="4">
-          <input type="number" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="signUpModel.mobile_no"
+          <input type="number" class="only-numeric" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="signUpModel.mobile_no"
             required >
           <div *ngIf="mobile_no.touched || f.submitted && !signUpModel.mobile_no">
             <div *ngIf="mobile_no.hasError('required')" class="val-error">** mobile no is required</div>

@@ -27,6 +27,17 @@ $(document).ready(function () {
     // }
 
     //)
+    $(".only-numeric").keypress(function(e){
+        var keyCode = e.which;
+        /*
+        8 - (backspace)
+        32 - (space)
+        48-57 - (0-9)Numbers
+        */
+        if ( (keyCode != 8 || keyCode ==32 ) && (keyCode < 48 || keyCode > 57)) { 
+          return false;
+        }
+      });
 });
 
 

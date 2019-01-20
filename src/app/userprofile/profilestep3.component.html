@@ -13,7 +13,7 @@
 			<ul class="main-form create-experience">
 				<li>
 					<label>Bank Account Number</label>
-					<input type="number" placeholder="Account number" #bank_account_number="ngModel" name="bank_account_number" [(ngModel)]="Model.bank_account_number"
+					<input type="number" class="only-numeric" placeholder="Account number" #bank_account_number="ngModel" name="bank_account_number" [(ngModel)]="Model.bank_account_number"
 					 required>
 					<div *ngIf="bank_account_number.touched || f.submitted && !Model.bank_account_number">
 						<div *ngIf="bank_account_number.hasError('required')" class="val-error">** bank account number is required</div>
