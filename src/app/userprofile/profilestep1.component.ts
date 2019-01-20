@@ -23,7 +23,7 @@ export class UserProfilestep1Component implements OnInit {
   profileimage: File;
   coverimagefileIsValid: boolean;
   profileimagefileIsValid: boolean;
-  vidoeimagefileIsValid: boolean;
+  videoimagefileIsValid: boolean;
 
 
   msgProfileImageError: string;
@@ -55,7 +55,7 @@ export class UserProfilestep1Component implements OnInit {
       let id = localStorage.getItem('user_id')
       this.loadUserInfo(id);
 
-      this.LoadUserExpereinces(id);
+      // this.LoadUserExpereinces(id);
       this.LoadUserDocuments(id);
 
       this.LoadExperiences();
@@ -84,8 +84,7 @@ export class UserProfilestep1Component implements OnInit {
       console.log(d.content, 'AddUserExperience');
     });
   }
-  RemoveUserExperience(id)
-  {
+  RemoveUserExperience(id) {
 
   }
   goto() {
@@ -166,19 +165,14 @@ export class UserProfilestep1Component implements OnInit {
       this.video = files[0];
     }
     //check file is valid
-    if (!this.validateFile(files[0].name, 'vidoe')) {
+    if (!this.validateFile(files[0].name, 'video')) {
       return false;
     }
     else {
-      this.vidoeimagefileIsValid = true;
+      this.videoimagefileIsValid = true;
     }
-    //if (this.vidoeimagefileIsValid) {
-    // var $source = $('#video_here');
-    // $source[0].src = URL.createObjectURL(files[0]);
-    // $source.parent()[0].load();
-    //}
     this.videoUrls = [];
-    if (this.vidoeimagefileIsValid) {
+    if (this.videoimagefileIsValid) {
       this.myvideosFiles = files;
       for (let file of files) {
         let reader = new FileReader();
@@ -187,7 +181,6 @@ export class UserProfilestep1Component implements OnInit {
         }
         reader.readAsDataURL(file);
       }
-      //this.SaveFiles('myvidoes');
     }
   }
 
@@ -257,13 +250,13 @@ export class UserProfilestep1Component implements OnInit {
         return false;
       }
     }
-    if (type == 'vidoe') {
+    if (type == 'video') {
       if (ext.toLowerCase() == 'mp4' || ext.toLowerCase() == '3gp') {
         return true;
       }
       else {
-        this.vidoeimagefileIsValid = false;
-        this.msgVideoError = "Please upload vidoe file only mp4";
+        this.videoimagefileIsValid = false;
+        this.msgVideoError = "Please upload video file only mp4";
         return false;
       }
     }
@@ -275,7 +268,7 @@ export class UserProfilestep1Component implements OnInit {
     debugger;
 
     for (let file of this.myvideosFiles) {
-      this.SaveVidoesFiles(file);
+      this.SaveVideosFiles(file);
     }
 
     if (this.Model.first_name !== undefined && this.Model.first_name.length > 0
@@ -293,7 +286,6 @@ export class UserProfilestep1Component implements OnInit {
 
       _formData.append('profileimage', this.profileimage);
       _formData.append('coverimage', this.coverimage);
-      //_formData.append('vidoes', this.video);
       _formData.append('Good_at', this.Model.Good_at);
       _formData.append('about', this.Model.about);
       _formData.append('mobile_code', this.Model.mobile_code);
@@ -335,11 +327,11 @@ export class UserProfilestep1Component implements OnInit {
     }
   }
 
-  SaveVidoesFiles(file: File) {
+  SaveVideosFiles(file: File) {
     let _formData: FormData = new FormData();
     _formData.append('user_id', this.Model.id);//localStorage['user_id']);
     _formData.append('files', file);
-    _formData.append('doc_type', 'myvidoes');
+    _formData.append('doc_type', 'myvideos');
     var _url = `${environment.apiUrl}FileUpload/UserDocuments`;
     this.formapiService.post(_url, _formData).then((d) => {
       console.log("success : ", d);
@@ -359,18 +351,9 @@ export class UserProfilestep1Component implements OnInit {
   SaveFiles(type) {
     let _formData: FormData = new FormData();
     _formData.append('user_id', this.Model.id);//localStorage['user_id']);
-    if (type == 'myphotos') {
-      for (let file of this.myphotosFiles) {
-        _formData.append('files', file);
-      }
+    for (let file of this.myphotosFiles) {
+      _formData.append('files', file);
     }
-    else {
-      // for videos
-      for (let file of this.myvideosFiles) {
-        _formData.append('files', file);
-      }
-    }
-
     _formData.append('doc_type', type);
     var _url = `${environment.apiUrl}FileUpload/UserDocuments`;
     this.formapiService.post(_url, _formData).then((d) => {
@@ -400,14 +383,14 @@ export class UserProfilestep1Component implements OnInit {
   }
   */
   UserPhotosDocuemnts: any[];
-  UserVidoesDocuemnts: any[];
+  UserVideosDocuemnts: any[];
   LoadUserDocuments(id) {
     this._userService.getUserDocuments(id).subscribe(d => {
       console.log(d.content, "user Docuemnts ")
       if (d.status == "1") {
         let Docuemnts = d.content;
         this.UserPhotosDocuemnts = Docuemnts.filter(q => q.doc_type.toLowerCase().includes('myphotos'));
-        this.UserVidoesDocuemnts = Docuemnts.filter(q => q.doc_type.toLowerCase().includes('myvidoes'));
+        this.UserVideosDocuemnts = Docuemnts.filter(q => q.doc_type.toLowerCase().includes('myvideos'));
       }
     })
   }

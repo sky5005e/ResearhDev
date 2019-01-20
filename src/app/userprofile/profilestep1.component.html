@@ -174,14 +174,14 @@
                         <input type="file" placeholder="My videos" type="file" #videos (change)="onVideoFileChange($event)"
                             name="videos" required />Browse File
                     </span>
-                    <p *ngIf="!vidoeimagefileIsValid" class="val-error">{{msgVideoError}}</p>
+                    <p *ngIf="!videoimagefileIsValid" class="val-error">{{msgVideoError}}</p>
                     <span class="upload-preview" *ngFor="let vurl of videoUrls">
                         <i class="fas fa-times-circle"></i>
                         <video width="90px" height="90px" controls>
                             <source [src]="vurl" id="video_here">
                         </video>
                     </span>
-                    <span class="upload-preview" *ngFor="let v of UserVidoesDocuemnts">
+                    <span class="upload-preview" *ngFor="let v of UserVideosDocuemnts">
                         <video width="90px" height="90px" controls>
                             <source [src]="v.doc_path" id="video_here">
                         </video>

@@ -29,6 +29,7 @@ $(document).ready(function () {
     //)
     $(".only-numeric").keypress(function(e){
         var keyCode = e.which;
+        console.log(keyCode);
         /*
         8 - (backspace)
         32 - (space)
