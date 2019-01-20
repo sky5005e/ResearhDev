@@ -64,4 +64,7 @@ export class UserService {
   getUserDocuments(id) {
     return this._apiService.getNew(this.apiBaseUrl + 'api/user/GetUserDocuments/' + id);
   }
+  RemoveDocument(data) {
+    return this._apiService.postNew(this.apiBaseUrl + 'api/user/removedoc', data);
+  }
 }

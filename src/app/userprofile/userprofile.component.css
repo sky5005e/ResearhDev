@@ -14,11 +14,11 @@ input[type="submit"].add-btn {
     display: inline-block;
 }
 
-.main-form .input-file input[type="file"] {
+/* .main-form .input-file input[type="file"] {
     opacity: 1;
     position: absolute;
     left: 0;
     right: 0;
     top: 12px;
     bottom: 0;
-}
+} */

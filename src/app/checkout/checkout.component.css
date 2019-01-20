@@ -16,7 +16,7 @@ input[type="submit"] {
 input[type="button"].paypal-btn {
     background: #ffcc00;
 }
-
+/* 
 .main-form .input-file input[type="file"] {
     opacity: 1;
     position: absolute;
@@ -24,4 +24,4 @@ input[type="button"].paypal-btn {
     right: 0;
     top: 12px;
     bottom: 0;
-}
+} */

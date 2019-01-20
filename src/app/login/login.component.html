@@ -15,13 +15,13 @@
 
         <li>
           <label>Login ID</label>
-          <input type="text" autofocus #email_id="ngModel" name="email_id" [(ngModel)]="loginModel.email_id" required >
+          <input type="text" placeholder="Email address" autofocus #email_id="ngModel" name="email_id" [(ngModel)]="loginModel.email_id" required >
           <div *ngIf="!isFormValid && !email_id.valid" class="val-error">email
             is required</div>
         </li>
         <li>
           <label>Password</label>
-          <input type="password" #password="ngModel" minlength="6" name="password" [(ngModel)]="loginModel.password"
+          <input type="password" placeholder="Password" #password="ngModel" minlength="6" name="password" [(ngModel)]="loginModel.password"
             required>
           <div *ngIf="!isFormValid && !password.valid" class="val-error">password
             is required</div>

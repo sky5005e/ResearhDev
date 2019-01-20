@@ -13,7 +13,7 @@
 			<ul class="main-form create-experience">
 				<li>
 					<label>Bank Account Number</label>
-					<input type="text" #bank_account_number="ngModel" name="bank_account_number" [(ngModel)]="Model.bank_account_number"
+					<input type="number" placeholder="Account number" #bank_account_number="ngModel" name="bank_account_number" [(ngModel)]="Model.bank_account_number"
 					 required>
 					<div *ngIf="bank_account_number.touched || f.submitted && !Model.bank_account_number">
 						<div *ngIf="bank_account_number.hasError('required')" class="val-error">** bank account number is required</div>
@@ -31,7 +31,7 @@
 				</li>
 				<li>
 					<label>IBAN</label>
-					<input type="text" #iban="ngModel" name="iban" [(ngModel)]="Model.iban"
+					<input type="text" placeholder="IBAN" #iban="ngModel" name="iban" [(ngModel)]="Model.iban"
 					 required>
 					<div *ngIf="iban.touched || f.submitted && !Model.iban">
 						<div *ngIf="iban.hasError('required')" class="val-error">** iban is required</div>
@@ -39,7 +39,7 @@
 				</li>
 				<li>
 					<label>IFSC (If Applicable)</label>
-					<input type="text" #ifsc_code="ngModel" name="ifsc_code" [(ngModel)]="Model.ifsc_code"
+					<input type="text" placeholder="IFSC code" #ifsc_code="ngModel" name="ifsc_code" [(ngModel)]="Model.ifsc_code"
 					 required>
 					<div *ngIf="ifsc_code.touched || f.submitted && !Model.ifsc_code">
 						<div *ngIf="ifsc_code.hasError('required')" class="val-error">** ifsc code is required</div>
@@ -47,7 +47,7 @@
 				</li>
 				<li>
 					<label>Bank Account Holder Name</label>
-					<input type="text" #account_holder_name="ngModel" name="account_holder_name" [(ngModel)]="Model.account_holder_name"
+					<input type="text"placeholder="Name"  #account_holder_name="ngModel" name="account_holder_name" [(ngModel)]="Model.account_holder_name"
 					 required>
 					<div *ngIf="account_holder_name.touched || f.submitted && !Model.account_holder_name">
 						<div *ngIf="account_holder_name.hasError('required')" class="val-error">** account holder name is required</div>
@@ -67,7 +67,7 @@
 				<li class="sign-up-or">OR</li>
 				<li class="add-paypal">
 					<label>Add Paypal Account</label>
-					<input type="text" #paypal="ngModel" name="paypal" [(ngModel)]="Model.paypal">
+					<input type="text" placeholder="email" #paypal="ngModel" name="paypal" [(ngModel)]="Model.paypal">
 
 				</li>
 			</ul>

@@ -24,7 +24,7 @@ import { UserProfileModule } from './userprofile/userprofile.module';
 let configHindustanDomain = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('510888144384-5n8a89kiib5jsh3vodpob275qbs6ui54.apps.googleusercontent.com')    
+    provider: new GoogleLoginProvider('1077617571524-sjf1b7hramalpp9fus0nie6fe9mffjir.apps.googleusercontent.com')
     //provider:  new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
   },
   {
@@ -32,10 +32,22 @@ let configHindustanDomain = new AuthServiceConfig([
     provider: new FacebookLoginProvider('384704044966469')
   }
 ]);
+let configAzureDomain = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('510888144384-rtctpm39st8djgkucg92aet0217lqcdo.apps.googleusercontent.com')
+    //google-client-id')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('331600844113566')
+  }
+]);
+//510888144384-rtctpm39st8djgkucg92aet0217lqcdo.apps.googleusercontent.com
 let configlocalHost = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider:  new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
+    provider: new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
@@ -45,7 +57,7 @@ let configlocalHost = new AuthServiceConfig([
 let configIP = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider:  new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
+    provider: new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
@@ -53,11 +65,19 @@ let configIP = new AuthServiceConfig([
   }
 ]);
 //provider: //new GoogleLoginProvider('20117584457-htj1bubaa1jsk8a855q3h3on85j9gqih.apps.googleusercontent.com')//google-client-id')
- 
+
 export function provideConfig() {
 
-  let configsetting = window.location.href.indexOf('http://hindustanfundscarrier.com') !== -1 ? configHindustanDomain : configlocalHost ;
-  return configsetting;
+
+  if (window.location.href.indexOf('http://hindustanfundscarrier.com') !== -1) {
+    return configHindustanDomain;
+  }
+  if (window.location.href.indexOf('https://bukkzydemo.azurewebsites.net/') !== -1) {
+    return configAzureDomain;
+  }
+  else {
+    return configlocalHost;
+  }
 }
 @NgModule({
   declarations: [

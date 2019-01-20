@@ -41,7 +41,17 @@ export class LoginComponent implements OnInit {
   loginWithFacebook() {
     console.log(FacebookLoginProvider.PROVIDER_ID);
     this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then(userData => {
-      console.log('userData = ', userData);
+      console.log('userData FB = ', userData);
+      debugger;
+      let signUpModel: any = {};
+      signUpModel.email_id = userData.email;
+      signUpModel.first_name = userData.firstName;
+      signUpModel.last_name = userData.lastName;
+      signUpModel.user_name = userData.provider;
+      signUpModel.profile_image = userData.photoUrl
+      signUpModel.code = userData.provider;
+      this.SaveSocialLogin(signUpModel);
+
     })
   }
 
@@ -61,7 +71,7 @@ export class LoginComponent implements OnInit {
 
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(userData => {
       debugger;
-      console.log('userData = ', userData);
+      console.log('userData GB= ', userData);
       let signUpModel: any = {};
       signUpModel.email_id = userData.email;
       signUpModel.first_name = userData.firstName;

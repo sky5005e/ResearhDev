@@ -71,11 +71,17 @@ export class AddExpComponent implements OnInit {
       this.months.push(j);
     }
     for (var k = 0; k < 24; k++) {
-      let timeslots1 = `${k} : 00`;      
-      this.times.push(timeslots1);
-      let timeslots2 = `${k} : 30`;      
-      this.times.push(timeslots2);     
-      
+      if (k < 10) {
+        let timeslots1 = `0${k} : 00`;
+        this.times.push(timeslots1);
+      }
+      else {
+        let timeslots1 = `${k} : 00`;
+        this.times.push(timeslots1);
+      }
+      let timeslots2 = `${k} : 30`;
+      this.times.push(timeslots2);
+
     }
   }
   urls = [];
@@ -167,7 +173,7 @@ export class AddExpComponent implements OnInit {
           $("#preloader").hide();
           console.log('error handling status', status);
           console.log('error handling xhr', xhr);
-          alert("Thanks for creating an Experience with Bukkzy");          
+          alert("Thanks for creating an Experience with Bukkzy");
         }
 
         );

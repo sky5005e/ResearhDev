@@ -14,7 +14,7 @@
                 <li class="clearfix buyer-name">
                     <div>
                         <label>First Name</label>
-                        <input type="text" #first_name="ngModel" name="first_name" [(ngModel)]="Model.first_name"
+                        <input type="text" placeholder="Fisrt name" #first_name="ngModel" name="first_name" [(ngModel)]="Model.first_name"
                             required>
                         <div *ngIf="first_name.touched || f.submitted && !Model.first_name">
                             <div *ngIf="first_name.hasError('required')" class="val-error">** first name is required</div>
@@ -22,7 +22,7 @@
                     </div>
                     <div>
                         <label>Last Name</label>
-                        <input type="text" #last_name="ngModel" name="last_name" [(ngModel)]="Model.last_name" required>
+                        <input type="text" placeholder="Last name" #last_name="ngModel" name="last_name" [(ngModel)]="Model.last_name" required>
                         <div *ngIf="last_name.touched || f.submitted && !Model.last_name">
                             <div *ngIf="last_name.hasError('required')" class="val-error">** last name is required</div>
                         </div>
@@ -31,7 +31,7 @@
                 <li class="clearfix buyer-name">
                     <div>
                         <label>You are Good at</label>
-                        <input type="text" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required
+                        <input type="text" placeholder="Good at" #Good_at="ngModel" name="Good_at" [(ngModel)]="Model.Good_at" required
                             maxlength="50">
                         <div *ngIf="Good_at.touched || f.submitted && !Model.Good_at">
                             <div *ngIf="Good_at.hasError('required')" class="val-error">** Good at name is required</div>
@@ -51,7 +51,7 @@
                 <li class="cover-img">
                     <label>Cover Image</label>
                     <span class="input-file">
-                        <input type="file" type="file" #coverimage (change)="onCoverFileChange($event)" name="coverimage"
+                        <input type="file"  placeholder="Cover image" type="file" #coverimage (change)="onCoverFileChange($event)" name="coverimage"
                             required />Browse
                         File
                     </span>
@@ -68,7 +68,7 @@
                     <label>Profile Image</label>
 
                     <span class="input-file">
-                        <input type="file" type="file" #profileimage (change)="onProfileFileChange($event)" name="profileimage"
+                        <input type="file" type="file" placeholder="Profile image" #profileimage (change)="onProfileFileChange($event)" name="profileimage"
                             required />Browse
                         File
                     </span>
@@ -89,7 +89,7 @@
                         <input type="number" placeholder="Country Code" #mobile_code="ngModel" name="mobile_code"
                             [(ngModel)]="Model.mobile_code" required>
                         
-                        <input type="number" placeholder="Number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="Model.mobile_no"
+                        <input type="number" placeholder="Mobile number" #mobile_no="ngModel" name="mobile_no" [(ngModel)]="Model.mobile_no"
                             required>
                         <div *ngIf="mobile_no.touched || f.submitted && !Model.mobile_no">
                             <div *ngIf="mobile_no.hasError('required')" class="val-error">** Mobile no is required</div>
@@ -121,7 +121,7 @@
                 </li>
                 <li class="exp-country">
                     <label>About Yourself</label>
-                    <textarea #about="ngModel" name="about" [(ngModel)]="Model.about" required></textarea>
+                    <textarea #about="ngModel" placeholder="About yourself" name="about" [(ngModel)]="Model.about" required></textarea>
                     <div *ngIf="about.touched || f.submitted && !Model.about">
                         <div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
                     </div>
@@ -191,9 +191,8 @@
                     <label>My Photos</label>
 
                     <span class="input-file">
-                        <input type="file" type="file" #myphotosimage multiple (change)="onmyphotosimageChange($event)"
-                            name="myphotosimage" required />Browse
-                        File
+                        <input type="file" placeholder="My photos" type="file" #myphotosimage (change)="onmyphotosimageChange($event)"
+                            name="myphotosimage" required />Browse File
                     </span>
                     <p *ngIf="!myphotosimageIsValid" class="val-error">{{myphotosimageImageError}}</p>
                     <!-- <span class="upload-preview">
@@ -223,9 +222,8 @@
                 <li>
                     <label>My Videos</label>
                     <span class="input-file">
-                        <input type="file" type="file" #videos multiple (change)="onVideoFileChange($event)" name="videos"
-                            required />Browse
-                        File
+                        <input type="file" placeholder="My videos" type="file" #videos (change)="onVideoFileChange($event)" name="videos"
+                            required />Browse File
                     </span>
                     <p *ngIf="!vidoeimagefileIsValid" class="val-error">{{msgVideoError}}</p>
                     <span class="upload-preview" *ngFor="let vurl of videoUrls">

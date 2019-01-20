@@ -6,7 +6,7 @@
 			<ul class="main-form create-experience">
 				<li>
 					<label>Experience Headline</label>
-					<input type="text" #title="ngModel" name="title" [(ngModel)]="Model.title" required>
+					<input type="text" #title="ngModel" placeholder="Experience Headline" name="title" [(ngModel)]="Model.title" required>
 					<div *ngIf="title.touched || f.submitted && !Model.title">
 						<div *ngIf="title.hasError('required')" class="val-error">** title is required</div>
 					</div>
@@ -14,7 +14,7 @@
 				<li class="exp-country">
 					<label>Country</label>
 					<select #country="ngModel" name="country" [(ngModel)]="Model.country" required>
-						<option value="" selected="selected">Select</option>
+						<option value="" selected="selected" >Select</option>
 						<option *ngFor="let p of places" [value]="p">{{p}}</option>
 					</select>
 					<div *ngIf="country.touched || f.submitted && !Model.country">
@@ -54,14 +54,14 @@
 				</li>
 				<li>
 					<label>About the Experience</label>
-					<textarea #about="ngModel" name="about" [(ngModel)]="Model.about" required></textarea>
+					<textarea #about="ngModel" placeholder="About the Experience" name="about" [(ngModel)]="Model.about" required></textarea>
 					<div *ngIf="about.touched || f.submitted && !Model.about">
 						<div *ngIf="about.hasError('required')" class="val-error">** about is required</div>
 					</div>
 				</li>
 				<li>
 					<label>Explain how your Experience is Special and Unique to Bukkzy Customers</label>
-					<textarea #explain="ngModel" name="explain" [(ngModel)]="Model.explain" required></textarea>
+					<textarea #explain="ngModel" placeholder="Explain how your experience" name="explain" [(ngModel)]="Model.explain" required></textarea>
 					<div *ngIf="explain.touched || f.submitted && !Model.explain">
 						<div *ngIf="explain.hasError('required')" class="val-error">** explain is required</div>
 					</div>
@@ -72,13 +72,13 @@
 						<select>
 							<option selected="selected" value="$">$</option>
 						</select>
-						<input type="text" #price="ngModel" name="price" [(ngModel)]="Model.price" required />
+						<input type="number" #price="ngModel" placeholder="Price to your experience" name="price" [(ngModel)]="Model.price" required />
 						<div *ngIf="price.touched || f.submitted && !Model.price">
 							<div *ngIf="price.hasError('required')" class="val-error">** price is required</div>
 						</div>
 					</div>
 					<div class="discount"><label>Discount/Offer</label>
-						<input type="text" #sprice="ngModel" name="sprice" [(ngModel)]="Model.sprice" required />
+						<input type="number" #sprice="ngModel" placeholder="Discount offer" name="sprice" [(ngModel)]="Model.sprice" required />
 						<div *ngIf="sprice.touched || f.submitted && !Model.sprice">
 							<div *ngIf="sprice.hasError('required')" class="val-error">** sprice is required</div>
 						</div>

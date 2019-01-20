@@ -75,12 +75,18 @@ export class UserProfilestep2Component implements OnInit {
             this.months.push(j);
         }
         for (var k = 0; k < 24; k++) {
-            let timeslots1 = `${k} : 00`;      
-            this.times.push(timeslots1);
-            let timeslots2 = `${k} : 30`;      
-            this.times.push(timeslots2);     
-            
-          }
+            if (k < 10) {
+                let timeslots1 = `0${k} : 00`;
+                this.times.push(timeslots1);
+            }
+            else {
+                let timeslots1 = `${k} : 00`;
+                this.times.push(timeslots1);
+            }
+            let timeslots2 = `${k} : 30`;
+            this.times.push(timeslots2);
+
+        }
     }
     urls = [];
     onFileChange(event) {
