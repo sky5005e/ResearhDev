@@ -82,12 +82,14 @@ export class UserProfilestep1Component implements OnInit {
     let expModel: any = {};
     expModel.user_id = this.Model.id;
     expModel.experience_id = expid;
-
     this._userService.AddUserExperiences(expModel).subscribe(d => {
       console.log(d.content, 'AddUserExperience');
     });
   }
+  RemoveUserExperience(id)
+  {
 
+  }
   goto() {
 
     this._router.navigate(['user/profile-step2']);

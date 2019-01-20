@@ -141,12 +141,11 @@
 
                     <span class="upload-preview add-cat" *ngFor="let exp of data$ | async">
                         <ng-template *ngIf="exp.RecordId > 0; else plusexp">
-                            <i class="fas fa-remove-circle" (click)="RemoveUserExperience(exp.id)"></i>
+                            <i class="fas fa-times-circle" (click)="RemoveUserExperience(exp.id)"></i>
                         </ng-template>
                         <ng-template #plusexp>
                             <i class="fas fa-plus-circle" (click)="AddUserExperience(exp.id)"></i>
                         </ng-template>
-
                         <img [src]="exp.image" class="rounded mb-3" width="90" height="90">
                     </span>
 
